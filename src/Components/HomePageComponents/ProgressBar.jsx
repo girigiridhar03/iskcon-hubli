@@ -5,10 +5,7 @@ const ProgressBar = ({currentAmount,goalAmount}) => {
      
     const [bar,setBar] = useState(null);
 
-    goalAmount = Number(goalAmount.split(',').join(''));
-    currentAmount = Number(currentAmount.split(",").join(''))
-   
-
+  
     useEffect(()=>{
        const proBar = () =>{
         if(currentAmount > goalAmount){

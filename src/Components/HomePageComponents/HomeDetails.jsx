@@ -5,9 +5,16 @@ import { Link } from "react-router-dom";
 
 const HomeDetails = () => {
   return (
-    <Box w={['95%','90%','95%','95%','80%']} mx={"auto"} display={"flex"} mt={"2rem"} gap={"1.5rem"} flexDirection={['column','column','column','row']}>
+    <Box
+      w={["95%", "90%", "95%", "95%", "80%"]}
+      mx={"auto"}
+      display={"flex"}
+      mt={"2rem"}
+      gap={"1.5rem"}
+      flexDirection={["column", "column", "column", "row"]}
+    >
       <VStack
-        w={['100%','100%','100%','50%']}
+        w={["100%", "100%", "100%", "50%"]}
         alignItems={"left"}
         p={5}
         border={"2px solid rgb(0,0,0,0.2)"}
@@ -17,29 +24,31 @@ const HomeDetails = () => {
           ORGANIZATION DETAILS
         </Box>
         <Table w={"100%"}>
-          <Tr>
-            <Td fontWeight={"bold"}>Address:</Td>
-            <Td>
-              ISKCON Sri Sri Krishna Balarama Temple, Hubballi-Dharwad Road,
-              Rayapur, Dharwad 580009, Karnataka, India
-            </Td>
-          </Tr>
-          <Tr>
-            <Td fontWeight={"bold"}>Location:</Td>
-            <Td>Hubli-Dharwar, Karnataka, India</Td>
-          </Tr>
-          <Tr>
-            <Td fontWeight={"bold"}>About the org:</Td>
-            <Td>
-              The International Society for Krishna Consciousness, abbreviated
-              as ISKCON, known colloquially as the Movement of Hare Krishna, is
-              a Gaudiya Vaishnava Hindu religious organization.
-            </Td>
-          </Tr>
+          <Tbody>
+            <Tr>
+              <Td fontWeight={"bold"}>Address:</Td>
+              <Td>
+                ISKCON Sri Sri Krishna Balarama Temple, Hubballi-Dharwad Road,
+                Rayapur, Dharwad 580009, Karnataka, India
+              </Td>
+            </Tr>
+            <Tr>
+              <Td fontWeight={"bold"}>Location:</Td>
+              <Td>Hubli-Dharwar, Karnataka, India</Td>
+            </Tr>
+            <Tr>
+              <Td fontWeight={"bold"}>About the org:</Td>
+              <Td>
+                The International Society for Krishna Consciousness, abbreviated
+                as ISKCON, known colloquially as the Movement of Hare Krishna,
+                is a Gaudiya Vaishnava Hindu religious organization.
+              </Td>
+            </Tr>
+          </Tbody>
         </Table>
       </VStack>
       <VStack
-        w={['100%','100%','100%','50%']}
+        w={["100%", "100%", "100%", "50%"]}
         alignItems={"left"}
         p={5}
         border={"2px solid rgb(0,0,0,0.2)"}
