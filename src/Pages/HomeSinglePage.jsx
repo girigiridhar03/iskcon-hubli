@@ -101,6 +101,13 @@ const HomeSinglePage = () => {
     dispatch(fetchSingleUser(id));
   }, [dispatch, id]);
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0, 
+      behavior: "smooth",
+    });
+  }, []);
+
   console.log(getSingleUser.Userlist);
 
   return (
