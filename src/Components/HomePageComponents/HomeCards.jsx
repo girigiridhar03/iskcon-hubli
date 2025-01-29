@@ -14,6 +14,7 @@ import ProgressBar from "./ProgressBar";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "../../Redux/clientSlices/clientUsers";
 import { Link } from "react-router-dom";
+import DottedAnimation from "../DottedAnimation";
 
 const HomeCards = () => {
   const { isLoading, isError, getUsers } = useSelector(
@@ -25,7 +26,17 @@ const HomeCards = () => {
     dispatch(fetchUser());
   }, [dispatch]);
 
+  if(isLoading){
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center" height="80vh">
+        <DottedAnimation />
+      </Box>
+    );
+  }
 
+  if(isError){
+    alert(isError)
+  }
 
   return (
     <Box
@@ -42,18 +53,18 @@ const HomeCards = () => {
             AMOUNT RAISED:
           </Box>
           <Box fontSize={"2.5rem"} fontWeight={"600"}>
-            ₹65,82,721
+            {getUsers?.totalraisedamt}
           </Box>
         </VStack>
 
         <HStack fontWeight={"600"} fontSize={"1.3rem"}>
           <Box>CAMPAIGNS CREATED:</Box>
           <Box>
-            {getUsers?.length <= 9 ? `0${getUsers.length}` : getUsers?.length}
+          {getUsers?.campaignDetails?.length === 0 ? '0' : getUsers?.campaignDetails?.length <= 9 ? `0${getUsers?.campaignDetails?.length}` : getUsers?.campaignDetails?.length}
           </Box>
         </HStack>
       </Box>
-      {getUsers.length > 0 ? (
+      {getUsers?.campaignDetails?.length > 0 ? (
         <SimpleGrid
           columns={[1, 1, 2, 2, 3, 4]}
           spacing={[10, 10, 5, 10, 5]}
@@ -62,9 +73,9 @@ const HomeCards = () => {
           mt={"2rem"}
           p={"10px"}
         >
-          {getUsers.map((user, i) => (
+          {getUsers?.campaignDetails?.map((user, i) => (
             <Link key={user.campaignId} to={`/${user.campaignId}`}>
-              <Card w={"100%"} overflow={"hidden"} key={user.campaignId}>
+              <Card w={"100%"} overflow={"hidden"} key={user.campaignId} h={'100%'}>
                 <Box
                   w={"100%"}
                   h={["250px", "250px", "250px", "300px", "250px"]}

@@ -12,7 +12,9 @@ const AdminNavbar = () => {
              <Link to={'admin/campaignlist'}>
               <Box bgColor={'rgba(163, 161, 161, 0.45)'} p={'1rem'} fontWeight={'bold'} borderRadius={'5px'} fontSize={'1.1rem'} cursor={'pointer'}>All Campagin List</Box>
              </Link>
-              {/* <Box bgColor={'rgba(163, 161, 161, 0.45)'} p={'1rem'} fontWeight={'bold'} borderRadius={'5px'} fontSize={'1.1rem'} cursor={'pointer'}>LogOut</Box> */}
+             <Link to={'admin/donorsList'}>
+              <Box bgColor={'rgba(163, 161, 161, 0.45)'} p={'1rem'} fontWeight={'bold'} borderRadius={'5px'} fontSize={'1.1rem'} cursor={'pointer'}>Donors List</Box>
+             </Link>
           </VStack>
      </Box>
   )

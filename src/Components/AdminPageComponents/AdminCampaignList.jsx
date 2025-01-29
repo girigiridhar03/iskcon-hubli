@@ -21,9 +21,10 @@ import { BiSolidEditAlt } from "react-icons/bi";
 import { FaEye } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { IoCloseCircle } from "react-icons/io5";
+import DottedAnimation from "../DottedAnimation";
 
 const AdminCampaignList = () => {
-  const { getUsers, getSingleUser } = useSelector((state) => state.clientUsers);
+  const { isLoading,isError, getUsers, getSingleUser } = useSelector((state) => state.clientUsers);
   const dispatch = useDispatch();
   const [toggleModel, setModel] = useState(false);
   const [search,setSearch] = useState("");
@@ -45,7 +46,9 @@ const AdminCampaignList = () => {
     )
   : getUsers;
 
-  console.log(getSingleUser);
+ if(isError){
+  alert(isError)
+ }
 
   return (
     <>
@@ -61,14 +64,20 @@ const AdminCampaignList = () => {
           justifyContent={"center"}
           overflow={"hidden"}
         >
+         
           <Box
             bgColor={"white"}
             w={"40%"}
             borderRadius={"10px"}
-            p={"1.5rem"}
+            p={isLoading ? "0" : "1.5rem"}
             position={"relative"}
             boxShadow={"0px 4px 12px rgba(163, 156, 156, 0.1)"}
           >
+             {isLoading && (
+              <Box position={'absolute'} w={'100%'} h={'100%'} bgColor={'rgb(0,0,0,0.8)'} display={'flex'} justifyContent={'center'} alignItems={'center'} borderRadius={'10px'}>
+                 <DottedAnimation />
+              </Box>
+             )}
             <Box
               fontSize={"2rem"}
               fontWeight={"semibold"}

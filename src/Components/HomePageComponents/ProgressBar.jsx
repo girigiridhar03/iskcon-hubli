@@ -12,7 +12,7 @@ const ProgressBar = ({currentAmount,goalAmount}) => {
             return setBar("100%")
         }
          if(goalAmount > 0){
-             const percentage = Math.min(((currentAmount/goalAmount)*100),100);
+             const percentage = Math.min(((Number(currentAmount)/Number(goalAmount))*100),100);
 
              return percentage
          }
@@ -32,6 +32,7 @@ const ProgressBar = ({currentAmount,goalAmount}) => {
   borderRadius="30px"
   my="0.8rem"
   overflow="hidden"
+  position={'relative'}
 >
   <Box
     w={`${bar}%`}
@@ -39,7 +40,8 @@ const ProgressBar = ({currentAmount,goalAmount}) => {
     bgColor="green.200"
     transition="width 0.5s ease-in-out"
     willChange="width"
-  ></Box>
+  >
+  </Box>
 </Box>
   )
 }

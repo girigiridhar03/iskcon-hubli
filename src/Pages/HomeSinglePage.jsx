@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { fetchSingleUser } from "../Redux/clientSlices/clientUsers";
+import { fetchSingleUser, postPaymentFormData } from "../Redux/clientSlices/clientUsers";
 import {
   AspectRatio,
   Box,
+  Button,
   Center,
+  FormLabel,
   HStack,
   Image,
+  Input,
+  Select,
   VStack,
 } from "@chakra-ui/react";
 import { FaLocationDot } from "react-icons/fa6";
@@ -16,6 +20,7 @@ import ProgressBar from "../Components/HomePageComponents/ProgressBar";
 import { BsPinFill } from "react-icons/bs";
 import { HiMiniTag } from "react-icons/hi2";
 import { FaCalendarDays } from "react-icons/fa6";
+import DottedAnimation from "../Components/DottedAnimation";
 
 const campaign = {
   image1:
@@ -97,21 +102,440 @@ const HomeSinglePage = () => {
   );
   const dispatch = useDispatch();
 
+  const [amount, setAmount] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [paymentModel, setPaymentModel] = useState(false);
+  const [formToggle, setFormToggle] = useState(false);
+  const [errors,setErrors] = useState("");
+
+  const [formData, setFormData] = useState({
+    email: "",
+    mobileno: "",
+    nationality: "Indian",
+    country: "Indian",
+    state: "",
+    pincode: "",
+    city: "",
+    panno: "",
+    address: "",
+    amount: amount,
+    username: "",
+    campaignsid: id,
+  });
+
   useEffect(() => {
     dispatch(fetchSingleUser(id));
   }, [dispatch, id]);
 
   useEffect(() => {
     window.scrollTo({
-      top: 0, 
+      top: 0,
       behavior: "smooth",
     });
   }, []);
 
-  console.log(getSingleUser.Userlist);
+
+  const handleClick = () => {
+    if (amount === null) {
+      return setErrorMessage("Please enter an amount");
+    } else if (amount < 100) {
+      return setErrorMessage("Minimum contribution amount is INR 100");
+    }
+
+    setErrorMessage("");
+    setPaymentModel(true);
+    setFormData({
+      email: "",
+      mobileno: "",
+      nationality: "Indian",
+      country: "Indian",
+      state: "",
+      pincode: "",
+      city: "",
+      panno: "",
+      address: "",
+      amount: amount,
+      username: "",
+      campaignsid: id,
+    });
+    setFormToggle(false)
+  };
+
+  
+  const statesAndContry = {
+    states: [
+      "Andhra Pradesh",
+      "Arunachal Pradesh",
+      "Assam",
+      "Bihar",
+      "Chhattisgarh",
+      "Goa",
+      "Gujarat",
+      "Haryana",
+      "Himachal Pradesh",
+      "Jharkhand",
+      "Karnataka",
+      "Kerala",
+      "Madhya Pradesh",
+      "Maharashtra",
+      "Manipur",
+      "Meghalaya",
+      "Mizoram",
+      "Nagaland",
+      "Odisha",
+      "Punjab",
+      "Rajasthan",
+      "Sikkim",
+      "Tamil Nadu",
+      "Telangana",
+      "Tripura",
+      "Uttar Pradesh",
+      "Uttarakhand",
+      "West Bengal",
+    ],
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const mobileRegex = /^[0-9]{10}$/;
+    const pincodeRegex = /^[0-9]{6}$/;
+    const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
+    const amountRegex = /^[0-9]+(\.[0-9]{1,2})?$/;
+
+    // Email validation
+    if (!formData.email) {
+      newErrors.email = "Email is required";
+    } else if (!emailRegex.test(formData.email)) {
+      newErrors.email = "Please enter a valid email address";
+    }
+
+    // Mobile number validation
+    if (!formData.mobileno) {
+      newErrors.mobileno = "Mobile number is required";
+    } else if (!mobileRegex.test(formData.mobileno)) {
+      newErrors.mobileno = "Please enter a valid 10-digit mobile number";
+    }
+
+    // State validation
+    if (!formData.state) {
+      newErrors.state = "State is required";
+    }
+
+    // Pincode validation
+    if (!formData.pincode) {
+      newErrors.pincode = "Pincode is required";
+    } else if (!pincodeRegex.test(formData.pincode)) {
+      newErrors.pincode = "Please enter a valid 6-digit pincode";
+    }
+
+    // PAN number validation
+    if (!formData.panno) {
+      newErrors.panno = "PAN number is required";
+    } else if (!panRegex.test(formData.panno)) {
+      newErrors.panno = "Please enter a valid PAN number";
+    }
+
+    // Amount validation
+    if (!formData.amount) {
+      newErrors.amount = "Amount is required";
+    } else if (!amountRegex.test(formData.amount)) {
+      newErrors.amount = "Please enter a valid amount (e.g., 123.45)";
+    }
+
+    // Username validation
+    if (!formData.username) {
+      newErrors.username = "Username is required";
+    }
+
+    // City validation
+    if (!formData.city) {
+      newErrors.city = "City is required";
+    }
+
+    // Address validation
+    if (!formData.address) {
+      newErrors.address = "Address is required";
+    }
+
+    setErrors(newErrors);
+
+    return Object.keys(newErrors).length === 0; // Return true if no errors
+  };
+
+  const handleOnChange = (e) => {
+    const { name, value } = e.target;
+ 
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    if (name === "email" && value.includes("@")) {
+      setFormToggle(true);
+
+      console.log(true);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (validateForm()) {
+      dispatch(postPaymentFormData(formData))
+    } 
+  };
 
   return (
-    <Box w={"100%"}>
+    <Box w={"100%"} position={"relative"} overflow={paymentModel ? "hidden" : "auto"}>
+
+       {/* Loading */}
+       {isLoading &&  <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        height="100vh"
+        position={'fixed'}
+        w={'100%'}
+        bgColor={'rgb(0,0,0,0.6)'}
+        zIndex={10}
+      >
+        <DottedAnimation />
+      </Box>}
+
+      {/* Payment Model */}
+     {
+       paymentModel && 
+       <Box
+       position={"fixed"}
+       w={"100%"}
+       h={"100vh"}
+       overflow={"hidden"}
+       bgColor={"rgb(0,0,0,0.6)"}
+       zIndex={10}
+       display={"flex"}
+       alignItems={"center"}
+       justifyContent={"center"}
+     >
+       <Box
+         w={['95%','95%','95%','70%',"45%"]}
+         mt={"5rem"}
+         borderRadius={"10px"}
+         bgColor={"white"}
+         h={"auto"}
+       >
+         <HStack
+           w={"100%"}
+           bgColor={"red.500"}
+           borderTopLeftRadius={"10px"}
+           borderTopRightRadius={"10px"}
+           p={"1rem"}
+           justifyContent={"space-between"}
+           fontWeight={"bold"}
+           color={"white"}
+           fontSize={"1.1rem"}
+         >
+           <Box>Amount: {amount}</Box>
+           <Box onClick={()=>setPaymentModel(false)} cursor={'pointer'}>Close</Box>
+         </HStack>
+         <Box
+           w={"90%"}
+           mx={"auto"}
+           py={"1rem"}
+           h={"100px"}
+           display={"flex"}
+           justifyContent={"center"}
+           alignItems={"center"}
+         >
+           <Input
+             type="email"
+             name="email"
+             value={formData.email}
+             border={"2px solid #CCCCCC"}
+             placeholder="Enter Email ID*"
+             onChange={handleOnChange}
+           />
+           {errors.email && <Box color="red.500">{errors.email}</Box>}
+         </Box>
+ 
+         <Box
+           w={"90%"}
+           mx={"auto"}
+           h={formToggle ? "auto" : 0}
+           overflow={"hidden"}
+           transition="height 0.3s ease-in-out"
+         >
+           <form onSubmit={handleSubmit}>
+             <Input
+               onChange={handleOnChange}
+               name="username"
+               value={formData.username}
+               border={"2px solid #CCCCCC"}
+               type="text"
+               placeholder="Full Name*"
+             />
+             {errors.username && <Box color="red.500">{errors.username}</Box>}
+ 
+             <HStack my={"1rem"}>
+               <VStack alignItems={"flex-start"} gap={"1px"} w={"100%"}>
+                 <FormLabel>
+                   <HStack>
+                     <Box>Mobile No</Box>
+                     <Box color={"red.500"}>*</Box>
+                   </HStack>
+                 </FormLabel>
+                 <Input
+                   onChange={handleOnChange}
+                   name="mobileno"
+                   value={formData.mobileno}
+                   border={"2px solid #CCCCCC"}
+                   type="tel"
+                   placeholder="Enter Mobile Number"
+                   w={"100%"}
+                 />
+                 {errors.mobileno && <Box color="red.500">{errors.mobileno}</Box>}
+               </VStack>
+ 
+               <VStack alignItems={"flex-start"} gap={"1px"} w={"100%"}>
+                 <FormLabel>
+                   <HStack>
+                     <Box>Nationality</Box>
+                     <Box color={"red.500"}>*</Box>
+                   </HStack>
+                 </FormLabel>
+                 <Input
+                   onChange={handleOnChange}
+                   name="nationality"
+                   value={formData.nationality}
+                   border={"2px solid #CCCCCC"}
+                   type="tel"
+                   placeholder="Enter Nationality"
+                   w={"100%"}
+                 />
+                 {errors.nationality && <Box color="red.500">{errors.nationality}</Box>}
+               </VStack>
+             </HStack>
+ 
+             <HStack my={"1rem"}>
+               <VStack alignItems={"flex-start"} gap={"1px"} w={"100%"}>
+                 <FormLabel>
+                   <HStack>
+                     <Box>Country</Box>
+                     <Box color={"red.500"}>*</Box>
+                   </HStack>
+                 </FormLabel>
+                 <Input
+                   onChange={handleOnChange}
+                   name="country"
+                   value={formData.country}
+                   border={"2px solid #CCCCCC"}
+                   type="tel"
+                   placeholder="Enter Country"
+                   w={"100%"}
+                 />
+                 {errors.country && <Box color="red.500">{errors.country}</Box>}
+               </VStack>
+ 
+               <VStack alignItems={"flex-start"} gap={"1px"} w={"100%"}>
+                 <FormLabel>
+                   <HStack>
+                     <Box>State/Province/Region</Box>
+                     <Box color={"red.500"}>*</Box>
+                   </HStack>
+                 </FormLabel>
+                 <Select
+                   w={"100%"}
+                   border={"2px solid #CCCCCC"}
+                   name="state"
+                   value={formData.state}
+                   onChange={handleOnChange}
+                 >
+                   {statesAndContry.states.map((state, index) => (
+                     <>
+                       <option value="">Select State</option>
+                     <option key={index} value={state}>
+                       {state}
+                     </option>  
+                     </>
+                   ))}
+                 </Select>
+                 {errors.state && <Box color="red.500">{errors.state}</Box>}
+               </VStack>
+             </HStack>
+ 
+             <Input
+               onChange={handleOnChange}
+               name="pincode"
+               value={formData.pincode}
+               border={"2px solid #CCCCCC"}
+               type="text"
+               placeholder="Pin/Zip Code*"
+             />
+             {errors.pincode && <Box color="red.500">{errors.pincode}</Box>}
+ 
+             <HStack my={"1rem"}>
+               <VStack alignItems={"flex-start"} gap={"1px"} w={"100%"}>
+                 <FormLabel>
+                   <HStack>
+                     <Box>Town/City</Box>
+                     <Box color={"red.500"}>*</Box>
+                   </HStack>
+                 </FormLabel>
+                 <Input
+                   onChange={handleOnChange}
+                   name="city"
+                   value={formData.city}
+                   border={"2px solid #CCCCCC"}
+                   placeholder="Enter Town/City"
+                   w={"100%"}
+                 />
+                 {errors.city && <Box color="red.500">{errors.city}</Box>}
+               </VStack>
+ 
+               <VStack alignItems={"flex-start"} gap={"1px"} w={"100%"}>
+                 <FormLabel>
+                   <HStack>
+                     <Box>PAN No*</Box>
+                     <Box color={"red.500"}>*</Box>
+                   </HStack>
+                 </FormLabel>
+                 <Input
+                   onChange={handleOnChange}
+                   name="panno"
+                   value={formData.panno}
+                   border={"2px solid #CCCCCC"}
+                   type="tel"
+                   placeholder="Enter Pan No."
+                   w={"100%"}
+                 />
+                 {errors.panno && <Box color="red.500">{errors.panno}</Box>}
+               </VStack>
+             </HStack>
+ 
+             <Input
+               onChange={handleOnChange}
+               name="address"
+               value={formData.address}
+               border={"2px solid #CCCCCC"}
+               type="text"
+               placeholder="Address, House NO, Street Address, Area Name, etc*"
+             />
+             {errors.address && <Box color="red.500">{errors.address}</Box>}
+ 
+             <Input
+               type="submit"
+               value={"Pay Now"}
+               bgColor={"red.500"}
+               my={"1.5rem"}
+               fontWeight={"bold"}
+               color={"white"}
+               w={"auto"}
+               mx={"auto"}
+               display={"block"}
+               cursor={"pointer"}
+             />
+           </form>
+         </Box>
+       </Box>
+     </Box>
+ 
+     }
       {/* Header */}
       <Box
         w={"100%"}
@@ -156,26 +580,6 @@ const HomeSinglePage = () => {
               </Box>
               <VStack alignItems={"flex-start"} gap={"5px"}>
                 <Box fontWeight={"bold"}>ISKCON HUBLI-DHARWAD</Box>
-                <VStack alignItems={"flex-start"} gap={"1px"}>
-                  <Box
-                    fontSize={"0.9rem"}
-                    fontWeight={"bold"}
-                    cursor={"pointer"}
-                  >
-                    SEE FULL PROFILE
-                  </Box>
-                  <HStack
-                    fontSize={"0.7rem"}
-                    gap={"3px"}
-                    alignItems={"center"}
-                    cursor={"pointer"}
-                  >
-                    <Box>
-                      <FaCheckCircle />
-                    </Box>
-                    <Box>Profile verified</Box>
-                  </HStack>
-                </VStack>
               </VStack>
             </HStack>
           </VStack>
@@ -249,7 +653,7 @@ const HomeSinglePage = () => {
                 INR 799778887
               </Box>
               <Box fontSize="2rem" fontWeight="semibold">
-                GOAL INR ${getSingleUser?.campaignDetails?.targetAmount}
+                GOAL INR {getSingleUser?.campaignDetails?.targetAmount}
               </Box>
             </VStack>
 
@@ -282,9 +686,45 @@ const HomeSinglePage = () => {
               />
             </Box>
           </Box>
-          <Box mt="1rem" p="1rem" fontSize="1rem" bgColor="#fff">
-            Accepts funds from Indian Passport / ID holders only.
-          </Box>
+          <VStack p="1rem" w={"100%"} alignItems={"flex-start"} gap={"1.5rem"}>
+            <Box fontSize="1rem" fontWeight={"semibold"}>
+              Accepts funds from Indian Passport / ID holders only.
+            </Box>
+            <VStack w={"100%"} gap={"1rem"}>
+              {
+                getSingleUser?.campaignDetails?.days === 0 ? 
+                <Box fontSize={'1.2rem'} color={'red.500'}>
+                   Successful
+                </Box> : (
+                   <Box w={"100%"}>
+                   <Input
+                     type="number"
+                     placeholder="Enter Amount"
+                     onChange={(e) => setAmount(e.target.value)}
+                   />
+                 </Box>
+                )
+              }
+              <Button
+                w={"100%"}
+                bgColor="#EF4F5F"
+                color={"white"}
+                fontWeight={"bold"}
+                fontSize={"1.1rem"}
+                _hover={"none"}
+                onClick={handleClick}
+                isDisabled={getSingleUser?.campaignDetails?.days === 0}
+              >
+                CONTRIBUTE
+              </Button>
+              <Box fontWeight={"bold"} color={"red.500"}>
+                {errorMessage}
+              </Box>
+              <Box fontWeight={"semibold"}>
+                To contribute any amount without rewards.
+              </Box>
+            </VStack>
+          </VStack>
         </Box>
       </HStack>
 
@@ -747,17 +1187,41 @@ const HomeSinglePage = () => {
           </Box>
         </VStack>
       ) : (
-        <Box w={'95%'} maxW={'1200px'} mx={'auto'}>
+        <Box w={"95%"} maxW={"1200px"} mx={"auto"}>
           {getSingleUser?.Userlist?.length > 0 ? (
             getSingleUser?.Userlist?.map((funder) => (
-              <HStack key={funder.id}  borderBottom={"2px dotted red"} py={'2rem'} gap={'1rem'}>
-               <Box w={'50px'} h={'50px'} overflow={'hidden'} borderRadius={'50%'}>
-                 <Image w={'100%'} h={'100%'} objectFit={'cover'} src="https://fadcdn.s3.amazonaws.com/defaults/default.png" />
-               </Box>
-               <VStack alignItems={['center']} flexDirection={['row']} w={'100%'} justifyContent={'space-between'}>
-                  <Box fontWeight={'bold'} fontSize={'1.5rem'}>{funder?.username}</Box>
-                  <Box fontSize={'1.5rem'} fontWeight={'bold'}>INR {funder?.amount}</Box>
-               </VStack>
+              <HStack
+                key={funder.id}
+                borderBottom={"2px dotted red"}
+                py={"2rem"}
+                gap={"1rem"}
+              >
+                <Box
+                  w={"50px"}
+                  h={"50px"}
+                  overflow={"hidden"}
+                  borderRadius={"50%"}
+                >
+                  <Image
+                    w={"100%"}
+                    h={"100%"}
+                    objectFit={"cover"}
+                    src="https://fadcdn.s3.amazonaws.com/defaults/default.png"
+                  />
+                </Box>
+                <VStack
+                  alignItems={["center"]}
+                  flexDirection={["row"]}
+                  w={"100%"}
+                  justifyContent={"space-between"}
+                >
+                  <Box fontWeight={"bold"} fontSize={"1.5rem"}>
+                    {funder?.username}
+                  </Box>
+                  <Box fontSize={"1.5rem"} fontWeight={"bold"}>
+                    INR {funder?.amount}
+                  </Box>
+                </VStack>
               </HStack>
             ))
           ) : (

@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
 const api = "https://razor.ygntechstartup.workers.dev";
 
-// const token = 'iskonhublicampaign'
+const token = 'iskonhublicampaign'
 
 export const fetchUser = createAsyncThunk("getUserList",async(_,{rejectWithValue})=>{
       try {
@@ -40,6 +40,32 @@ export const fetchSingleUser = createAsyncThunk("getSingleUser",async(id,{reject
      }
 })
 
+export const postPaymentFormData = createAsyncThunk("paymentFormData",async(formData,{rejectWithValue})=>{
+
+
+      try {
+          
+          const response = await fetch(`${api}/create-payment`,{
+               method:'POST',
+            body:JSON.stringify(formData),
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`, // Add token to the Authorization header
+              },
+          })
+
+          if(!response.ok){
+               throw new Error("Network call is not ok")
+            }
+   
+            const data = await response.json();
+
+            return data
+
+      } catch (error) {
+          return rejectWithValue(error.message)
+      }
+})
 
 const initialState = {
      isLoading:false,
@@ -83,6 +109,18 @@ const getUsersSlice = createSlice({
             state.isLoading = false;
             state.isError = payload;
             state.getSingleUser = {}
+        })
+        .addCase(postPaymentFormData.pending,(state)=>{
+          state.isLoading = true;
+          state.isError = null
+        })
+        .addCase(postPaymentFormData.fulfilled,(state,{payload})=>{
+           state.isLoading = false;
+           state.isError = null;
+        })
+        .addCase(postPaymentFormData.rejected,(state,{payload})=>{
+           state.isLoading = false;
+           state.isError = payload
         })
       }
 });
