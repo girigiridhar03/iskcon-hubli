@@ -675,9 +675,6 @@ const HomeSinglePage = () => {
               <Box fontWeight={"bold"} color={"red.500"}>
                 {errorMessage}
               </Box>
-              <Box fontWeight={"semibold"}>
-                To contribute any amount without rewards.
-              </Box>
             </VStack>
           </VStack>
         </Box>

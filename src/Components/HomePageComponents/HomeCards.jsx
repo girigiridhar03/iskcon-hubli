@@ -70,7 +70,7 @@ const HomeCards = () => {
         </VStack>
 
         <HStack fontWeight={"600"} fontSize={"1.3rem"}>
-          <Box>CAMPAIGNS CREATED:</Box>
+          <Box>CAMPAIGNERS JOINED:</Box>
           <Box>
           {getUsers?.campaignDetails?.length === 0 ? '0' : getUsers?.campaignDetails?.length <= 9 ? `0${getUsers?.campaignDetails?.length}` : getUsers?.campaignDetails?.length}
           </Box>
