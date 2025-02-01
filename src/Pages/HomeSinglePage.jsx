@@ -23,7 +23,7 @@ import image16 from "../assets/images/image16.jpg";
 import image17 from "../assets/images/image17.jpg";
 import image18 from "../assets/images/image18.jpg";
 import image19 from "../assets/images/image19.png";
-import avatar from '../assets/images/Avatar-PNG-Image.webp'
+import avatar from "../assets/images/Avatar-PNG-Image.webp";
 
 import {
   AspectRatio,
@@ -43,7 +43,11 @@ import { BsPinFill } from "react-icons/bs";
 import { HiMiniTag } from "react-icons/hi2";
 import { FaCalendarDays } from "react-icons/fa6";
 import DottedAnimation from "../Components/DottedAnimation";
-import { formatCurrency, formatTimeAgo, getDaysDifference } from "../Components/utils";
+import {
+  formatCurrency,
+  formatTimeAgo,
+  getDaysDifference,
+} from "../Components/utils";
 import { FaSquareWhatsapp } from "react-icons/fa6";
 
 const campaign = {
@@ -119,12 +123,10 @@ const HomeSinglePage = () => {
 
   const [tab, setTab] = useState(1);
 
- 
   const { isLoading, isError, getSingleUser } = useSelector(
     (state) => state.clientUsers
   );
   const dispatch = useDispatch();
-
 
   const [amount, setAmount] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
@@ -186,8 +188,6 @@ const HomeSinglePage = () => {
     const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
     const amountRegex = /^[0-9]+(\.[0-9]{1,2})?$/;
 
- 
-
     // Mobile number validation
     if (!formData.mobileno) {
       newErrors.mobileno = "Mobile number is required";
@@ -195,7 +195,6 @@ const HomeSinglePage = () => {
       newErrors.mobileno = "Please enter a valid 10-digit mobile number";
     }
 
- 
     // Pincode validation
     if (!formData.pincode) {
       newErrors.pincode = "Pincode is required";
@@ -222,7 +221,6 @@ const HomeSinglePage = () => {
       newErrors.username = "Username is required";
     }
 
-
     // Address validation
     if (!formData.address) {
       newErrors.address = "Address is required";
@@ -244,23 +242,17 @@ const HomeSinglePage = () => {
     }
   };
 
-
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (validateForm()) {
-      dispatch(postPaymentFormData(formData))
-      .then(res=>{
-       const id = res?.payload?.order?.id;
-       if(id){
-        navigate(`/payment/${id}`)
-       }
-      })
+      dispatch(postPaymentFormData(formData)).then((res) => {
+        const id = res?.payload?.order?.id;
+        if (id) {
+          navigate(`/payment/${id}`);
+        }
+      });
     }
-
-   
-
   };
 
   const [imageError, setImageError] = useState(false);
@@ -268,8 +260,8 @@ const HomeSinglePage = () => {
   const handleImageError = () => {
     setImageError(true); // Set the state to indicate the image has failed to load
   };
-  
-  const shareUrl = `https://campaigns.iskconhubli.org/${id}`
+
+  const shareUrl = `https://campaigns.iskconhubli.org/${id}`;
 
   const handleShare = () => {
     const message = `Check this out: ${shareUrl}`;
@@ -283,11 +275,21 @@ const HomeSinglePage = () => {
       position={"relative"}
       overflow={paymentModel ? "hidden" : "auto"}
     >
-
       {/* Whats app icon */}
 
-      <Box position={'fixed'} zIndex={'10'} fontSize={'3rem'} cursor={'pointer'} bottom={'4%'} right={'2%'} color={'#25D366'} bgColor={'white'} borderRadius={'10px'} onClick={handleShare}>
-         <FaSquareWhatsapp />
+      <Box
+        position={"fixed"}
+        zIndex={"10"}
+        fontSize={"3rem"}
+        cursor={"pointer"}
+        bottom={"4%"}
+        right={"2%"}
+        color={"#25D366"}
+        bgColor={"white"}
+        borderRadius={"10px"}
+        onClick={handleShare}
+      >
+        <FaSquareWhatsapp />
       </Box>
 
       {/* Loading */}
@@ -425,7 +427,6 @@ const HomeSinglePage = () => {
                       <Box color="red.500">{errors.country}</Box>
                     )}
                   </VStack>
-
                 </HStack>
 
                 <Input
@@ -447,7 +448,7 @@ const HomeSinglePage = () => {
                       </HStack>
                     </FormLabel>
                     <Input
-                     type="text"
+                      type="text"
                       onChange={handleOnChange}
                       name="panno"
                       value={formData.panno}
@@ -468,8 +469,7 @@ const HomeSinglePage = () => {
                   placeholder="Address, House NO, Street Address, Area Name, etc*"
                 />
                 {errors.address && <Box color="red.500">{errors.address}</Box>}
-                 
-               
+
                 <Input
                   type="submit"
                   value={"Pay Now"}
@@ -482,7 +482,6 @@ const HomeSinglePage = () => {
                   display={"block"}
                   cursor={"pointer"}
                 />
-              
               </form>
             </Box>
           </Box>
@@ -603,7 +602,7 @@ const HomeSinglePage = () => {
                 RAISED
               </Box>
               <Box fontSize="2.2rem" fontWeight="bold">
-                 {formatCurrency(getSingleUser?.raisedFund)}
+                {formatCurrency(getSingleUser?.raisedFund)}
               </Box>
               <Box fontSize="2rem" fontWeight="semibold">
                 GOAL{" "}
@@ -620,7 +619,10 @@ const HomeSinglePage = () => {
               >
                 <Box>DAYS LEFT</Box>
                 <Box fontSize={"1.8rem"}>
-                  {getDaysDifference(getSingleUser?.campaignDetails?.startdate,getSingleUser?.campaignDetails?.enddate)}
+                  {getDaysDifference(
+                    getSingleUser?.campaignDetails?.startdate,
+                    getSingleUser?.campaignDetails?.enddate
+                  )}
                 </Box>
               </VStack>
               <VStack
@@ -645,7 +647,10 @@ const HomeSinglePage = () => {
               Accepts funds from Indian Passport / ID holders only.
             </Box>
             <VStack w={"100%"} gap={"1rem"}>
-              {getDaysDifference(getSingleUser?.campaignDetails?.startdate,getSingleUser?.campaignDetails?.enddate) === 0 ? (
+              {getDaysDifference(
+                getSingleUser?.campaignDetails?.startdate,
+                getSingleUser?.campaignDetails?.enddate
+              ) === 0 ? (
                 <Box fontSize={"1.2rem"} color={"red.500"}>
                   Successful
                 </Box>
@@ -655,20 +660,25 @@ const HomeSinglePage = () => {
                     type="number"
                     placeholder="Enter Amount"
                     onChange={(e) => setAmount(e.target.value)}
-                    h={'50px'}
+                    h={"50px"}
                   />
                 </Box>
               )}
               <Button
                 w={"100%"}
-                h={'50px'}
+                h={"50px"}
                 bgColor="#EF4F5F"
                 color={"white"}
                 fontWeight={"bold"}
                 fontSize={"1.1rem"}
                 _hover={"none"}
                 onClick={handleClick}
-                isDisabled={getDaysDifference(getSingleUser?.campaignDetails?.startdate,getSingleUser?.campaignDetails?.enddate) === 0}
+                isDisabled={
+                  getDaysDifference(
+                    getSingleUser?.campaignDetails?.startdate,
+                    getSingleUser?.campaignDetails?.enddate
+                  ) === 0
+                }
               >
                 CONTRIBUTE
               </Button>
@@ -711,13 +721,18 @@ const HomeSinglePage = () => {
           <Box color={"#C75C5C"} fontSize={["1.2rem"]}>
             <FaCalendarDays />
           </Box>
-          <Box>Started from {getSingleUser?.campaignDetails?.startdate?.split("T")[0]}</Box>
+          <Box>
+            Started from{" "}
+            {getSingleUser?.campaignDetails?.startdate?.split("T")[0]}
+          </Box>
         </HStack>
         <HStack gap={["8px"]} cursor={"pointer"}>
           <Box color={"#C75C5C"} fontSize={["1.2rem"]}>
             <FaCalendarDays />
           </Box>
-          <Box>Ended on {getSingleUser?.campaignDetails?.startdate?.split("T")[0]}</Box>
+          <Box>
+            Ended on {getSingleUser?.campaignDetails?.startdate?.split("T")[0]}
+          </Box>
         </HStack>
       </HStack>
 
@@ -754,18 +769,31 @@ const HomeSinglePage = () => {
       </HStack>
 
       {tab === 1 ? (
-        <HStack w={'100%'} maxW={'1200px'} mx={'auto'}  alignItems={'flex-start'} gap={'.5rem'} flexDirection={['column-reverse','column-reverse','column-reverse','row']} px={['','','','2rem']}>
+        <HStack
+          w={"100%"}
+          maxW={"1200px"}
+          mx={"auto"}
+          alignItems={"flex-start"}
+          gap={".5rem"}
+          flexDirection={[
+            "column-reverse",
+            "column-reverse",
+            "column-reverse",
+            "row",
+          ]}
+          px={["", "", "", "2rem"]}
+        >
           <VStack
-           w={['95%','95%','80%','60%']}
-           mx={'auto'}
+            w={["95%", "95%", "80%", "60%"]}
+            mx={"auto"}
             gap={"1.5rem"}
             my={"2rem"}
             alignItems={"flex-start"}
           >
-            <Box w={"90%"} h={'auto'} mx={"auto"}>
+            <Box w={"90%"} h={"auto"} mx={"auto"}>
               <Image w={"100%"} h={"100%"} src={campaign.image1} />
             </Box>
-            <Box w={"90%"} h={'auto'} mx={"auto"}>
+            <Box w={"90%"} h={"auto"} mx={"auto"}>
               <Image w={"100%"} h={"100%"} src={campaign.image2} />
             </Box>
 
@@ -798,7 +826,7 @@ const HomeSinglePage = () => {
 
             {/* Image 3 */}
 
-            <Box w={"90%"} h={'auto'} mx={"auto"}>
+            <Box w={"90%"} h={"auto"} mx={"auto"}>
               <Image w={"100%"} h={"100%"} src={campaign.image3} />
             </Box>
 
@@ -808,7 +836,7 @@ const HomeSinglePage = () => {
             </VStack>
 
             {/* Image 4 */}
-            <Box w={"90%"} h={'auto'} mx={"auto"}>
+            <Box w={"90%"} h={"auto"} mx={"auto"}>
               <Image w={"100%"} h={"100%"} src={campaign.image4} />
             </Box>
 
@@ -820,7 +848,7 @@ const HomeSinglePage = () => {
             </VStack>
 
             {/* Image 5 */}
-            <Box w={"90%"} h={'auto'} mx={"auto"}>
+            <Box w={"90%"} h={"auto"} mx={"auto"}>
               <Image w={"100%"} h={"100%"} src={campaign.image5} />
             </Box>
 
@@ -830,11 +858,7 @@ const HomeSinglePage = () => {
 
             {/* Youtube Vide */}
 
-            <Box
-              w={"90%"}
-              h={'auto'}
-              mx={"auto"}
-            >
+            <Box w={"90%"} h={"auto"} mx={"auto"}>
               <Center mt={6}>
                 <AspectRatio ratio={16 / 9} w="100%">
                   <iframe
@@ -850,11 +874,7 @@ const HomeSinglePage = () => {
 
             {/* Heading */}
 
-            <VStack
-              w={"90%"}
-              mx={"auto"}
-              alignItems={"flex-start"}
-            >
+            <VStack w={"90%"} mx={"auto"} alignItems={"flex-start"}>
               <Box fontWeight={"semibold"} fontStyle={"italic"}>
                 Watch this video to get a better understanding of the ongoing
                 project.
@@ -875,7 +895,7 @@ const HomeSinglePage = () => {
 
             {/* image 6 */}
 
-            <Box w={"90%"} h={'auto'} mx={"auto"}>
+            <Box w={"90%"} h={"auto"} mx={"auto"}>
               <Image w={"100%"} h={"100%"} src={campaign.image6} />
             </Box>
 
@@ -899,7 +919,7 @@ const HomeSinglePage = () => {
             </Box>
 
             {/* image 8 */}
-            <Box w={"90%"} h={'auto'} mx={"auto"}>
+            <Box w={"90%"} h={"auto"} mx={"auto"}>
               <Image w={"100%"} h={"100%"} src={campaign.image8} />
             </Box>
 
@@ -927,7 +947,7 @@ const HomeSinglePage = () => {
             </Box>
 
             {/* image 9 */}
-            <Box w={"90%"} h={'auto'} mx={"auto"}>
+            <Box w={"90%"} h={"auto"} mx={"auto"}>
               <Image w={"100%"} h={"100%"} src={campaign.image9} />
             </Box>
 
@@ -936,7 +956,7 @@ const HomeSinglePage = () => {
             </VStack>
 
             {/* image 10 */}
-            <Box w={"90%"} h={'auto'} mx={"auto"}>
+            <Box w={"90%"} h={"auto"} mx={"auto"}>
               <Image w={"100%"} h={"100%"} src={campaign.image10} />
             </Box>
 
@@ -1007,7 +1027,7 @@ const HomeSinglePage = () => {
             </Box>
 
             <Box
-              w={'90%'}
+              w={"90%"}
               h={["400px", "450px", "400px", "400px", "500px"]}
               overflow="hidden"
               mx={"auto"}
@@ -1016,7 +1036,9 @@ const HomeSinglePage = () => {
                 w="100%"
                 h="100%"
                 objectFit="cover"
-                src={imageError ? avatar : getSingleUser?.campaignDetails?.imgurl}
+                src={
+                  imageError ? avatar : getSingleUser?.campaignDetails?.imgurl
+                }
                 onError={handleImageError}
               />
             </Box>
@@ -1163,25 +1185,55 @@ const HomeSinglePage = () => {
             </Box>
           </VStack>
 
-           <VStack w={['95%','95%','80%','40%']} mx={'auto'} bgColor={'#EDEAEA'} py={'1rem'} px={'1.2rem'}  my={"2rem"} borderRadius={'10px'} gap={'10px'}>
-              <Box w={'100%'} fontWeight={'semibold'} fontSize={'1.5rem'}>
-                Recent Contributers
-              </Box>
-              {
-                getSingleUser?.top10paymentDetails?.map((user,i)=>(
-                  <HStack key={i+user?.amount} bgColor={'red.400'} borderRadius={'10px'} w={'100%'} py={'0.8rem'} px={'0.6rem'} gap={'1rem'}>
-                  <Box borderRadius={'50%'} bgColor={'white'} w={'50px'} h={'50px'} display={'flex'} alignItems={'center'} justifyContent={'center'} fontSize={'1.5rem'} fontWeight={'bold'}>{user?.username[0]?.toUpperCase()}</Box>
-                   <VStack alignItems={'flex-start'} gap={'.3rem'}>
-                   <HStack>
-                   <Box fontWeight={'bold'} color={'white'}>{user?.username} donated {formatCurrency(user?.amount)} </Box>
+          <VStack
+            w={["95%", "95%", "80%", "40%"]}
+            mx={"auto"}
+            bgColor={"#EDEAEA"}
+            py={"1rem"}
+            px={"1.2rem"}
+            my={"2rem"}
+            borderRadius={"10px"}
+            gap={"10px"}
+          >
+            <Box w={"100%"} fontWeight={"semibold"} fontSize={"1.5rem"}>
+              Recent Contributers
+            </Box>
+            {getSingleUser?.top10paymentDetails?.map((user, i) => (
+              <HStack
+                key={i + user?.amount}
+                bgColor={"red.400"}
+                borderRadius={"10px"}
+                w={"100%"}
+                py={"0.8rem"}
+                px={"0.6rem"}
+                gap={"1rem"}
+              >
+                <Box
+                  borderRadius={"50%"}
+                  bgColor={"white"}
+                  w={"50px"}
+                  h={"50px"}
+                  display={"flex"}
+                  alignItems={"center"}
+                  justifyContent={"center"}
+                  fontSize={"1.5rem"}
+                  fontWeight={"bold"}
+                >
+                  {user?.username[0]?.toUpperCase()}
+                </Box>
+                <VStack alignItems={"flex-start"} gap={".3rem"}>
+                  <HStack>
+                    <Box fontWeight={"bold"} color={"white"}>
+                      {user?.username} donated {formatCurrency(user?.amount)}{" "}
+                    </Box>
                   </HStack>
-                   <Box fontWeight={'bold'} color={'white'}>about {formatTimeAgo(user?.date)}</Box>
-                   </VStack>
-               </HStack>
-                ))
-              }
-           
-           </VStack>
+                  <Box fontWeight={"bold"} color={"white"}>
+                    about {formatTimeAgo(user?.date)}
+                  </Box>
+                </VStack>
+              </HStack>
+            ))}
+          </VStack>
         </HStack>
       ) : (
         <Box w={"95%"} maxW={"1200px"} mx={"auto"}>
@@ -1212,7 +1264,14 @@ const HomeSinglePage = () => {
                   w={"100%"}
                   justifyContent={"space-between"}
                 >
-                  <Box fontWeight={"bold"} fontSize={"1.5rem"}>
+                  <Box
+                    fontWeight={"bold"}
+                    fontSize={"1.5rem"}
+                    whiteSpace={"normal"}
+                    overflowWrap={"break-word"}
+                    wordBreak={"break-word"}
+                    w={'70%'}
+                  >
                     {funder?.username}
                   </Box>
                   <Box fontSize={"1.5rem"} fontWeight={"bold"}>
