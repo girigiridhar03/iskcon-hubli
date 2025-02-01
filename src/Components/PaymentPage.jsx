@@ -28,7 +28,7 @@ const PaymentPage = () => {
       }
 
       const options = {
-        key: "rzp_live_joWXtNdtH1irLE,lmcf2mTf5zF0ScmVbnGdZp3h",
+        key: process.env.REACT_APP_RZP_KEY,
         currency: "INR",
         name: "Sai Kiran",
         description: "Test Transaction",

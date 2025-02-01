@@ -174,7 +174,6 @@ const HomeSinglePage = () => {
     });
     setFormToggle(false);
   };
-
   const validateForm = () => {
     const newErrors = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -183,7 +182,7 @@ const HomeSinglePage = () => {
     const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
     const amountRegex = /^[0-9]+(\.[0-9]{1,2})?$/;
 
-
+ 
 
     // Mobile number validation
     if (!formData.mobileno) {
