@@ -7,8 +7,9 @@ const AdminCreateCampaign = () => {
   const [formData, setFormData] = useState({
     campaignname: "",
     targetamount: "",
-    days: "",
-    imgurl: "",
+    enddate:"",
+    phoneno:"",
+    imgfile: ""
   });
 
   const dispatch = useDispatch();
@@ -24,8 +25,9 @@ const AdminCreateCampaign = () => {
     if (
       !formData.campaignname.trim() ||
       !formData.targetamount ||
-      !formData.days ||
-      !formData.imgurl.trim()
+      !formData.enddate ||
+      !formData.imgfile || 
+      !formData.phoneno
     ) {
       alert("Please fill in all fields.");
       return;
@@ -36,8 +38,9 @@ const AdminCreateCampaign = () => {
     return setFormData({
       campaignname: "",
       targetamount: "",
-      days: "",
-      imgurl: "",
+      enddate:"",
+      phoneno:"",
+      imgfile: "",
     });
   };
 
@@ -81,22 +84,33 @@ const AdminCreateCampaign = () => {
           />
         </VStack>
         <VStack alignItems={"flex-start"}>
-          <FormLabel>Days:</FormLabel>
+          <FormLabel>Campaign End Date:</FormLabel>
           <Input
             border={"2px solid rgb(0,0,0,0.5)"}
-            type="number"
+            type="date"
             placeholder="Enter Days"
             name="days"
-            value={formData?.days}
+            value={formData?.enddate}
             onChange={handleChange}
           />
         </VStack>
         <VStack alignItems={"flex-start"}>
+          <FormLabel>Campaign Mobile No.:</FormLabel>
           <Input
             border={"2px solid rgb(0,0,0,0.5)"}
-            type="text"
+            type="tel"
+            placeholder="Enter Days"
+            name="days"
+            value={formData?.phoneno}
+            onChange={handleChange}
+          />
+        </VStack>
+        <VStack alignItems={"flex-start"}>
+        <FormLabel>Campaign Image:</FormLabel>
+          <Input
+            type="file"
             placeholder="Enter Image Url"
-            value={formData?.imgurl}
+            value={formData?.imgfile}
             name="imgurl"
             onChange={handleChange}
           />

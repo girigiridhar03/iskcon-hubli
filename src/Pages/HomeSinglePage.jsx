@@ -1,7 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { fetchSingleUser, postPaymentFormData } from "../Redux/clientSlices/clientUsers";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import {Navigate} from 'react-router-dom'
+import {
+  fetchSingleUser,
+  postPaymentFormData,
+} from "../Redux/clientSlices/clientUsers";
+import image1 from "../assets/images/image1.jpg";
+import image2 from "../assets/images/image2.jpg";
+import image3 from "../assets/images/image3.jpg";
+import image4 from "../assets/images/image4.jpg";
+import image5 from "../assets/images/image5.jpg";
+import image6 from "../assets/images/image6.jpg";
+import image8 from "../assets/images/image8.jpg";
+import image9 from "../assets/images/image9.jpg";
+import image10 from "../assets/images/image10.jpg";
+import image12 from "../assets/images/image12.jpg";
+import image13 from "../assets/images/image13.jpg";
+import image14 from "../assets/images/image14.jpg";
+import image15 from "../assets/images/image15.jpg";
+import image16 from "../assets/images/image16.jpg";
+import image17 from "../assets/images/image17.jpg";
+import image18 from "../assets/images/image18.jpg";
+import image19 from "../assets/images/image19.png";
+
 import {
   AspectRatio,
   Box,
@@ -15,7 +37,6 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { FaLocationDot } from "react-icons/fa6";
-import { FaCheckCircle } from "react-icons/fa";
 import ProgressBar from "../Components/HomePageComponents/ProgressBar";
 import { BsPinFill } from "react-icons/bs";
 import { HiMiniTag } from "react-icons/hi2";
@@ -23,9 +44,8 @@ import { FaCalendarDays } from "react-icons/fa6";
 import DottedAnimation from "../Components/DottedAnimation";
 
 const campaign = {
-  image1:
-    "https://fadcdn.s3.ap-south-1.amazonaws.com/media/1345/Thankyou_Banner_ISKCON-Hubli-Dharwad.jpg",
-  image2: "https://www.fueladream.com/public/uploads/0894810651297247.jpg",
+  image1,
+  image2,
   context:
     "ISKCON, or the Hare Krishna movement, was founded by A. C. Bhaktivedanta Swami Prabhupada. ISKCON's purpose is to educate people from all backgrounds, races, and ethnicities on the importance of spiritual life and on how to practice spiritual life, to transform the material self-centered identity into a spiritual identity of unconditional love, to enhance spiritual awareness, benefit the devotees, and contribute to the well-being of humanity.",
   background:
@@ -34,17 +54,17 @@ const campaign = {
     "This magnificent project aims to celebrate India's rich heritage and diverse culture. The temple complex will cover an area of around 5.5 acres and the combined built-up area of the main Sri Radha Krishna temple and Sri Srinivasa Govinda temple will be approximately 2,25,000 square feet.",
   background2:
     "Once constructed it will be the largest temple complex in North Karnataka. So large that in the first 10 years, it is estimated that it will have a footfall of 20 million visitors.",
-  image3: "https://www.fueladream.com/public/uploads/1482739548692376.jpg",
+  image3,
   image3Matter:
     "Picture : Architect’s rendition of how this magnificent temple complex will look at night. In the foreground is the Sri Srinivasa temple and at the back of the hillock is perched the Sri Radha Krishna temple.",
-  image4: "https://www.fueladream.com/public/uploads/2458177465093326.jpg",
+  image4,
   image4Para1:
     "The construction cost for the overall complex is estimated at INR 67.5 Crore. In the first phase of construction, a cost of INR 19.77 Crores has been budgeted. Approximately INR 10.4 Crore has already been raised and paid to suppliers as advance to get work started (Read the full story for all the details).",
   image4Heading:
     "There is a need to raise another INR 9.37 Crores to complete the 1st phase.",
   image4para2:
     "Through this crowdfunding campaign, I and other like-minded well-wishers are coming together to raise as much as possible to get to the INR 9.37 Crore requirement. Work has already started and the first phase is expected to be completed by AUGUST 2024.",
-  image5: "https://www.fueladream.com/public/uploads/5587172034968203.jpg",
+  image5,
   image5Para:
     "There already exists a make-shift temple of Sri Krishna Balaram at this location. This is already a major spiritual destination in the twin cities.Once the new temple complex comes up it will attract many more visitors. This demonstrates the significant impact and popularity of the temple as a cultural and religious destination.",
   initiative:
@@ -53,14 +73,14 @@ const campaign = {
     "The primary objective of the temple complex is to provide education and guidance on spiritual life to people of all backgrounds, races, and ethnicities. It aims to promote understanding and practice of spiritual principles, fostering a deeper connection to inner values and a more meaningful way of living.",
   initiativeBold:
     "The Sri Radha Krishna Temple and Cultural Complex, Hubli-Dharwad is not envisaged just as a building - it aims to tell a story that combines history, art, and the feeling of being connected to something greater. ",
-  image6: "https://www.fueladream.com/public/uploads/7326500197438156.jpg",
+  image6,
   image6para1:
     "ACTUAL SITE PICTURE: Aerial View of the ISKCON Sri Radha Krishna Temple & Cultural Complex which is coming up at Hubli-Dharwad in Karnataka. This is strategically located on the Pune - Bengaluru highway (NH-4 ). You can see the work-in-progress at the site. The building at the bottom right of the image is the existing makeshift temple.",
   templeComplex: "WHAT IS UNIQUE ABOUT THIS TEMPLE COMPLEX?",
   templeComplexMatter:
     "The Sri Radha Krishna Temple and Cultural Complex, Hubli-Dharwad will feature traditional rituals, and festivals, and provide spiritual and value education through various events. Additionally, it will serve as a platform for students to learn, will serve food to thousands of people, will have a multimedia theatre for cultural performances, a heritage auditorium, a library, a marriage hall, a ghosala, guest houses, a restaurant, etc.",
   image7: "https://www.fueladream.com/public/uploads/2299063830847716.1%20(1)",
-  image8: "https://www.fueladream.com/public/uploads/8082654593167019.jpg",
+  image8,
   image8Heading:
     "Picture: A rendition of how the temple will look in the night.",
   image8Para:
@@ -69,27 +89,26 @@ const campaign = {
     "The pictures below show the 4 main deities of the Sri Radha Krishna Temple.",
   radhaKrishnaImage:
     "https://www.fueladream.com/public/uploads/1079745653628931.jpg",
-  image9: "https://www.fueladream.com/public/uploads/8789517023663521.jpg",
+  image9,
   image9Para:
     "The picture above shows the Sri Srinivasa Govinda - A separate hall that would be build for Lord Venkateshwara.",
-  image10: "https://www.fueladream.com/public/uploads/0635879202475694.05",
+  image10,
   image10Para:
     "Sri Radha Krishna Temple & Cultural Complex in Hubli-Dharwad is dedicated to ensuring a peaceful and enriching experience for all pilgrims. The temple's commitment is to provide a serene and spiritually uplifting environment where pilgrims can connect with their beliefs and find solace. Through its services, facilities, and serene atmosphere, the temple aims to enhance the pilgrimage experience, allowing visitors to immerse themselves in their spiritual journey and find tranquillity amidst the bustling world.",
-  projectStatus:
-    "https://www.fueladream.com/public/uploads/2023579609543168.jpg",
+  projectStatus: image12,
   projectMatter:
     "The above picture shows the construction status and images of the ISKCON Sri Radha Krishna Temple and Cultural Complex (Phase -1) which is coming up at Hubli-Dharwad in Karnataka. ",
   projectMatter1:
     "The construction of the first phase has begun, and people are already hard at work, pouring their hearts, minds, and talent into creating this wonderful temple. The temple will shine as a symbol of hope and will bring people together. It will encourage spiritual development and harmony in the community.",
-  image11: "https://www.fueladream.com/public/uploads/2958530717826434.jpg",
+  image11: image13,
   gratitude:
     "For those of you who can and want to fund large amounts, we would like to acknowledge the same by showcasing your name ( or the name of any relative or friend of yours) on the WALL OF GRATITUDE. ",
-  image12: "https://www.fueladream.com/public/uploads/2746473098938051.jpg",
-  iskconIcon: "https://www.fueladream.com/public/uploads/4329275686154190.jpg",
-  iskconIcon2: "https://www.fueladream.com/public/uploads/3988970075241536.57",
-  image13: "https://www.fueladream.com/public/uploads/6282857740331514.jpg",
-  image14: "https://www.fueladream.com/public/uploads/6512989167048332.jpg",
-  taxBenfits: "https://www.fueladream.com/public/uploads/2549700316384921.png",
+  image12: image14,
+  iskconIcon: image15,
+  iskconIcon2: image16,
+  image13: image17,
+  image14: image18,
+  taxBenfits: image19,
 };
 
 const HomeSinglePage = () => {
@@ -101,21 +120,20 @@ const HomeSinglePage = () => {
     (state) => state.clientUsers
   );
   const dispatch = useDispatch();
+  console.log(getSingleUser)
 
   const [amount, setAmount] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [paymentModel, setPaymentModel] = useState(false);
   const [formToggle, setFormToggle] = useState(false);
-  const [errors,setErrors] = useState("");
+  const [errors, setErrors] = useState("");
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     email: "",
     mobileno: "",
-    nationality: "Indian",
     country: "Indian",
-    state: "",
     pincode: "",
-    city: "",
     panno: "",
     address: "",
     amount: amount,
@@ -134,7 +152,6 @@ const HomeSinglePage = () => {
     });
   }, []);
 
-
   const handleClick = () => {
     if (amount === null) {
       return setErrorMessage("Please enter an amount");
@@ -147,52 +164,15 @@ const HomeSinglePage = () => {
     setFormData({
       email: "",
       mobileno: "",
-      nationality: "Indian",
       country: "Indian",
-      state: "",
       pincode: "",
-      city: "",
       panno: "",
       address: "",
       amount: amount,
       username: "",
       campaignsid: id,
     });
-    setFormToggle(false)
-  };
-
-  
-  const statesAndContry = {
-    states: [
-      "Andhra Pradesh",
-      "Arunachal Pradesh",
-      "Assam",
-      "Bihar",
-      "Chhattisgarh",
-      "Goa",
-      "Gujarat",
-      "Haryana",
-      "Himachal Pradesh",
-      "Jharkhand",
-      "Karnataka",
-      "Kerala",
-      "Madhya Pradesh",
-      "Maharashtra",
-      "Manipur",
-      "Meghalaya",
-      "Mizoram",
-      "Nagaland",
-      "Odisha",
-      "Punjab",
-      "Rajasthan",
-      "Sikkim",
-      "Tamil Nadu",
-      "Telangana",
-      "Tripura",
-      "Uttar Pradesh",
-      "Uttarakhand",
-      "West Bengal",
-    ],
+    setFormToggle(false);
   };
 
   const validateForm = () => {
@@ -203,12 +183,7 @@ const HomeSinglePage = () => {
     const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
     const amountRegex = /^[0-9]+(\.[0-9]{1,2})?$/;
 
-    // Email validation
-    if (!formData.email) {
-      newErrors.email = "Email is required";
-    } else if (!emailRegex.test(formData.email)) {
-      newErrors.email = "Please enter a valid email address";
-    }
+
 
     // Mobile number validation
     if (!formData.mobileno) {
@@ -217,11 +192,7 @@ const HomeSinglePage = () => {
       newErrors.mobileno = "Please enter a valid 10-digit mobile number";
     }
 
-    // State validation
-    if (!formData.state) {
-      newErrors.state = "State is required";
-    }
-
+ 
     // Pincode validation
     if (!formData.pincode) {
       newErrors.pincode = "Pincode is required";
@@ -248,10 +219,6 @@ const HomeSinglePage = () => {
       newErrors.username = "Username is required";
     }
 
-    // City validation
-    if (!formData.city) {
-      newErrors.city = "City is required";
-    }
 
     // Address validation
     if (!formData.address) {
@@ -265,7 +232,7 @@ const HomeSinglePage = () => {
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
- 
+
     setFormData({ ...formData, [e.target.name]: e.target.value });
     if (name === "email" && value.includes("@")) {
       setFormToggle(true);
@@ -274,268 +241,253 @@ const HomeSinglePage = () => {
     }
   };
 
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (validateForm()) {
       dispatch(postPaymentFormData(formData))
-    } 
+      .then(res=>{
+       const id = res?.payload?.order?.id;
+       if(id){
+        navigate(`/payment/${id}`)
+       }
+      })
+    }
+
+   
+
+  };
+
+  const formatCurrency = (amount, currencySymbol = "₹") => {
+    if (amount == null || isNaN(Number(amount))) return `${currencySymbol}0`; // Handle undefined/null cases
+    return `${currencySymbol}${Number(amount).toLocaleString("en-IN")}`;
+  };
+
+  const formatTimeAgo = (date) => {
+    const now = new Date();
+    const donationDate = new Date(date);
+    const diffInSeconds = Math.floor((now - donationDate) / 1000);
+  
+    if (diffInSeconds < 60) {
+      return `${diffInSeconds} seconds ago`;
+    } else if (diffInSeconds < 3600) {
+      const diffInMinutes = Math.floor(diffInSeconds / 60);
+      return `${diffInMinutes} minutes ago`;
+    } else if (diffInSeconds < 86400) {
+      const diffInHours = Math.floor(diffInSeconds / 3600);
+      return `${diffInHours} hours ago`;
+    } else {
+      const diffInDays = Math.floor(diffInSeconds / 86400);
+      return `${diffInDays} days ago`;
+    }
   };
 
   return (
-    <Box w={"100%"} position={"relative"} overflow={paymentModel ? "hidden" : "auto"}>
-
-       {/* Loading */}
-       {isLoading &&  <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        height="100vh"
-        position={'fixed'}
-        w={'100%'}
-        bgColor={'rgb(0,0,0,0.6)'}
-        zIndex={10}
-      >
-        <DottedAnimation />
-      </Box>}
+    <Box
+      w={"100%"}
+      position={"relative"}
+      overflow={paymentModel ? "hidden" : "auto"}
+    >
+      {/* Loading */}
+      {isLoading && (
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          height="100vh"
+          position={"fixed"}
+          w={"100%"}
+          bgColor={"rgb(0,0,0,0.6)"}
+          zIndex={10}
+        >
+          <DottedAnimation />
+        </Box>
+      )}
 
       {/* Payment Model */}
-     {
-       paymentModel && 
-       <Box
-       position={"fixed"}
-       w={"100%"}
-       h={"100vh"}
-       overflow={"hidden"}
-       bgColor={"rgb(0,0,0,0.6)"}
-       zIndex={10}
-       display={"flex"}
-       alignItems={"center"}
-       justifyContent={"center"}
-     >
-       <Box
-         w={['95%','95%','95%','70%',"45%"]}
-         mt={"5rem"}
-         borderRadius={"10px"}
-         bgColor={"white"}
-         h={"auto"}
-       >
-         <HStack
-           w={"100%"}
-           bgColor={"red.500"}
-           borderTopLeftRadius={"10px"}
-           borderTopRightRadius={"10px"}
-           p={"1rem"}
-           justifyContent={"space-between"}
-           fontWeight={"bold"}
-           color={"white"}
-           fontSize={"1.1rem"}
-         >
-           <Box>Amount: {amount}</Box>
-           <Box onClick={()=>setPaymentModel(false)} cursor={'pointer'}>Close</Box>
-         </HStack>
-         <Box
-           w={"90%"}
-           mx={"auto"}
-           py={"1rem"}
-           h={"100px"}
-           display={"flex"}
-           justifyContent={"center"}
-           alignItems={"center"}
-         >
-           <Input
-             type="email"
-             name="email"
-             value={formData.email}
-             border={"2px solid #CCCCCC"}
-             placeholder="Enter Email ID*"
-             onChange={handleOnChange}
-           />
-           {errors.email && <Box color="red.500">{errors.email}</Box>}
-         </Box>
- 
-         <Box
-           w={"90%"}
-           mx={"auto"}
-           h={formToggle ? "auto" : 0}
-           overflow={"hidden"}
-           transition="height 0.3s ease-in-out"
-         >
-           <form onSubmit={handleSubmit}>
-             <Input
-               onChange={handleOnChange}
-               name="username"
-               value={formData.username}
-               border={"2px solid #CCCCCC"}
-               type="text"
-               placeholder="Full Name*"
-             />
-             {errors.username && <Box color="red.500">{errors.username}</Box>}
- 
-             <HStack my={"1rem"}>
-               <VStack alignItems={"flex-start"} gap={"1px"} w={"100%"}>
-                 <FormLabel>
-                   <HStack>
-                     <Box>Mobile No</Box>
-                     <Box color={"red.500"}>*</Box>
-                   </HStack>
-                 </FormLabel>
-                 <Input
-                   onChange={handleOnChange}
-                   name="mobileno"
-                   value={formData.mobileno}
-                   border={"2px solid #CCCCCC"}
-                   type="tel"
-                   placeholder="Enter Mobile Number"
-                   w={"100%"}
-                 />
-                 {errors.mobileno && <Box color="red.500">{errors.mobileno}</Box>}
-               </VStack>
- 
-               <VStack alignItems={"flex-start"} gap={"1px"} w={"100%"}>
-                 <FormLabel>
-                   <HStack>
-                     <Box>Nationality</Box>
-                     <Box color={"red.500"}>*</Box>
-                   </HStack>
-                 </FormLabel>
-                 <Input
-                   onChange={handleOnChange}
-                   name="nationality"
-                   value={formData.nationality}
-                   border={"2px solid #CCCCCC"}
-                   type="tel"
-                   placeholder="Enter Nationality"
-                   w={"100%"}
-                 />
-                 {errors.nationality && <Box color="red.500">{errors.nationality}</Box>}
-               </VStack>
-             </HStack>
- 
-             <HStack my={"1rem"}>
-               <VStack alignItems={"flex-start"} gap={"1px"} w={"100%"}>
-                 <FormLabel>
-                   <HStack>
-                     <Box>Country</Box>
-                     <Box color={"red.500"}>*</Box>
-                   </HStack>
-                 </FormLabel>
-                 <Input
-                   onChange={handleOnChange}
-                   name="country"
-                   value={formData.country}
-                   border={"2px solid #CCCCCC"}
-                   type="tel"
-                   placeholder="Enter Country"
-                   w={"100%"}
-                 />
-                 {errors.country && <Box color="red.500">{errors.country}</Box>}
-               </VStack>
- 
-               <VStack alignItems={"flex-start"} gap={"1px"} w={"100%"}>
-                 <FormLabel>
-                   <HStack>
-                     <Box>State/Province/Region</Box>
-                     <Box color={"red.500"}>*</Box>
-                   </HStack>
-                 </FormLabel>
-                 <Select
-                   w={"100%"}
-                   border={"2px solid #CCCCCC"}
-                   name="state"
-                   value={formData.state}
-                   onChange={handleOnChange}
-                 >
-                   {statesAndContry.states.map((state, index) => (
-                     <>
-                       <option value="">Select State</option>
-                     <option key={index} value={state}>
-                       {state}
-                     </option>  
-                     </>
-                   ))}
-                 </Select>
-                 {errors.state && <Box color="red.500">{errors.state}</Box>}
-               </VStack>
-             </HStack>
- 
-             <Input
-               onChange={handleOnChange}
-               name="pincode"
-               value={formData.pincode}
-               border={"2px solid #CCCCCC"}
-               type="text"
-               placeholder="Pin/Zip Code*"
-             />
-             {errors.pincode && <Box color="red.500">{errors.pincode}</Box>}
- 
-             <HStack my={"1rem"}>
-               <VStack alignItems={"flex-start"} gap={"1px"} w={"100%"}>
-                 <FormLabel>
-                   <HStack>
-                     <Box>Town/City</Box>
-                     <Box color={"red.500"}>*</Box>
-                   </HStack>
-                 </FormLabel>
-                 <Input
-                   onChange={handleOnChange}
-                   name="city"
-                   value={formData.city}
-                   border={"2px solid #CCCCCC"}
-                   placeholder="Enter Town/City"
-                   w={"100%"}
-                 />
-                 {errors.city && <Box color="red.500">{errors.city}</Box>}
-               </VStack>
- 
-               <VStack alignItems={"flex-start"} gap={"1px"} w={"100%"}>
-                 <FormLabel>
-                   <HStack>
-                     <Box>PAN No*</Box>
-                     <Box color={"red.500"}>*</Box>
-                   </HStack>
-                 </FormLabel>
-                 <Input
-                   onChange={handleOnChange}
-                   name="panno"
-                   value={formData.panno}
-                   border={"2px solid #CCCCCC"}
-                   type="tel"
-                   placeholder="Enter Pan No."
-                   w={"100%"}
-                 />
-                 {errors.panno && <Box color="red.500">{errors.panno}</Box>}
-               </VStack>
-             </HStack>
- 
-             <Input
-               onChange={handleOnChange}
-               name="address"
-               value={formData.address}
-               border={"2px solid #CCCCCC"}
-               type="text"
-               placeholder="Address, House NO, Street Address, Area Name, etc*"
-             />
-             {errors.address && <Box color="red.500">{errors.address}</Box>}
- 
-             <Input
-               type="submit"
-               value={"Pay Now"}
-               bgColor={"red.500"}
-               my={"1.5rem"}
-               fontWeight={"bold"}
-               color={"white"}
-               w={"auto"}
-               mx={"auto"}
-               display={"block"}
-               cursor={"pointer"}
-             />
-           </form>
-         </Box>
-       </Box>
-     </Box>
- 
-     }
+      {paymentModel && (
+        <Box
+          position={"fixed"}
+          w={"100%"}
+          h={"100vh"}
+          overflow={"hidden"}
+          bgColor={"rgb(0,0,0,0.6)"}
+          zIndex={10}
+          display={"flex"}
+          alignItems={"center"}
+          justifyContent={"center"}
+        >
+          <Box
+            w={["95%", "95%", "95%", "70%", "45%"]}
+            mt={"5rem"}
+            borderRadius={"10px"}
+            bgColor={"white"}
+            h={"auto"}
+          >
+            <HStack
+              w={"100%"}
+              bgColor={"red.500"}
+              borderTopLeftRadius={"10px"}
+              borderTopRightRadius={"10px"}
+              p={"1rem"}
+              justifyContent={"space-between"}
+              fontWeight={"bold"}
+              color={"white"}
+              fontSize={"1.1rem"}
+            >
+              <Box>Amount: {amount}</Box>
+              <Box onClick={() => setPaymentModel(false)} cursor={"pointer"}>
+                Close
+              </Box>
+            </HStack>
+            <Box
+              w={"90%"}
+              mx={"auto"}
+              py={"1rem"}
+              h={"100px"}
+              display={"flex"}
+              justifyContent={"center"}
+              alignItems={"center"}
+            >
+              <Input
+                type="email"
+                name="email"
+                value={formData.email}
+                border={"2px solid #CCCCCC"}
+                placeholder="Enter Email ID (Optional)"
+                onChange={handleOnChange}
+              />
+              {errors.email && <Box color="red.500">{errors.email}</Box>}
+            </Box>
+
+            <Box
+              w={"90%"}
+              mx={"auto"}
+              overflow={"hidden"}
+              transition="height 0.3s ease-in-out"
+            >
+              <form onSubmit={handleSubmit}>
+                <Input
+                  onChange={handleOnChange}
+                  name="username"
+                  value={formData.username}
+                  border={"2px solid #CCCCCC"}
+                  type="text"
+                  placeholder="Full Name*"
+                />
+                {errors.username && (
+                  <Box color="red.500">{errors.username}</Box>
+                )}
+
+                <HStack my={"1rem"}>
+                  <VStack alignItems={"flex-start"} gap={"1px"} w={"100%"}>
+                    <FormLabel>
+                      <HStack>
+                        <Box>Mobile No</Box>
+                        <Box color={"red.500"}>*</Box>
+                      </HStack>
+                    </FormLabel>
+                    <Input
+                      onChange={handleOnChange}
+                      name="mobileno"
+                      value={formData.mobileno}
+                      border={"2px solid #CCCCCC"}
+                      type="tel"
+                      placeholder="Enter Mobile Number"
+                      w={"100%"}
+                    />
+                    {errors.mobileno && (
+                      <Box color="red.500">{errors.mobileno}</Box>
+                    )}
+                  </VStack>
+                </HStack>
+
+                <HStack my={"1rem"}>
+                  <VStack alignItems={"flex-start"} gap={"1px"} w={"100%"}>
+                    <FormLabel>
+                      <HStack>
+                        <Box>Country</Box>
+                        <Box color={"red.500"}>*</Box>
+                      </HStack>
+                    </FormLabel>
+                    <Input
+                      onChange={handleOnChange}
+                      name="country"
+                      value={formData.country}
+                      border={"2px solid #CCCCCC"}
+                      type="tel"
+                      placeholder="Enter Country"
+                      w={"100%"}
+                    />
+                    {errors.country && (
+                      <Box color="red.500">{errors.country}</Box>
+                    )}
+                  </VStack>
+
+                </HStack>
+
+                <Input
+                  onChange={handleOnChange}
+                  name="pincode"
+                  value={formData.pincode}
+                  border={"2px solid #CCCCCC"}
+                  type="text"
+                  placeholder="Pin/Zip Code*"
+                />
+                {errors.pincode && <Box color="red.500">{errors.pincode}</Box>}
+
+                <HStack my={"1rem"}>
+                  <VStack alignItems={"flex-start"} gap={"1px"} w={"100%"}>
+                    <FormLabel>
+                      <HStack>
+                        <Box>PAN No*</Box>
+                        <Box color={"red.500"}>*</Box>
+                      </HStack>
+                    </FormLabel>
+                    <Input
+                      onChange={handleOnChange}
+                      name="panno"
+                      value={formData.panno}
+                      border={"2px solid #CCCCCC"}
+                      type="tel"
+                      placeholder="Enter Pan No."
+                      w={"100%"}
+                    />
+                    {errors.panno && <Box color="red.500">{errors.panno}</Box>}
+                  </VStack>
+                </HStack>
+
+                <Input
+                  onChange={handleOnChange}
+                  name="address"
+                  value={formData.address}
+                  border={"2px solid #CCCCCC"}
+                  type="text"
+                  placeholder="Address, House NO, Street Address, Area Name, etc*"
+                />
+                {errors.address && <Box color="red.500">{errors.address}</Box>}
+                 
+               
+                <Input
+                  type="submit"
+                  value={"Pay Now"}
+                  bgColor={"red.500"}
+                  my={"1.5rem"}
+                  fontWeight={"bold"}
+                  color={"white"}
+                  w={"auto"}
+                  mx={"auto"}
+                  display={"block"}
+                  cursor={"pointer"}
+                />
+              
+              </form>
+            </Box>
+          </Box>
+        </Box>
+      )}
       {/* Header */}
       <Box
         w={"100%"}
@@ -653,7 +605,8 @@ const HomeSinglePage = () => {
                 INR 799778887
               </Box>
               <Box fontSize="2rem" fontWeight="semibold">
-                GOAL INR {getSingleUser?.campaignDetails?.targetAmount}
+                GOAL{" "}
+                {formatCurrency(getSingleUser?.campaignDetails?.targetAmount)}
               </Box>
             </VStack>
 
@@ -691,20 +644,19 @@ const HomeSinglePage = () => {
               Accepts funds from Indian Passport / ID holders only.
             </Box>
             <VStack w={"100%"} gap={"1rem"}>
-              {
-                getSingleUser?.campaignDetails?.days === 0 ? 
-                <Box fontSize={'1.2rem'} color={'red.500'}>
-                   Successful
-                </Box> : (
-                   <Box w={"100%"}>
-                   <Input
-                     type="number"
-                     placeholder="Enter Amount"
-                     onChange={(e) => setAmount(e.target.value)}
-                   />
-                 </Box>
-                )
-              }
+              {getSingleUser?.campaignDetails?.days === 0 ? (
+                <Box fontSize={"1.2rem"} color={"red.500"}>
+                  Successful
+                </Box>
+              ) : (
+                <Box w={"100%"}>
+                  <Input
+                    type="number"
+                    placeholder="Enter Amount"
+                    onChange={(e) => setAmount(e.target.value)}
+                  />
+                </Box>
+              )}
               <Button
                 w={"100%"}
                 bgColor="#EF4F5F"
@@ -802,394 +754,438 @@ const HomeSinglePage = () => {
       </HStack>
 
       {tab === 1 ? (
-        <VStack
-          w={"100%"}
-          maxW={"1200px"}
-          mx={"auto"}
-          gap={"1.5rem"}
-          my={"2rem"}
-          alignItems={"flex-start"}
-        >
-          <Box w={"90%"} h={["200px", "210px", "250px"]} mx={"auto"}>
-            <Image w={"100%"} h={"100%"} src={campaign.image1} />
-          </Box>
-          <Box w={"90%"} h={["auto", "auto", "600px"]} mx={"auto"}>
-            <Image w={"100%"} h={"100%"} src={campaign.image2} />
-          </Box>
-
-          {/* The Context */}
-          <VStack w={"90%"} mx={"auto"} alignItems={"flex-start"}>
-            <Box fontSize={"1.5rem"} fontWeight={"semibold"} color={"red.500"}>
-              THE CONTEXT:
-            </Box>
-            <Box>{campaign.context}</Box>
-          </VStack>
-
-          {/* The Background */}
-
-          <VStack w={"90%"} mx={"auto"} alignItems={"flex-start"}>
-            <Box fontSize={"1.5rem"} fontWeight={"semibold"} color={"red.500"}>
-              THE BACKGROUND:
-            </Box>
-            <Box>{campaign.background}</Box>
-            <Box>{campaign.background1}</Box>
-            <Box fontWeight={"semibold"}>{campaign.background2}</Box>
-          </VStack>
-
-          {/* Image 3 */}
-
-          <Box w={"90%"} h={["auto", "auto", "500px"]} mx={"auto"}>
-            <Image w={"100%"} h={"100%"} src={campaign.image3} />
-          </Box>
-
-          {/* Image Three Matter */}
-          <VStack w={"90%"} mx={"auto"} alignItems={"flex-start"}>
-            <Box fontStyle={"italic"}>{campaign.image3Matter}</Box>
-          </VStack>
-
-          {/* Image 4 */}
-          <Box w={"90%"} h={["auto", "auto", "500px"]} mx={"auto"}>
-            <Image w={"100%"} h={"100%"} src={campaign.image4} />
-          </Box>
-
-          {/* Image four Matter */}
-          <VStack w={"90%"} mx={"auto"} alignItems={"flex-start"}>
-            <Box>{campaign.image4Para1}</Box>
-            <Box fontWeight={"semibold"}>{campaign.image4Heading}</Box>
-            <Box>{campaign.image4para2}</Box>
-          </VStack>
-
-          {/* Image 5 */}
-          <Box w={"90%"} h={["auto", "auto", "500px"]} mx={"auto"}>
-            <Image w={"100%"} h={"100%"} src={campaign.image5} />
-          </Box>
-
-          <VStack w={"90%"} mx={"auto"} alignItems={"flex-start"}>
-            <Box>{campaign.image5Para}</Box>
-          </VStack>
-
-          {/* Youtube Vide */}
-
-          <Box
-            w={"90%"}
-            h={["auto", "auto", "auto", "auto", "500px"]}
-            mx={"auto"}
-          >
-            <Center mt={6}>
-              <AspectRatio ratio={16 / 9} w="100%">
-                <iframe
-                  src="https://www.youtube.com/embed/NNu_TkGy-BU"
-                  title="Construction Updates | Sri Radha Krishna Temple | ISKCON Hubli-Dharwad"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allowFullScreen
-                ></iframe>
-              </AspectRatio>
-            </Center>
-          </Box>
-
-          {/* Heading */}
-
+        <HStack w={'100%'} maxW={'1200px'} mx={'auto'}  alignItems={'flex-start'} gap={'.5rem'} flexDirection={['column-reverse','column-reverse','column-reverse','row']} px={['','','','2rem']}>
           <VStack
-            w={"90%"}
-            mx={"auto"}
+           w={['95%','95%','80%','60%']}
+           mx={'auto'}
+            gap={"1.5rem"}
+            my={"2rem"}
             alignItems={"flex-start"}
-            mt={{ xl: "8rem" }}
           >
-            <Box fontWeight={"semibold"} fontStyle={"italic"}>
-              Watch this video to get a better understanding of the ongoing
-              project.
+            <Box w={"90%"} h={'auto'} mx={"auto"}>
+              <Image w={"100%"} h={"100%"} src={campaign.image1} />
+            </Box>
+            <Box w={"90%"} h={'auto'} mx={"auto"}>
+              <Image w={"100%"} h={"100%"} src={campaign.image2} />
             </Box>
 
-            {/* THE INITIATIVE */}
-            <Box fontSize={"1.5rem"} fontWeight={"semibold"} color={"red.500"}>
-              THE INITIATIVE:
+            {/* The Context */}
+            <VStack w={"90%"} mx={"auto"} alignItems={"flex-start"}>
+              <Box
+                fontSize={"1.5rem"}
+                fontWeight={"semibold"}
+                color={"red.500"}
+              >
+                THE CONTEXT:
+              </Box>
+              <Box>{campaign.context}</Box>
+            </VStack>
+
+            {/* The Background */}
+
+            <VStack w={"90%"} mx={"auto"} alignItems={"flex-start"}>
+              <Box
+                fontSize={"1.5rem"}
+                fontWeight={"semibold"}
+                color={"red.500"}
+              >
+                THE BACKGROUND:
+              </Box>
+              <Box>{campaign.background}</Box>
+              <Box>{campaign.background1}</Box>
+              <Box fontWeight={"semibold"}>{campaign.background2}</Box>
+            </VStack>
+
+            {/* Image 3 */}
+
+            <Box w={"90%"} h={'auto'} mx={"auto"}>
+              <Image w={"100%"} h={"100%"} src={campaign.image3} />
             </Box>
-            <Box>{campaign.initiative}</Box>
-            <Box>{campaign.initiative1}</Box>
-            <Box fontWeight={"semibold"}>{campaign.initiativeBold}</Box>
-          </VStack>
 
-          {/* image 6 */}
+            {/* Image Three Matter */}
+            <VStack w={"90%"} mx={"auto"} alignItems={"flex-start"}>
+              <Box fontStyle={"italic"}>{campaign.image3Matter}</Box>
+            </VStack>
 
-          <Box w={"90%"} h={["auto", "auto", "500px"]} mx={"auto"}>
-            <Image w={"100%"} h={"100%"} src={campaign.image6} />
-          </Box>
-
-          <VStack w={"90%"} mx={"auto"} alignItems={"flex-start"}>
-            <Box fontStyle={"italic"}>{campaign.image6para1}</Box>
-
-            <Box fontSize={"1.5rem"} fontWeight={"semibold"} color={"red.500"}>
-              {campaign.templeComplex}
+            {/* Image 4 */}
+            <Box w={"90%"} h={'auto'} mx={"auto"}>
+              <Image w={"100%"} h={"100%"} src={campaign.image4} />
             </Box>
 
-            <Box>{campaign.templeComplexMatter}</Box>
-          </VStack>
+            {/* Image four Matter */}
+            <VStack w={"90%"} mx={"auto"} alignItems={"flex-start"}>
+              <Box>{campaign.image4Para1}</Box>
+              <Box fontWeight={"semibold"}>{campaign.image4Heading}</Box>
+              <Box>{campaign.image4para2}</Box>
+            </VStack>
 
-          {/* image 7 */}
-          <Box w={"90%"} h={"auto"} mx={"auto"}>
-            <Image w={"100%"} h={"100%"} src={campaign.image7} />
-          </Box>
+            {/* Image 5 */}
+            <Box w={"90%"} h={'auto'} mx={"auto"}>
+              <Image w={"100%"} h={"100%"} src={campaign.image5} />
+            </Box>
 
-          {/* image 8 */}
-          <Box w={"90%"} h={["auto", "auto", "550px"]} mx={"auto"}>
-            <Image w={"100%"} h={"100%"} src={campaign.image8} />
-          </Box>
+            <VStack w={"90%"} mx={"auto"} alignItems={"flex-start"}>
+              <Box>{campaign.image5Para}</Box>
+            </VStack>
 
-          <VStack w={"90%"} mx={"auto"} alignItems={"flex-start"}>
-            <Box fontStyle={"italic"}>{campaign.image8Heading}</Box>
+            {/* Youtube Vide */}
 
-            <Box>{campaign.image8Para}</Box>
-          </VStack>
+            <Box
+              w={"90%"}
+              h={'auto'}
+              mx={"auto"}
+            >
+              <Center mt={6}>
+                <AspectRatio ratio={16 / 9} w="100%">
+                  <iframe
+                    src="https://www.youtube.com/embed/NNu_TkGy-BU"
+                    title="Construction Updates | Sri Radha Krishna Temple | ISKCON Hubli-Dharwad"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  ></iframe>
+                </AspectRatio>
+              </Center>
+            </Box>
 
-          {/* Pictures of Radha Krishna */}
+            {/* Heading */}
 
-          <Box
-            w={"90%"}
-            h={"auto"}
-            mx={"auto"}
-            fontSize={"1.5rem"}
-            fontWeight={"bold"}
-            color={"blue.500"}
-          >
-            {campaign.radhaKrishnaHeading}
-          </Box>
+            <VStack
+              w={"90%"}
+              mx={"auto"}
+              alignItems={"flex-start"}
+            >
+              <Box fontWeight={"semibold"} fontStyle={"italic"}>
+                Watch this video to get a better understanding of the ongoing
+                project.
+              </Box>
 
-          <Box w={"90%"} h={"auto"} mx={"auto"}>
-            <Image w={"100%"} h={"100%"} src={campaign.radhaKrishnaImage} />
-          </Box>
+              {/* THE INITIATIVE */}
+              <Box
+                fontSize={"1.5rem"}
+                fontWeight={"semibold"}
+                color={"red.500"}
+              >
+                THE INITIATIVE:
+              </Box>
+              <Box>{campaign.initiative}</Box>
+              <Box>{campaign.initiative1}</Box>
+              <Box fontWeight={"semibold"}>{campaign.initiativeBold}</Box>
+            </VStack>
 
-          {/* image 9 */}
-          <Box w={"90%"} h={["auto", "auto", "500px"]} mx={"auto"}>
-            <Image w={"100%"} h={"100%"} src={campaign.image9} />
-          </Box>
+            {/* image 6 */}
 
-          <VStack w={"90%"} mx={"auto"} alignItems={"flex-start"}>
-            <Box>{campaign.image9Para}</Box>
-          </VStack>
+            <Box w={"90%"} h={'auto'} mx={"auto"}>
+              <Image w={"100%"} h={"100%"} src={campaign.image6} />
+            </Box>
 
-          {/* image 10 */}
-          <Box w={"90%"} h={["auto", "auto", "500px"]} mx={"auto"}>
-            <Image w={"100%"} h={"100%"} src={campaign.image10} />
-          </Box>
+            <VStack w={"90%"} mx={"auto"} alignItems={"flex-start"}>
+              <Box fontStyle={"italic"}>{campaign.image6para1}</Box>
 
-          <VStack w={"90%"} mx={"auto"} alignItems={"flex-start"}>
-            <Box>{campaign.image10Para}</Box>
-          </VStack>
+              <Box
+                fontSize={"1.5rem"}
+                fontWeight={"semibold"}
+                color={"red.500"}
+              >
+                {campaign.templeComplex}
+              </Box>
 
-          {/* Heading */}
-          <Box
-            fontSize={"1.5rem"}
-            fontWeight={"semibold"}
-            color={"red.500"}
-            w={"90%"}
-            mx={"auto"}
-          >
-            PROJECT STATUS:
-          </Box>
+              <Box>{campaign.templeComplexMatter}</Box>
+            </VStack>
 
-          {/* image Project */}
-          <Box w={"90%"} h={"auto"} mx={"auto"}>
-            <Image w={"100%"} h={"100%"} src={campaign.projectStatus} />
-          </Box>
+            {/* image 7 */}
+            <Box w={"90%"} h={"auto"} mx={"auto"}>
+              <Image w={"100%"} h={"100%"} src={campaign.image7} />
+            </Box>
 
-          <VStack w={"90%"} mx={"auto"} alignItems={"flex-start"}>
-            <Box fontStyle={"italic"}>{campaign.projectMatter}</Box>
-            <Box>{campaign.projectMatter1}</Box>
-          </VStack>
+            {/* image 8 */}
+            <Box w={"90%"} h={'auto'} mx={"auto"}>
+              <Image w={"100%"} h={"100%"} src={campaign.image8} />
+            </Box>
 
-          {/* image 11 */}
-          <Box w={"90%"} h={"auto"} mx={"auto"}>
-            <Image w={"100%"} h={"100%"} src={campaign.image11} />
-          </Box>
+            <VStack w={"90%"} mx={"auto"} alignItems={"flex-start"}>
+              <Box fontStyle={"italic"}>{campaign.image8Heading}</Box>
 
-          <VStack w={"90%"} mx={"auto"} alignItems={"flex-start"}>
-            <Box fontSize={"1.5rem"} fontWeight={"semibold"} color={"red.500"}>
-              {campaign.gratitude}
+              <Box>{campaign.image8Para}</Box>
+            </VStack>
+
+            {/* Pictures of Radha Krishna */}
+
+            <Box
+              w={"90%"}
+              h={"auto"}
+              mx={"auto"}
+              fontSize={"1.5rem"}
+              fontWeight={"bold"}
+              color={"blue.500"}
+            >
+              {campaign.radhaKrishnaHeading}
+            </Box>
+
+            <Box w={"90%"} h={"auto"} mx={"auto"}>
+              <Image w={"100%"} h={"100%"} src={campaign.radhaKrishnaImage} />
+            </Box>
+
+            {/* image 9 */}
+            <Box w={"90%"} h={'auto'} mx={"auto"}>
+              <Image w={"100%"} h={"100%"} src={campaign.image9} />
+            </Box>
+
+            <VStack w={"90%"} mx={"auto"} alignItems={"flex-start"}>
+              <Box>{campaign.image9Para}</Box>
+            </VStack>
+
+            {/* image 10 */}
+            <Box w={"90%"} h={'auto'} mx={"auto"}>
+              <Image w={"100%"} h={"100%"} src={campaign.image10} />
+            </Box>
+
+            <VStack w={"90%"} mx={"auto"} alignItems={"flex-start"}>
+              <Box>{campaign.image10Para}</Box>
+            </VStack>
+
+            {/* Heading */}
+            <Box
+              fontSize={"1.5rem"}
+              fontWeight={"semibold"}
+              color={"red.500"}
+              w={"90%"}
+              mx={"auto"}
+            >
+              PROJECT STATUS:
+            </Box>
+
+            {/* image Project */}
+            <Box w={"90%"} h={"auto"} mx={"auto"}>
+              <Image w={"100%"} h={"100%"} src={campaign.projectStatus} />
+            </Box>
+
+            <VStack w={"90%"} mx={"auto"} alignItems={"flex-start"}>
+              <Box fontStyle={"italic"}>{campaign.projectMatter}</Box>
+              <Box>{campaign.projectMatter1}</Box>
+            </VStack>
+
+            {/* image 11 */}
+            <Box w={"90%"} h={"auto"} mx={"auto"}>
+              <Image w={"100%"} h={"100%"} src={campaign.image11} />
+            </Box>
+
+            <VStack w={"90%"} mx={"auto"} alignItems={"flex-start"}>
+              <Box
+                fontSize={"1.5rem"}
+                fontWeight={"semibold"}
+                color={"red.500"}
+              >
+                {campaign.gratitude}
+              </Box>
+            </VStack>
+
+            {/* image 12 */}
+            <Box
+              fontSize={"1.5rem"}
+              fontWeight={"semibold"}
+              w={"90%"}
+              mx={"auto"}
+            >
+              READ MORE ABOUT THE WALL OF GRATITUDE BELOW :
+            </Box>
+
+            <Box w={"90%"} h={"auto"} mx={"auto"}>
+              <Image w={"100%"} h={"100%"} src={campaign.image12} />
+            </Box>
+
+            {/* About Me */}
+
+            <Box
+              fontSize={"1.5rem"}
+              fontWeight={"semibold"}
+              w={"90%"}
+              color={"red.500"}
+              mx={"auto"}
+            >
+              ABOUT ME:
+            </Box>
+
+            <Box
+              w={'90%'}
+              h={["400px", "450px", "400px", "400px", "500px"]}
+              overflow="hidden"
+              mx={"auto"}
+            >
+              <Image
+                w="100%"
+                h="100%"
+                objectFit="cover"
+                src={getSingleUser?.campaignDetails?.imgurl}
+              />
+            </Box>
+
+            <VStack w={"90%"} mx={"auto"}>
+              <Box>
+                My name is {getSingleUser?.campaignDetails?.campaignName}. I am
+                a concerned citizen. This campaign of mine aims to support the
+                construction of this magnificent Sri Radha Krishna Temple and
+                Cultural Complex in Hubli- Dharwad, Karnataka.
+              </Box>
+              <Box>
+                I came forward to support the vision of the temple as it will
+                impact millions of people. Just in the first 10 years, it is
+                estimated to have 2 crore ( 200 lakh) visitors. I am thrilled
+                that I have this opportunity to raise funds for a cause with a
+                greater purpose. I firmly believe that if we all come together
+                and do our little bit we would create something that will be
+                remembered for generations.
+              </Box>
+              <Box>
+                The total funds required to complete Phase 1 of the Sri Radha
+                Krishna Temple and Cultural Complex in Hubli-Dharwad, Karnataka
+                is huge. So please fund generously. Any amount big or small will
+                be needed to make this dream come true. Together, let us create
+                a sanctuary of solace and unity, a place where the spirit soars
+                and where generations of people will come and find inspiration
+                and peace.
+              </Box>
+            </VStack>
+
+            {/* About Iskcon  */}
+            <Box
+              fontSize={"1.5rem"}
+              fontWeight={"semibold"}
+              w={"90%"}
+              color={"red.500"}
+              mx={"auto"}
+            >
+              ABOUT ISKCON:
+            </Box>
+
+            <Box w={"90%"} h={"auto"} mx={"auto"}>
+              <Image w={"100%"} h={"100%"} src={campaign.iskconIcon} />
+            </Box>
+
+            <Box w={"90%"} mx={"auto"}>
+              ISKCON stands for International Society for Krishna Consciousness.
+              Srila Prabhupada who went to the United States of America in the
+              year 1966 to spread the message of Krishna and engage people in
+              the practice of the yuga-dharma (chanting of the holy names of
+              Krishna) established this society in 1966. Srila Prabhupada
+              incorporated this society with the vision of developing it into a
+              worldwide organization. Today ISKCON comprises hundreds of
+              temples, many rural communities, and hundreds of vegetarian
+              restaurants.
+            </Box>
+
+            <VStack alignItems={"flex-start"} w={"90%"} mx={"auto"}>
+              <Box>Seven purposes of ISKCON</Box>
+              <ol>
+                <li>Spread spiritual knowledge for unity and peace.</li>
+                <li>Promote the consciousness of Krishna.</li>
+                <li>Foster unity with Krishna as the core.</li>
+                <li>Encourage congregational chanting.</li>
+                <li>Establish a holy place for Krishna's pastimes.</li>
+                <li>Teach a simpler, natural way of life.</li>
+                <li>Publish and distribute spiritual literature.</li>
+              </ol>
+              {/* Iskcon 2 */}
+              <Box w={"50%"} h={"auto"}>
+                <Image w={"100%"} h={"100%"} src={campaign?.iskconIcon2} />
+              </Box>
+            </VStack>
+
+            <VStack alignItems={"flex-start"} w={"90%"} mx={"auto"}>
+              <Box fontWeight={"semibold"}>ISKCON-Hubli-Dharwad - History</Box>
+              <Box>
+                2005: ISKCON Was allotted 8.5 Acre of Land by Govt. Of
+                Karnataka.
+              </Box>
+              <Box>
+                2006: Sri Sri Krishna Balaram makeshift Temple was built.
+              </Box>
+              <Box>2011: Bhoomi Puja was performed for the new project.</Box>
+              <Box>2013: Shilanyasa performed for the new project.</Box>
+            </VStack>
+
+            {/* About Iskcon  */}
+            <Box
+              fontSize={"1.5rem"}
+              fontWeight={"semibold"}
+              w={"90%"}
+              color={"red.500"}
+              mx={"auto"}
+            >
+              FESTIVALS HELD AT THE CURRENT MAKESHIFT TEMPLE OF SRI SRI KRISHNA
+              BALARAM
+            </Box>
+
+            {/* image 13 */}
+
+            <Box w={"90%"} mx={"auto"} h={"auto"}>
+              <Image w={"100%"} h={"100%"} src={campaign?.image13} />
+            </Box>
+
+            {/* Map And Location  */}
+            <Box
+              fontSize={"1.5rem"}
+              fontWeight={"semibold"}
+              w={"90%"}
+              color={"red.500"}
+              mx={"auto"}
+            >
+              MAP AND LOCATION:
+            </Box>
+
+            {/* image 14 */}
+
+            <Box w={"90%"} mx={"auto"} h={"auto"}>
+              <Image w={"100%"} h={"100%"} src={campaign?.image14} />
+            </Box>
+            {/* TAX BENEFITS: */}
+            <Box
+              fontSize={"1.5rem"}
+              fontWeight={"semibold"}
+              w={"90%"}
+              color={"red.500"}
+              mx={"auto"}
+            >
+              TAX BENEFITS:
+            </Box>
+
+            {/* image 14 */}
+
+            <Box w={"90%"} mx={"auto"} h={"auto"}>
+              <Image w={"100%"} h={"100%"} src={campaign?.taxBenfits} />
+            </Box>
+
+            <Box w={"90%"} mx={"auto"}>
+              Funding for this campaign is eligible for tax breaks as the ISKCON
+              Hubli-Dharwad is a registered Trust and you can avail of benefits
+              under section 80G of the IT Act. Foreign funding is not accepted.
             </Box>
           </VStack>
 
-          {/* image 12 */}
-          <Box
-            fontSize={"1.5rem"}
-            fontWeight={"semibold"}
-            w={"90%"}
-            mx={"auto"}
-          >
-            READ MORE ABOUT THE WALL OF GRATITUDE BELOW :
-          </Box>
-
-          <Box w={"90%"} h={"auto"} mx={"auto"}>
-            <Image w={"100%"} h={"100%"} src={campaign.image12} />
-          </Box>
-
-          {/* About Me */}
-
-          <Box
-            fontSize={"1.5rem"}
-            fontWeight={"semibold"}
-            w={"90%"}
-            color={"red.500"}
-            mx={"auto"}
-          >
-            ABOUT ME:
-          </Box>
-
-          <Box
-            w={["90%", "90%", "50%"]}
-            h={["400px", "450px", "400px", "400px", "500px"]}
-            overflow="hidden"
-            mx={"auto"}
-          >
-            <Image
-              w="100%"
-              h="100%"
-              objectFit="cover"
-              src={getSingleUser?.campaignDetails?.imgurl}
-            />
-          </Box>
-
-          <VStack w={"90%"} mx={"auto"}>
-            <Box>
-              My name is {getSingleUser?.campaignDetails?.campaignName}. I am a
-              concerned citizen. This campaign of mine aims to support the
-              construction of this magnificent Sri Radha Krishna Temple and
-              Cultural Complex in Hubli- Dharwad, Karnataka.
-            </Box>
-            <Box>
-              I came forward to support the vision of the temple as it will
-              impact millions of people. Just in the first 10 years, it is
-              estimated to have 2 crore ( 200 lakh) visitors. I am thrilled that
-              I have this opportunity to raise funds for a cause with a greater
-              purpose. I firmly believe that if we all come together and do our
-              little bit we would create something that will be remembered for
-              generations.
-            </Box>
-            <Box>
-              The total funds required to complete Phase 1 of the Sri Radha
-              Krishna Temple and Cultural Complex in Hubli-Dharwad, Karnataka is
-              huge. So please fund generously. Any amount big or small will be
-              needed to make this dream come true. Together, let us create a
-              sanctuary of solace and unity, a place where the spirit soars and
-              where generations of people will come and find inspiration and
-              peace.
-            </Box>
-          </VStack>
-
-          {/* About Iskcon  */}
-          <Box
-            fontSize={"1.5rem"}
-            fontWeight={"semibold"}
-            w={"90%"}
-            color={"red.500"}
-            mx={"auto"}
-          >
-            ABOUT ISKCON:
-          </Box>
-
-          <Box w={"90%"} h={"auto"} mx={"auto"}>
-            <Image w={"100%"} h={"100%"} src={campaign.iskconIcon} />
-          </Box>
-
-          <Box w={"90%"} mx={"auto"}>
-            ISKCON stands for International Society for Krishna Consciousness.
-            Srila Prabhupada who went to the United States of America in the
-            year 1966 to spread the message of Krishna and engage people in the
-            practice of the yuga-dharma (chanting of the holy names of Krishna)
-            established this society in 1966. Srila Prabhupada incorporated this
-            society with the vision of developing it into a worldwide
-            organization. Today ISKCON comprises hundreds of temples, many rural
-            communities, and hundreds of vegetarian restaurants.
-          </Box>
-
-          <VStack alignItems={"flex-start"} w={"90%"} mx={"auto"}>
-            <Box>Seven purposes of ISKCON</Box>
-            <ol>
-              <li>Spread spiritual knowledge for unity and peace.</li>
-              <li>Promote the consciousness of Krishna.</li>
-              <li>Foster unity with Krishna as the core.</li>
-              <li>Encourage congregational chanting.</li>
-              <li>Establish a holy place for Krishna's pastimes.</li>
-              <li>Teach a simpler, natural way of life.</li>
-              <li>Publish and distribute spiritual literature.</li>
-            </ol>
-            {/* Iskcon 2 */}
-            <Box w={"50%"} h={"auto"}>
-              <Image w={"100%"} h={"100%"} src={campaign?.iskconIcon2} />
-            </Box>
-          </VStack>
-
-          <VStack alignItems={"flex-start"} w={"90%"} mx={"auto"}>
-            <Box fontWeight={"semibold"}>ISKCON-Hubli-Dharwad - History</Box>
-            <Box>
-              2005: ISKCON Was allotted 8.5 Acre of Land by Govt. Of Karnataka.
-            </Box>
-            <Box>2006: Sri Sri Krishna Balaram makeshift Temple was built.</Box>
-            <Box>2011: Bhoomi Puja was performed for the new project.</Box>
-            <Box>2013: Shilanyasa performed for the new project.</Box>
-          </VStack>
-
-          {/* About Iskcon  */}
-          <Box
-            fontSize={"1.5rem"}
-            fontWeight={"semibold"}
-            w={"90%"}
-            color={"red.500"}
-            mx={"auto"}
-          >
-            FESTIVALS HELD AT THE CURRENT MAKESHIFT TEMPLE OF SRI SRI KRISHNA
-            BALARAM
-          </Box>
-
-          {/* image 13 */}
-
-          <Box w={"90%"} mx={"auto"} h={"auto"}>
-            <Image w={"100%"} h={"100%"} src={campaign?.image13} />
-          </Box>
-
-          {/* Map And Location  */}
-          <Box
-            fontSize={"1.5rem"}
-            fontWeight={"semibold"}
-            w={"90%"}
-            color={"red.500"}
-            mx={"auto"}
-          >
-            MAP AND LOCATION:
-          </Box>
-
-          {/* image 14 */}
-
-          <Box w={"90%"} mx={"auto"} h={"auto"}>
-            <Image w={"100%"} h={"100%"} src={campaign?.image14} />
-          </Box>
-          {/* TAX BENEFITS: */}
-          <Box
-            fontSize={"1.5rem"}
-            fontWeight={"semibold"}
-            w={"90%"}
-            color={"red.500"}
-            mx={"auto"}
-          >
-            TAX BENEFITS:
-          </Box>
-
-          {/* image 14 */}
-
-          <Box w={"90%"} mx={"auto"} h={"auto"}>
-            <Image w={"100%"} h={"100%"} src={campaign?.taxBenfits} />
-          </Box>
-
-          <Box w={"90%"} mx={"auto"}>
-            Funding for this campaign is eligible for tax breaks as the ISKCON
-            Hubli-Dharwad is a registered Trust and you can avail of benefits
-            under section 80G of the IT Act. Foreign funding is not accepted.
-          </Box>
-        </VStack>
+           <VStack w={['95%','95%','80%','40%']} mx={'auto'} bgColor={'#EDEAEA'} py={'1rem'} px={'1.2rem'}  my={"2rem"} borderRadius={'10px'} gap={'10px'}>
+              <Box w={'100%'} fontWeight={'semibold'} fontSize={'1.5rem'}>
+                Recent Contributers
+              </Box>
+              {
+                getSingleUser?.top10paymentDetails?.map((user,i)=>(
+                  <HStack key={i+user?.amount} bgColor={'red.400'} borderRadius={'10px'} w={'100%'} py={'0.8rem'} px={'0.6rem'} gap={'1rem'}>
+                  <Box borderRadius={'50%'} bgColor={'white'} w={'50px'} h={'50px'} display={'flex'} alignItems={'center'} justifyContent={'center'} fontSize={'1.5rem'} fontWeight={'bold'}>{user?.username[0]?.toUpperCase()}</Box>
+                   <VStack alignItems={'flex-start'} gap={'.3rem'}>
+                   <HStack>
+                   <Box fontWeight={'bold'} color={'white'}>{user?.username} donated {formatCurrency(user?.amount)} </Box>
+                  </HStack>
+                   <Box fontWeight={'bold'} color={'white'}>about {formatTimeAgo(user?.date)} ago</Box>
+                   </VStack>
+               </HStack>
+                ))
+              }
+           
+           </VStack>
+        </HStack>
       ) : (
         <Box w={"95%"} maxW={"1200px"} mx={"auto"}>
-          {getSingleUser?.Userlist?.length > 0 ? (
-            getSingleUser?.Userlist?.map((funder) => (
+          {getSingleUser?.userList?.length > 0 ? (
+            getSingleUser?.userList?.map((funder) => (
               <HStack
                 key={funder.id}
                 borderBottom={"2px dotted red"}
@@ -1219,7 +1215,7 @@ const HomeSinglePage = () => {
                     {funder?.username}
                   </Box>
                   <Box fontSize={"1.5rem"} fontWeight={"bold"}>
-                    INR {funder?.amount}
+                    {formatCurrency(funder?.amount)}
                   </Box>
                 </VStack>
               </HStack>

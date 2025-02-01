@@ -40,11 +40,10 @@ const AdminCampaignList = () => {
     }
   };
 
-  const filteredUsers = search
-  ? getUsers?.filter((user) =>
-      user?.campaignName?.toLowerCase().includes(search.toLowerCase())
+  const filteredUsers = getUsers.campaignDetails?.filter((user) =>
+       user?.campaignDetails ? user?.campaignName?.toLowerCase().includes(search.toLowerCase()) : user
     )
-  : getUsers;
+
 
  if(isError){
   alert(isError)

@@ -38,11 +38,17 @@ const HomeCards = () => {
     alert(isError)
   }
 
+  const formatCurrency = (amount, currencySymbol = '₹') => {
+    if (amount == null || isNaN(Number(amount))) return `${currencySymbol}0`; // Handle undefined/null cases
+    return `${currencySymbol}${Number(amount).toLocaleString('en-IN')}`;
+  };
+
+
   return (
     <Box
       w={["95%", "90%", "95%", "95%", "80%"]}
       mt={"4rem"}
-      border={"2px solid rgb(0,0,0,0.3)"}
+      border={["","","","2px solid rgb(0,0,0,0.3)"]}
       mx={"auto"}
       p={["0.3rem", "0.5rem", "1rem", "1.5rem"]}
       borderRadius={"5px"}
@@ -50,19 +56,20 @@ const HomeCards = () => {
       <Box mx={"auto"}>
         <VStack alignItems={"flex-start"} gap={0}>
           <Box fontSize={"0.9rem"} fontWeight={"600"}>
-            AMOUNT RAISED:
+           TOTAL AMOUNT RAISED:
           </Box>
           <Box fontSize={"2.5rem"} fontWeight={"600"}>
-            {getUsers?.totalraisedamt}
+         
+            {formatCurrency(getUsers?.totalraisedamt)}
           </Box>
         </VStack>
 
-        <HStack fontWeight={"600"} fontSize={"1.3rem"}>
+        {/* <HStack fontWeight={"600"} fontSize={"1.3rem"}>
           <Box>CAMPAIGNS CREATED:</Box>
           <Box>
           {getUsers?.campaignDetails?.length === 0 ? '0' : getUsers?.campaignDetails?.length <= 9 ? `0${getUsers?.campaignDetails?.length}` : getUsers?.campaignDetails?.length}
           </Box>
-        </HStack>
+        </HStack> */}
       </Box>
       {getUsers?.campaignDetails?.length > 0 ? (
         <SimpleGrid
@@ -122,12 +129,12 @@ const HomeCards = () => {
                     justifyContent={"space-between"}
                     w={"100%"}
                   >
-                    <Box>₹{user.totalRaisedAmount || 0}</Box>
-                    <Box>₹{user.targetamt}</Box>
+                    <Box>{formatCurrency(user?.totalRaisedAmount)}</Box>
+                    <Box>{formatCurrency(user?.targetamt)}</Box>
                   </HStack>
                   <ProgressBar
-                    currentAmount={user.totalRaisedAmount}
-                    goalAmount={user.targetamt}
+                    currentAmount={user?.totalRaisedAmount}
+                    goalAmount={user?.targetamt}
                   />
                   <HStack
                     color={"white"}
@@ -135,12 +142,12 @@ const HomeCards = () => {
                     justifyContent={"space-between"}
                     w={"100%"}
                   >
-                    <Box>{user.totalFunderCount}%</Box>
-                    <Box>{user.daysleft} LEFT</Box>
+                    <Box>{user?.totalFunderCount}%</Box>
+                    <Box>{user?.daysleft} Days LEFT</Box>
                   </HStack>
                 </CardFooter>
               </Card>
-            </Link>
+            </Link> 
           ))}
         </SimpleGrid>
       ) : (

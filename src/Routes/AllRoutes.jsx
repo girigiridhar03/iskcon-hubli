@@ -9,12 +9,14 @@ import AdminCampaignList from '../Components/AdminPageComponents/AdminCampaignLi
 import AdminCreateCampaign from '../Components/AdminPageComponents/AdminCreateCampaign';
 import AdminEdit from '../Components/AdminPageComponents/AdminEdit';
 import AdminDonorsList from '../Components/AdminPageComponents/AdminDonorsList';
+import PaymentPage from '../Components/PaymentPage';
 const AllRoutes = () => {
   return (
     <Routes>
       <Route element={<MainLayout />}>
        <Route path='/' element={<HomePage />} />
        <Route path='/:id' element={<HomeSinglePage />} /> 
+       <Route path="/payment/:id" element={<PaymentPage />} />
       </Route>
 
       <Route element={<AdminLayout />}>

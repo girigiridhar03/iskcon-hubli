@@ -1,8 +1,9 @@
-import { Box, HStack, Table, Tbody, Td, Tr, VStack } from "@chakra-ui/react";
+import { Box, Table, Tbody, Td, Tr, VStack } from "@chakra-ui/react";
 import React from "react";
 import { FaFacebookSquare } from "react-icons/fa";
-import { Link } from "react-router-dom";
-
+import cor from '../../assets/pdfFiles/CertificateofRegistration.pdf'
+import csr from '../../assets/pdfFiles/ISKCON_CSR.pdf';
+import g from '../../assets/pdfFiles/80G.pdf';
 const HomeDetails = () => {
   return (
     <Box
@@ -75,7 +76,19 @@ const HomeDetails = () => {
             </Tr>
             <Tr>
               <Td fontWeight="bold">Certificates:</Td>
-              <Td></Td>
+              <Td>
+                <VStack alignItems={'flex-start'}>
+                <a href={cor} target="_blank" rel="noopener noreferrer"  style={{ color: "blue", textDecoration: "underline" }}>
+                  Certificate of Registration
+                </a>
+                <a href={csr} target="_blank" rel="noopener noreferrer"  style={{ color: "blue", textDecoration: "underline" }}>
+                  ISKCON CSR
+                </a>
+                <a href={g} target="_blank" rel="noopener noreferrer"  style={{ color: "blue", textDecoration: "underline" }}>
+                  80G Certificate
+                </a>
+                </VStack>
+              </Td>
             </Tr>
             <Tr>
               <Td fontWeight="bold">Website:</Td>
