@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import {Navigate} from 'react-router-dom'
+import { useNavigate, useParams } from "react-router-dom";
+
 import {
   fetchSingleUser,
   postPaymentFormData,
@@ -23,6 +23,7 @@ import image16 from "../assets/images/image16.jpg";
 import image17 from "../assets/images/image17.jpg";
 import image18 from "../assets/images/image18.jpg";
 import image19 from "../assets/images/image19.png";
+import avatar from '../assets/images/Avatar-PNG-Image.webp'
 
 import {
   AspectRatio,
@@ -42,6 +43,8 @@ import { BsPinFill } from "react-icons/bs";
 import { HiMiniTag } from "react-icons/hi2";
 import { FaCalendarDays } from "react-icons/fa6";
 import DottedAnimation from "../Components/DottedAnimation";
+import { formatCurrency, formatTimeAgo, getDaysDifference } from "../Components/utils";
+import { FaSquareWhatsapp } from "react-icons/fa6";
 
 const campaign = {
   image1,
@@ -116,11 +119,12 @@ const HomeSinglePage = () => {
 
   const [tab, setTab] = useState(1);
 
+ 
   const { isLoading, isError, getSingleUser } = useSelector(
     (state) => state.clientUsers
   );
   const dispatch = useDispatch();
-  console.log(getSingleUser)
+
 
   const [amount, setAmount] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
@@ -259,28 +263,18 @@ const HomeSinglePage = () => {
 
   };
 
-  const formatCurrency = (amount, currencySymbol = "₹") => {
-    if (amount == null || isNaN(Number(amount))) return `${currencySymbol}0`; // Handle undefined/null cases
-    return `${currencySymbol}${Number(amount).toLocaleString("en-IN")}`;
-  };
+  const [imageError, setImageError] = useState(false);
 
-  const formatTimeAgo = (date) => {
-    const now = new Date();
-    const donationDate = new Date(date);
-    const diffInSeconds = Math.floor((now - donationDate) / 1000);
+  const handleImageError = () => {
+    setImageError(true); // Set the state to indicate the image has failed to load
+  };
   
-    if (diffInSeconds < 60) {
-      return `${diffInSeconds} seconds ago`;
-    } else if (diffInSeconds < 3600) {
-      const diffInMinutes = Math.floor(diffInSeconds / 60);
-      return `${diffInMinutes} minutes ago`;
-    } else if (diffInSeconds < 86400) {
-      const diffInHours = Math.floor(diffInSeconds / 3600);
-      return `${diffInHours} hours ago`;
-    } else {
-      const diffInDays = Math.floor(diffInSeconds / 86400);
-      return `${diffInDays} days ago`;
-    }
+  const shareUrl = `https://campaigns.iskconhubli.org/${id}`
+
+  const handleShare = () => {
+    const message = `Check this out: ${shareUrl}`;
+    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, "_blank");
   };
 
   return (
@@ -289,6 +283,13 @@ const HomeSinglePage = () => {
       position={"relative"}
       overflow={paymentModel ? "hidden" : "auto"}
     >
+
+      {/* Whats app icon */}
+
+      <Box position={'fixed'} zIndex={'10'} fontSize={'3rem'} cursor={'pointer'} bottom={'4%'} right={'2%'} color={'#25D366'} bgColor={'white'} borderRadius={'10px'} onClick={handleShare}>
+         <FaSquareWhatsapp />
+      </Box>
+
       {/* Loading */}
       {isLoading && (
         <Box
@@ -560,7 +561,8 @@ const HomeSinglePage = () => {
               w="100%"
               h="100%"
               objectFit="cover"
-              src={getSingleUser?.campaignDetails?.imgurl}
+              src={imageError ? avatar : getSingleUser?.campaignDetails?.imgrul}
+              onError={handleImageError}
             />
           </Box>
           <Box
@@ -596,12 +598,12 @@ const HomeSinglePage = () => {
             justifyContent="space-between"
             h="auto"
           >
-            <VStack width="100%" alignItems="flex-start" gap="0.5rem">
+            <VStack width="100%" alignItems="flex-start" gap="0.2rem">
               <Box fontWeight="semibold" fontSize="2rem">
                 RAISED
               </Box>
               <Box fontSize="2.2rem" fontWeight="bold">
-                INR 799778887
+                 {formatCurrency(getSingleUser?.raisedFund)}
               </Box>
               <Box fontSize="2rem" fontWeight="semibold">
                 GOAL{" "}
@@ -618,7 +620,7 @@ const HomeSinglePage = () => {
               >
                 <Box>DAYS LEFT</Box>
                 <Box fontSize={"1.8rem"}>
-                  {getSingleUser?.campaignDetails?.days}
+                  {getDaysDifference(getSingleUser?.campaignDetails?.startdate,getSingleUser?.campaignDetails?.enddate)}
                 </Box>
               </VStack>
               <VStack
@@ -643,7 +645,7 @@ const HomeSinglePage = () => {
               Accepts funds from Indian Passport / ID holders only.
             </Box>
             <VStack w={"100%"} gap={"1rem"}>
-              {getSingleUser?.campaignDetails?.days === 0 ? (
+              {getDaysDifference(getSingleUser?.campaignDetails?.startdate,getSingleUser?.campaignDetails?.enddate) === 0 ? (
                 <Box fontSize={"1.2rem"} color={"red.500"}>
                   Successful
                 </Box>
@@ -653,18 +655,20 @@ const HomeSinglePage = () => {
                     type="number"
                     placeholder="Enter Amount"
                     onChange={(e) => setAmount(e.target.value)}
+                    h={'50px'}
                   />
                 </Box>
               )}
               <Button
                 w={"100%"}
+                h={'50px'}
                 bgColor="#EF4F5F"
                 color={"white"}
                 fontWeight={"bold"}
                 fontSize={"1.1rem"}
                 _hover={"none"}
                 onClick={handleClick}
-                isDisabled={getSingleUser?.campaignDetails?.days === 0}
+                isDisabled={getDaysDifference(getSingleUser?.campaignDetails?.startdate,getSingleUser?.campaignDetails?.enddate) === 0}
               >
                 CONTRIBUTE
               </Button>
@@ -710,13 +714,13 @@ const HomeSinglePage = () => {
           <Box color={"#C75C5C"} fontSize={["1.2rem"]}>
             <FaCalendarDays />
           </Box>
-          <Box>Started from 03/12/2023</Box>
+          <Box>Started from {getSingleUser?.campaignDetails?.startdate?.split("T")[0]}</Box>
         </HStack>
         <HStack gap={["8px"]} cursor={"pointer"}>
           <Box color={"#C75C5C"} fontSize={["1.2rem"]}>
             <FaCalendarDays />
           </Box>
-          <Box>Ended on 23/02/2024</Box>
+          <Box>Ended on {getSingleUser?.campaignDetails?.startdate?.split("T")[0]}</Box>
         </HStack>
       </HStack>
 
@@ -1015,7 +1019,8 @@ const HomeSinglePage = () => {
                 w="100%"
                 h="100%"
                 objectFit="cover"
-                src={getSingleUser?.campaignDetails?.imgurl}
+                src={imageError ? avatar : getSingleUser?.campaignDetails?.imgurl}
+                onError={handleImageError}
               />
             </Box>
 
@@ -1173,7 +1178,7 @@ const HomeSinglePage = () => {
                    <HStack>
                    <Box fontWeight={'bold'} color={'white'}>{user?.username} donated {formatCurrency(user?.amount)} </Box>
                   </HStack>
-                   <Box fontWeight={'bold'} color={'white'}>about {formatTimeAgo(user?.date)} ago</Box>
+                   <Box fontWeight={'bold'} color={'white'}>about {formatTimeAgo(user?.date)}</Box>
                    </VStack>
                </HStack>
                 ))

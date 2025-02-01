@@ -8,19 +8,27 @@ import {
   SimpleGrid,
   VStack,
 } from "@chakra-ui/react";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FaLocationDot } from "react-icons/fa6";
 import ProgressBar from "./ProgressBar";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "../../Redux/clientSlices/clientUsers";
 import { Link } from "react-router-dom";
 import DottedAnimation from "../DottedAnimation";
+import { calculatePercentage, formatCurrency, getDaysDifference } from "../utils";
+import avatar from '../../assets/images/Avatar-PNG-Image.webp'
 
 const HomeCards = () => {
   const { isLoading, isError, getUsers } = useSelector(
     (state) => state.clientUsers
   );
   const dispatch = useDispatch();
+
+  const [imageError, setImageError] = useState(false);
+
+  const handleImageError = () => {
+    setImageError(true);
+  };
 
   useEffect(() => {
     dispatch(fetchUser());
@@ -38,10 +46,7 @@ const HomeCards = () => {
     alert(isError)
   }
 
-  const formatCurrency = (amount, currencySymbol = '₹') => {
-    if (amount == null || isNaN(Number(amount))) return `${currencySymbol}0`; // Handle undefined/null cases
-    return `${currencySymbol}${Number(amount).toLocaleString('en-IN')}`;
-  };
+
 
 
   return (
@@ -64,12 +69,12 @@ const HomeCards = () => {
           </Box>
         </VStack>
 
-        {/* <HStack fontWeight={"600"} fontSize={"1.3rem"}>
+        <HStack fontWeight={"600"} fontSize={"1.3rem"}>
           <Box>CAMPAIGNS CREATED:</Box>
           <Box>
           {getUsers?.campaignDetails?.length === 0 ? '0' : getUsers?.campaignDetails?.length <= 9 ? `0${getUsers?.campaignDetails?.length}` : getUsers?.campaignDetails?.length}
           </Box>
-        </HStack> */}
+        </HStack>
       </Box>
       {getUsers?.campaignDetails?.length > 0 ? (
         <SimpleGrid
@@ -90,9 +95,10 @@ const HomeCards = () => {
                   <Image
                     w={"100%"}
                     h={"100%"}
-                    src={user.imgurl}
-                    alt={user.name}
-                    objectFit={"cover"}
+                    src={imageError ? avatar : user?.imgurl}
+                    alt={user?.campaignName }
+                    objectFit={imageError ? 'contain' : 'cover'}
+                    onError={handleImageError}
                   />
                 </Box>
                 <CardBody px={"7px"}>
@@ -142,8 +148,8 @@ const HomeCards = () => {
                     justifyContent={"space-between"}
                     w={"100%"}
                   >
-                    <Box>{user?.totalFunderCount}%</Box>
-                    <Box>{user?.daysleft} Days LEFT</Box>
+                    <Box>{calculatePercentage(user?.targetamt,user?.totalRaisedAmount)}%</Box>
+                    <Box>{getDaysDifference(user?.startdate.split("T")[0],user?.enddate.split("T")[0])} Days LEFT</Box>
                   </HStack>
                 </CardFooter>
               </Card>
@@ -161,14 +167,6 @@ const HomeCards = () => {
           No Users Found
         </Box>
       )}
-      <Box mt={"2rem"}>
-        <Box fontSize={"1rem"} fontWeight={"bold"}>
-          CAMPAIGNS FOLLOWING:
-        </Box>
-        <Box fontSize={"1.2rem"}>
-          ISKCON HUBLI-DHARWAD has not followed any campaign.
-        </Box>
-      </Box>
     </Box>
   );
 };
