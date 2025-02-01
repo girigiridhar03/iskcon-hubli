@@ -447,11 +447,11 @@ const HomeSinglePage = () => {
                       </HStack>
                     </FormLabel>
                     <Input
+                     type="text"
                       onChange={handleOnChange}
                       name="panno"
                       value={formData.panno}
                       border={"2px solid #CCCCCC"}
-                      type="tel"
                       placeholder="Enter Pan No."
                       w={"100%"}
                     />
