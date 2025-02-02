@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
-// const api = "https://razor.ygntechstartup.workers.dev";
+const api = "https://razor.ygntechstartup.workers.dev";
 // const api = "http://172.236.187.67"
-const api = "https://nodebe.ages.fun"
+const be_api = "https://nodebe.ages.fun"
 
 const token = 'iskonhublicampaign'
 
@@ -47,7 +47,7 @@ export const postPaymentFormData = createAsyncThunk("paymentFormData",async(form
 
       try {
           
-          const response = await fetch(`${api}/create-payment`,{
+          const response = await fetch(`${be_api}/create-payment`,{
                method:'POST',
             body:JSON.stringify(formData),
             headers: {
