@@ -249,7 +249,19 @@ const HomeSinglePage = () => {
       dispatch(postPaymentFormData(formData)).then((res) => {
         const id = res?.payload?.order?.id;
         if (id) {
-          navigate(`/payment/${id}`);
+
+          navigate(`/payment/${id}`, {
+            state: {
+              name: formData.username,
+              phone: formData.mobileno,
+              email: formData.email,
+              seva: "Mandir Nirmana Seva",
+              address: formData.address,
+              pan_number: formData.panno,
+              send_confirmation_message_to_preacher: `${getSingleUser?.campaignDetails?.campaignName || ''} - ${getSingleUser?.campaignDetails?.phoneno || ''}`
+              ,
+            },
+          });
         }
       });
     }

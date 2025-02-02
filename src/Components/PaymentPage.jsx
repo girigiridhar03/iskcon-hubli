@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 const PaymentPage = () => {
   const { id } = useParams(); // Get order ID from URL
-  console.log("Order ID:", id);
+  const location = useLocation(); // Access the state passed via navigation
+  const paymentData = location.state || {};
+  console.log("Order ID, paymentData", id, paymentData);
 
   useEffect(() => {
     if (!id) return; // Ensure ID exists before proceeding
@@ -30,9 +32,8 @@ const PaymentPage = () => {
       const options = {
         key: process.env.REACT_APP_RZP_KEY,
         currency: "INR",
-        name: "Sai Kiran",
-        description: "Test Transaction",
-        image: "https://example.com/your_logo",
+        name: "Iskcon Hubli-Dharwad",
+        description: "Mandir Nirmana Seva",
         order_id: id,
         handler: function (response) {
           console.log("Payment ID:", response.razorpay_payment_id);
@@ -40,12 +41,19 @@ const PaymentPage = () => {
           console.log("Signature:", response.razorpay_signature);
         },
         prefill: {
-          name: "Sai Kiran",
-          email: "saikiran@gmail.com",
-          contact: "8688487669",
+          name: paymentData.name,
+          email: paymentData.email,
+          contact: paymentData.phone,
         },
+
         notes: {
-          address: "Sai Kiran, Bangalore",
+          name: paymentData.name,
+          phone: paymentData.phone,
+          email: paymentData.email,
+          seva: "Mandir Nirmana Seva",
+          address: paymentData.address,
+          pan_number: paymentData.pan_number,
+          send_confirmation_message_to_preacher: paymentData.send_confirmation_message_to_preacher
         },
         theme: {
           color: "#3399cc",
@@ -53,7 +61,7 @@ const PaymentPage = () => {
       };
 
       const rzp1 = new window.Razorpay(options);
-      rzp1.open(); 
+      rzp1.open();
 
       rzp1.on("payment.failed", function (response) {
         console.error("Payment failed:", response);
