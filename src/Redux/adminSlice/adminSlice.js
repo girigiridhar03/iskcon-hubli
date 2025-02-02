@@ -13,7 +13,7 @@ export const adminCreateCampaign = createAsyncThunk(
         body: JSON.stringify(formData),
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Basic ${api_key}`, // Add token to the Authorization header
+          Authorization: `Bearer ${token}`, // Add token to the Authorization header
         },
       });
 
