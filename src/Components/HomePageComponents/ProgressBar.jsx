@@ -44,19 +44,6 @@ const ProgressBar = ({ currentAmount, goalAmount }) => {
         willChange="width"
       >
       </Box>
-
-      {/* Pointer ball */}
-      <Box
-        position="absolute"
-        top="50%"
-        left={`calc(${pointerPosition}% - 7px)`} // Adjust pointer to center based on percentage
-        transform="translateY(-50%)"
-        width="14px"
-        height="14px"
-        bgColor="white"  // Set pointer color to white
-        borderRadius="50%"
-        boxShadow="0 0 3px rgba(0,0,0,0.3)"
-      />
     </Box>
   )
 }

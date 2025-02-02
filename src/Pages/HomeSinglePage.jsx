@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import {
   fetchSingleUser,
@@ -47,6 +47,7 @@ import {
   formatCurrency,
   formatTimeAgo,
   getDaysDifference,
+  themeColor,
 } from "../Components/utils";
 import { FaSquareWhatsapp } from "react-icons/fa6";
 
@@ -95,7 +96,7 @@ const campaign = {
   radhaKrishnaHeading:
     "The pictures below show the 4 main deities of the Sri Radha Krishna Temple.",
   radhaKrishnaImage:
-    "https://www.fueladream.com/public/uploads/1079745653628931.jpg",
+    image9,
   image9,
   image9Para:
     "The picture above shows the Sri Srinivasa Govinda - A separate hall that would be build for Lord Venkateshwara.",
@@ -296,7 +297,7 @@ const HomeSinglePage = () => {
         cursor={"pointer"}
         bottom={"4%"}
         right={"2%"}
-        color={"#25D366"}
+        color={'green.400'}
         bgColor={"white"}
         borderRadius={"10px"}
         onClick={handleShare}
@@ -342,7 +343,7 @@ const HomeSinglePage = () => {
           >
             <HStack
               w={"100%"}
-              bgColor={"red.500"}
+              bgColor={themeColor}
               borderTopLeftRadius={"10px"}
               borderTopRightRadius={"10px"}
               p={"1rem"}
@@ -502,7 +503,7 @@ const HomeSinglePage = () => {
       {/* Header */}
       <Box
         w={"100%"}
-        bgColor={"#EF4F5F"}
+        bgColor={themeColor}
         color={"white"}
         py={"1.5rem"}
         px={["1.3rem", "1.5rem", "2rem"]}
@@ -528,6 +529,7 @@ const HomeSinglePage = () => {
             </HStack>
 
             <HStack>
+              <Link to={'/'}>
               <Box
                 w={"80px"}
                 h={"80px"}
@@ -538,9 +540,10 @@ const HomeSinglePage = () => {
                   h={"100%"}
                   w={"100%"}
                   objectFit={"cover"}
-                  src="https://fadcdn.s3.ap-south-1.amazonaws.com/media/organization/logo_ISKCON.png"
+                  src={image16}
                 />
               </Box>
+              </Link>
               <VStack alignItems={"flex-start"} gap={"5px"}>
                 <Box fontWeight={"bold"}>ISKCON HUBLI-DHARWAD</Box>
               </VStack>
@@ -743,7 +746,7 @@ const HomeSinglePage = () => {
             <FaCalendarDays />
           </Box>
           <Box>
-            Ended on {getSingleUser?.campaignDetails?.startdate?.split("T")[0]}
+            Ended on {getSingleUser?.campaignDetails?.enddate?.split("T")[0]}
           </Box>
         </HStack>
       </HStack>
@@ -954,10 +957,7 @@ const HomeSinglePage = () => {
               {campaign.radhaKrishnaHeading}
             </Box>
 
-            <Box w={"90%"} h={"auto"} mx={"auto"}>
-              <Image w={"100%"} h={"100%"} src={campaign.radhaKrishnaImage} />
-            </Box>
-
+        
             {/* image 9 */}
             <Box w={"90%"} h={"auto"} mx={"auto"}>
               <Image w={"100%"} h={"100%"} src={campaign.image9} />
@@ -1213,7 +1213,7 @@ const HomeSinglePage = () => {
             {getSingleUser?.top10paymentDetails?.map((user, i) => (
               <HStack
                 key={i + user?.amount}
-                bgColor={"red.400"}
+                bgColor={themeColor}
                 borderRadius={"10px"}
                 w={"100%"}
                 py={"0.8rem"}

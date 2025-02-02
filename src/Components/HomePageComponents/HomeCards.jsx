@@ -15,7 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "../../Redux/clientSlices/clientUsers";
 import { Link } from "react-router-dom";
 import DottedAnimation from "../DottedAnimation";
-import { calculatePercentage, formatCurrency, getDaysDifference } from "../utils";
+import { calculatePercentage, formatCurrency, getDaysDifference, themeColor } from "../utils";
 import avatar from '../../assets/images/Avatar-PNG-Image.webp'
 
 const HomeCards = () => {
@@ -59,16 +59,7 @@ const HomeCards = () => {
       borderRadius={"5px"}
     >
       <Box mx={"auto"}>
-        <VStack alignItems={"flex-start"} gap={0}>
-          <Box fontSize={"0.9rem"} fontWeight={"600"}>
-           TOTAL AMOUNT RAISED:
-          </Box>
-          <Box fontSize={"2.5rem"} fontWeight={"600"}>
-         
-            {formatCurrency(getUsers?.totalraisedamt)}
-          </Box>
-        </VStack>
-
+    
         <HStack fontWeight={"600"} fontSize={"1.3rem"}>
           <Box>CAMPAIGNERS JOINED:</Box>
           <Box>
@@ -162,7 +153,7 @@ const HomeCards = () => {
           w={"100%"}
           fontWeight={"bold"}
           fontSize={"1.1rem"}
-          color={"red.500"}
+          color={themeColor}
         >
           No Users Found
         </Box>
