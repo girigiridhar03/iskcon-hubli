@@ -88,8 +88,8 @@ const AdminCreateCampaign = () => {
           <Input
             border={"2px solid rgb(0,0,0,0.5)"}
             type="date"
-            placeholder="Enter Days"
-            name="days"
+            placeholder="Enter Date"
+            name="enddate"
             value={formData?.enddate}
             onChange={handleChange}
           />
@@ -99,8 +99,8 @@ const AdminCreateCampaign = () => {
           <Input
             border={"2px solid rgb(0,0,0,0.5)"}
             type="tel"
-            placeholder="Enter Days"
-            name="days"
+            placeholder="Enter mobile number"
+            name="phoneno"
             value={formData?.phoneno}
             onChange={handleChange}
           />
@@ -108,10 +108,10 @@ const AdminCreateCampaign = () => {
         <VStack alignItems={"flex-start"}>
         <FormLabel>Campaign Image:</FormLabel>
           <Input
-            type="file"
+            type="text"
             placeholder="Enter Image Url"
             value={formData?.imgfile}
-            name="imgurl"
+            name="imgfile"
             onChange={handleChange}
           />
         </VStack>
