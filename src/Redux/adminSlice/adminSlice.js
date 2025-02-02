@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const api = "https://razor.ygntechstartup.workers.dev";
 const token = "iskonhublicampaign";
+const api_key = "aXNrb25jYW1wYWlnbmFkbWluOmlza29uY2FtcGFpZ25AMQ=="
 
 export const adminCreateCampaign = createAsyncThunk(
   "createCampaign",
@@ -12,7 +13,7 @@ export const adminCreateCampaign = createAsyncThunk(
         body: JSON.stringify(formData),
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`, // Add token to the Authorization header
+          Authorization: `Basic ${api_key}`, // Add token to the Authorization header
         },
       });
 
