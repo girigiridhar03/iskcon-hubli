@@ -161,7 +161,7 @@ const HomeSinglePage = () => {
   const handleClick = () => {
     if (amount === null) {
       return setErrorMessage("Please enter an amount");
-    } else if (amount < 100) {
+    } else if (amount < 0) {
       return setErrorMessage("Minimum contribution amount is INR 100");
     }
 
