@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
-const api = "https://razor.ygntechstartup.workers.dev";
+// const api = "https://razor.ygntechstartup.workers.dev";
 // const api = "http://172.236.187.67"
+const api = "https://nodebe.ages.fun"
 
 const token = 'iskonhublicampaign'
 
