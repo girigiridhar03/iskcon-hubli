@@ -1,5 +1,7 @@
 
 
+export const themeColor = "#EF4F5F"
+
 export const formatCurrency = (amount, currencySymbol = '₹') => {
     if (amount == null || isNaN(Number(amount))) return `${currencySymbol}0`; // Handle undefined/null cases
     return `${currencySymbol}${Number(amount).toLocaleString('en-IN')}`;

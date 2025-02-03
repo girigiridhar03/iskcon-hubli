@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, HStack } from "@chakra-ui/react";
 import { keyframes } from "@emotion/react";
+import { themeColor } from "./utils";
 
 const DottedAnimation = () => {
     const bounce = keyframes`
@@ -19,7 +20,7 @@ const DottedAnimation = () => {
         key={i}
         w="10px"
         h="10px"
-        bg="red.500"
+        bg={themeColor}
         borderRadius="50%"
         animation={`${bounce} 1.4s ease-in-out ${i * 0.2}s infinite`}
       />

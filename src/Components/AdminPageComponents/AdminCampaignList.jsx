@@ -22,6 +22,7 @@ import { FaEye } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { IoCloseCircle } from "react-icons/io5";
 import DottedAnimation from "../DottedAnimation";
+import { themeColor } from "../utils";
 
 const AdminCampaignList = () => {
   const { isLoading,isError, getUsers, getSingleUser } = useSelector((state) => state.clientUsers);
@@ -160,7 +161,7 @@ const AdminCampaignList = () => {
                         </Box>
                       ))
                     ) : (
-                      <Box color={"red.500"} fontWeight={"bold"}>
+                      <Box color={themeColor} fontWeight={"bold"}>
                         No Donors
                       </Box>
                     )}

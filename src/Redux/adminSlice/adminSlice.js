@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 const api = "https://razor.ygntechstartup.workers.dev";
 const token = "iskonhublicampaign";
+const api_key = "aXNrb25jYW1wYWlnbmFkbWluOmlza29uY2FtcGFpZ25AMQ=="
 
 export const adminCreateCampaign = createAsyncThunk(
   "createCampaign",
