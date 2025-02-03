@@ -11,7 +11,7 @@ export const fetchUser = createAsyncThunk("getUserList",async(_,{rejectWithValue
         
         const response = await fetch(`${api}/showcampaigns`);
         const data = await response.json();
-
+          console.log(JSON.stringify(data));
          if(!response.ok){
             throw new Error("Network call is not ok")
          }
