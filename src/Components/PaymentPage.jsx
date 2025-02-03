@@ -55,8 +55,7 @@ const PaymentPage = () => {
           console.log("Signature:", response.razorpay_signature);
           console.log("Payment successful:", response);
            
-           
-            navigate(-1);
+            navigate(`/single/${paymentData.campaignsid}`);
           Toast({
             title: "Payment Successful",
             description: "Your payment was successful. Thank you!",
@@ -89,6 +88,14 @@ const PaymentPage = () => {
       rzp1.open();
       rzp1.on("payment.failed", function (response) {
         console.error("Payment failed:", response);
+        Toast({
+          title: "Payment Failed",
+          description: "Your payment was unsuccessful",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
+        navigate(`/single/${paymentData.campaignsid}`);
       });
     };
 

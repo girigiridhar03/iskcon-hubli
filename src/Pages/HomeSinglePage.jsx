@@ -123,7 +123,7 @@ const campaign = {
 
 const HomeSinglePage = () => {
   const { id } = useParams();
-
+  
   const [tab, setTab] = useState(1);
 
   const { isLoading, isError, getSingleUser } = useSelector(
@@ -270,6 +270,7 @@ const HomeSinglePage = () => {
               pan_number: formData.panno,
               send_confirmation_message_to_preacher: `${getSingleUser?.campaignDetails?.campaignName || ''} - ${getSingleUser?.campaignDetails?.phoneno || ''}`
               ,
+              campaignsid: id,
             },
           });
         }
