@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react'
+import { Box, Text } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 
 const ProgressBar = ({ currentAmount, goalAmount }) => {
@@ -24,26 +24,27 @@ const ProgressBar = ({ currentAmount, goalAmount }) => {
 
   }, [currentAmount, goalAmount]);
 
-   console.log(bar)
-
   return (
     <Box
       w="100%"
-      bgColor="gray.500"  // Set background to gray
-      h="10px"
+      bgColor="gray.200"  // Set background to a lighter gray
+      h="15px"  // Increase height for better visibility
       borderRadius="30px"
-      my="0.8rem"
+      my="1rem"
       overflow="hidden"
-      position={'relative'}
+      position="relative"
+      boxShadow="md"  // Add shadow for better visual effect
     >
       <Box
         w={`${bar}%`}
         h="100%"
-        bgColor="green.400"  // Set progress color to green
+        bgColor="teal.400"  // Change progress color to teal
         transition="width 0.5s ease-in-out"
         willChange="width"
+        borderRadius="inherit"  // Ensure the progress bar has rounded corners
       >
       </Box>
+   
     </Box>
   )
 }

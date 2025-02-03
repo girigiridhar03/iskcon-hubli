@@ -74,9 +74,10 @@ const HomeCards = () => {
       mx={"auto"}
       p={["0.3rem", "0.5rem", "1rem", "1.5rem"]}
       borderRadius={"5px"}
+      maxW="1200px"
     >
-      <Box mx={"auto"}>
-        <HStack marginBottom={'5px'} fontWeight={"900"} color={"green.900"} fontSize={"1.3rem"}>
+      <Box mx={"auto"} textAlign="center" mb={4}>
+        <HStack justifyContent="center" fontWeight={"900"} color={"green.900"} fontSize={"1.5rem"}>
           <Box>CAMPAIGNERS JOINED:</Box>
           <Box>
             {campaigns?.length === 0 ? '0' : campaigns?.length <= 9 ? `0${campaigns?.length}` : campaigns?.length}
@@ -84,29 +85,27 @@ const HomeCards = () => {
         </HStack>
       </Box>
       {campaigns?.length > 0 ? (
-       
-          <InfiniteScroll
-            dataLength={campaigns.length}
-            next={fetchMoreData}
-            hasMore={hasMore}
-            loader={
-              <Box display="flex" justifyContent="center" alignItems="center" py={4}>
-                <DottedAnimation />
-                <Box ml={4} fontSize="1.2rem" color="gray.600">Loading more campaigners...</Box>
-              </Box>
-            }
-           
+        <InfiniteScroll
+          dataLength={campaigns.length}
+          next={fetchMoreData}
+          hasMore={hasMore}
+          loader={
+            <Box display="flex" justifyContent="center" alignItems="center" py={4}>
+              <DottedAnimation />
+              <Box ml={4} fontSize="1.2rem" color="gray.600">Loading more campaigners...</Box>
+            </Box>
+          }
         >
-           <SimpleGrid
-          columns={[1, 1, 2, 2, 3, 4]}
-          spacing={[10, 10, 5, 10, 5]}
-          w={"100%"}
-          mx={"auto"}
-          p={"10px"}
-        >
+          <SimpleGrid
+            columns={[1, 1, 2, 2, 3, 4]}
+            spacing={[5, 5, 5, 10, 10]}
+            w={"100%"}
+            mx={"auto"}
+            p={"10px"}
+          >
             {campaigns?.map((user, i) => (
-              <Link key={user.campaignId} to={`/single/${user.campaignId}`}>
-                <Card w={"100%"} overflow={"hidden"} key={user.campaignId} h={'100%'}>
+              <Link bg={i % 2 === 0 ? 'gray.100' : 'white'} key={user.campaignId} to={`/single/${user.campaignId}`}>
+                <Card w={"100%"} overflow={"hidden"} key={user.campaignId} h={'100%'} >
                   <Box
                     w={"100%"}
                     h={["250px", "250px", "250px", "300px", "250px"]}
@@ -119,14 +118,14 @@ const HomeCards = () => {
                       objectFit={'cover'}
                     />
                   </Box>
-                  <CardBody bg={'#fce9e9'} px={"7px"}>
-                    <Box fontSize={"0.9rem"} fontWeight={"600"}>
+                  <CardBody  bg={'#fce9e9'} px={"7px"}>
+                    <Box fontSize={"1rem"} fontWeight={"700"} mb={2}>
                       {user.campaignName.toUpperCase()}'S CAMPAIGN TO BUILD A
                       MAGNIFICENT SRI RADHA KRISHNA TEMPLE AND CULTURAL COMPLEX IN
-                      HUBLI-DHARWAD,KARNATAK.
+                      HUBLI-DHARWAD, KARNATAKA.
                     </Box>
-                    <Box fontSize={"0.8rem"}>{user.desc}</Box>
-                    <HStack fontSize={"0.7rem"} py={"0.5rem"}>
+                    <Box fontSize={"0.9rem"} mb={2}>{user.desc}</Box>
+                    <HStack fontSize={"0.8rem"} py={"0.5rem"}>
                       <Box color={"red.500"}>ISKCON HUBLI-DHARWAD</Box>{" "}
                       <Box>|</Box>
                       <HStack>
@@ -136,7 +135,7 @@ const HomeCards = () => {
                         <Box>Hubli-Dharwad</Box>
                       </HStack>
                     </HStack>
-                    <Box fontSize={'0.8rem'}>
+                    <Box fontSize={'0.9rem'} mt={2}>
                       I am a concerned citizen and this campaign of mine aims to support the creation of a magnificent ISKCON Sri Radha Krishna Temple and Cultural complex in Hubli-Dharwad area of Karnataka.
                     </Box>
                   </CardBody>
@@ -173,9 +172,8 @@ const HomeCards = () => {
                 </Card>
               </Link>
             ))}
-            </SimpleGrid>
-          </InfiniteScroll>
-       
+          </SimpleGrid>
+        </InfiniteScroll>
       ) : (
         <Box
           textAlign={"center"}

@@ -1,4 +1,3 @@
-
 import {
   Box,
   CircularProgress,
@@ -7,10 +6,24 @@ import {
   HStack,
   VStack,
   Stack,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { formatCurrency, themeColor } from "../utils";
+import { formatCurrency } from "../utils";
 import CountUp from "react-countup";
+import { keyframes } from "@emotion/react";
+
+const borderAnimation = keyframes`
+  0% {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #00FF00;
+  }
+  100% {
+    border-color: transparent;
+  }
+`;
 
 const CampaignProgressDetails = ({ currentAmount, goalAmount }) => {
   const [progress, setProgress] = useState(0);
@@ -36,6 +49,11 @@ const CampaignProgressDetails = ({ currentAmount, goalAmount }) => {
     }
   }, [currentAmount, goalAmount]);
 
+  const bgColor = useColorModeValue("gray.800", "gray.700");
+  const progressColor = useColorModeValue("green.400", "green.300");
+  const trackColor = useColorModeValue("gray.300", "gray.600");
+  const textColor = useColorModeValue("white", "gray.200");
+
   return (
     <Box
       w={"95%"}
@@ -43,51 +61,44 @@ const CampaignProgressDetails = ({ currentAmount, goalAmount }) => {
       borderRadius="10px"
       px={["1.5rem", "2rem"]}
       py={["0.5rem", "0.5rem"]}
-      bgColor={themeColor}
-      boxShadow='dark-lg'
-      marginBottom='10px'
+      bgColor={bgColor}
+      boxShadow="dark-lg"
+      marginBottom="10px"
+      border="2px solid"
+      borderColor="transparent"
+      animation={`${borderAnimation} 3s infinite`}
     >
-      {/* Responsive Layout: Stack on mobile, HStack on larger screens */}
       <Stack
         direction={["column", "column", "row"]}
         spacing={["0.2rem", "1rem"]}
-        
         align="center"
       >
-        {/* Circular Progress */}
         <Box display="flex" alignItems="center" justifyContent="center">
           <CircularProgress
             value={progress}
             size={["100px", "130px", "150px"]}
             thickness="10px"
-            color="green.400"
-            trackColor="gray.700"
+            color={progressColor}
+            trackColor={trackColor}
             capIsRound={true}
           >
             <CircularProgressLabel
               fontSize={["1rem", "1.2rem", "1.5rem"]}
               fontWeight="bold"
-              color="white"
+              color={textColor}
             >
               {progress.toFixed(2)}%
             </CircularProgressLabel>
           </CircularProgress>
         </Box>
 
-        {/* Campaign Details */}
-        <VStack align={["center", "center", "flex-start"]} >
-          {/* Target Amount */}
-          <Flex align="center" gap={2} color="white" fontSize={["1.5rem", "2rem", "2rem"]}>
-            <Box  fontWeight="semibold">
-              Target Amount :
-            </Box>
-            <Box  fontWeight="semibold">
-              {formatCurrency(goalAmount)}
-            </Box>
+        <VStack align={["center", "center", "flex-start"]}>
+          <Flex align="center" gap={2} color={textColor} fontSize={["1.5rem", "2rem", "2rem"]}>
+            <Box fontWeight="semibold">Target Amount :</Box>
+            <Box fontWeight="semibold">{formatCurrency(goalAmount)}</Box>
           </Flex>
 
-          {/* Achieved Amount */}
-          <HStack alignItems="baseline" color="green.900">
+          <HStack alignItems="baseline" color={progressColor}>
             <Box fontSize={["2rem", "2.2rem", "2.5rem"]} fontWeight="bold">
               ₹<CountUp end={currentAmount} start={currentAmount / 2} />
             </Box>
