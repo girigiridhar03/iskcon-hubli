@@ -44,7 +44,7 @@ const PaymentPage = () => {
       const options = {
         key: process.env.REACT_APP_RZP_KEY,
         currency: "INR",
-        name: "Iskcon Hubli-Dharwad",
+        name: "ISKCON Hubli-Dharwad",
         description: "Mandir Nirmana Seva",
         order_id: id,
         handler: function (response) {
