@@ -185,7 +185,7 @@ const HomeSinglePage = () => {
   const validateForm = () => {
     const newErrors = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const mobileRegex = /^[0-9]{10}$/;
+    const mobileRegex = /^[0]?[6789][0-9]{9}$/;
     const pincodeRegex = /^[0-9]{6}$/;
     const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
     const amountRegex = /^[0-9]+(\.[0-9]{1,2})?$/;
@@ -582,7 +582,7 @@ const HomeSinglePage = () => {
               w="100%"
               h="100%"
               objectFit="cover"
-              src={imageError ? avatar : getSingleUser?.campaignDetails?.imgrul}
+              src={imageError ? avatar : getSingleUser?.campaignDetails?.imgurl}
               onError={handleImageError}
             />
           </Box>

@@ -24,12 +24,6 @@ const HomeCards = () => {
   );
   const dispatch = useDispatch();
 
-  const [imageError, setImageError] = useState(false);
-
-  const handleImageError = () => {
-    setImageError(true);
-  };
-
   useEffect(() => {
     dispatch(fetchUser());
   }, [dispatch]);
@@ -75,7 +69,7 @@ const HomeCards = () => {
           bg={'#df9595'}
         >
           {getUsers?.campaignDetails?.map((user, i) => (
-            <Link key={user.campaignId} to={`/${user.campaignId}`}>
+            <Link key={user.campaignId} to={`/single/${user.campaignId}`}>
               <Card w={"100%"} overflow={"hidden"} key={user.campaignId} h={'100%'}>
                 <Box
                   w={"100%"}
@@ -84,10 +78,9 @@ const HomeCards = () => {
                   <Image
                     w={"100%"}
                     h={"100%"}
-                    src={imageError ? avatar : user?.imgurl}
-                    alt={user?.campaignName}
-                    objectFit={imageError ? 'contain' : 'cover'}
-                    onError={handleImageError}
+                    src={user?.imgurl}
+                    alt={user?.campaignName }
+                    objectFit={'cover'}
                   />
                 </Box>
                 <CardBody bg={'#fce9e9'} px={"7px"}>

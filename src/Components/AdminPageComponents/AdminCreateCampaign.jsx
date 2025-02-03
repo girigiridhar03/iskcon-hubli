@@ -9,7 +9,7 @@ const AdminCreateCampaign = () => {
     targetamount: "",
     enddate:"",
     phoneno:"",
-    imgfile: ""
+    imgurl: ""
   });
 
   const dispatch = useDispatch();
@@ -26,7 +26,7 @@ const AdminCreateCampaign = () => {
       !formData.campaignname.trim() ||
       !formData.targetamount ||
       !formData.enddate ||
-      !formData.imgfile || 
+      !formData.imgurl || 
       !formData.phoneno
     ) {
       alert("Please fill in all fields.");
@@ -40,7 +40,7 @@ const AdminCreateCampaign = () => {
       targetamount: "",
       enddate:"",
       phoneno:"",
-      imgfile: "",
+      imgurl: "",
     });
   };
 
@@ -110,8 +110,8 @@ const AdminCreateCampaign = () => {
           <Input
             type="text"
             placeholder="Enter Image Url"
-            value={formData?.imgfile}
-            name="imgfile"
+            value={formData?.imgurl}
+            name="imgurl"
             onChange={handleChange}
           />
         </VStack>

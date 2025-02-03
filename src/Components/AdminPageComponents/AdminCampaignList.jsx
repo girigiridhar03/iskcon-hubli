@@ -112,9 +112,15 @@ const AdminCampaignList = () => {
                 </Tr>
                 <Tr>
                   {/* Left side - Heading */}
-                  <Th>Days</Th>
+                  <Th>Start Date</Th>
                   {/* Right side - Data */}
-                  <Td>{getSingleUser?.campaignDetails?.days}</Td>
+                  <Td>{getSingleUser?.campaignDetails?.startdate.split("T")[0]}</Td>
+                </Tr>
+                <Tr>
+                  {/* Left side - Heading */}
+                  <Th>End Date</Th>
+                  {/* Right side - Data */}
+                  <Td>{getSingleUser?.campaignDetails?.enddate.split("T")[0]}</Td>
                 </Tr>
                 <Tr>
                   {/* Left side - Heading */}
@@ -205,7 +211,10 @@ const AdminCampaignList = () => {
                   Total Raised Amount
                 </Th>
                 <Th textAlign={"center"} border={"1px solid gray"}>
-                  Days
+                  Start Date
+                </Th>
+                <Th textAlign={"center"} border={"1px solid gray"}>
+                  End Date
                 </Th>
                 <Th textAlign={"center"} border={"1px solid gray"}>
                   Actions
@@ -232,7 +241,10 @@ const AdminCampaignList = () => {
                       {user?.totalRaisedAmount}
                     </Td>
                     <Td textAlign={"center"} border={"1px solid gray"}>
-                      {user?.daysleft}
+                      {user?.startdate.split("T")[0]}
+                    </Td>
+                    <Td textAlign={"center"} border={"1px solid gray"}>
+                      {user?.enddate.split("T")[0]}
                     </Td>
                     <Td textAlign={"center"} border={"1px solid gray"}>
                       <HStack w={"100%"} justifyContent={"space-around"}>

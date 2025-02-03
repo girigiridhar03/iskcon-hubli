@@ -69,6 +69,26 @@ export const postPaymentFormData = createAsyncThunk("paymentFormData",async(form
       }
 })
 
+export const postPaymentSuccess = createAsyncThunk("paymentsuccess",async(id,{rejectWithValue})=>{
+     try {
+          
+          const response = await fetch(`${api}/checkpayment`,{
+               method:"POST",
+               body:JSON.stringify(id),
+               headers:{
+                   'Content-Type': 'application/json',  
+               }
+          })
+
+          const data = await response.json();
+
+          return data
+
+     } catch (error) {
+          return rejectWithValue(error.message)
+     }
+})
+
 const initialState = {
      isLoading:false,
      isError:null,
@@ -124,7 +144,23 @@ const getUsersSlice = createSlice({
            state.isLoading = false;
            state.isError = payload
         })
+
+      // Success Payment
+      .addCase(postPaymentSuccess.pending,(state)=>{
+           state.isLoading = true;
+           state.isError = null;
+      })
+      .addCase(postPaymentSuccess.fulfilled,(state)=>{
+          state.isLoading = false;
+          state.isError = null
+      })
+      .addCase(postPaymentSuccess.rejected,(state,{rejectWithValue})=>{
+          state.isLoading = false;
+          state.isError = rejectWithValue
+      })
+
       }
+
 });
 
 export default getUsersSlice.reducer
