@@ -66,7 +66,7 @@ const HomeCards = () => {
           mx={"auto"}
 
           p={"10px"}
-          bg={'#df9595'}
+        
         >
           {getUsers?.campaignDetails?.map((user, i) => (
             <Link key={user.campaignId} to={`/single/${user.campaignId}`}>
