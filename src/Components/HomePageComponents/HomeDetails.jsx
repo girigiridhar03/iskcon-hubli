@@ -1,29 +1,34 @@
-import { Box, Table, Tbody, Td, Tr, VStack } from "@chakra-ui/react";
+import { Box, Table, Tbody, Td, Tr, VStack, Text, Link } from "@chakra-ui/react";
 import React from "react";
-import { FaFacebookSquare } from "react-icons/fa";
-import cor from '../../assets/pdfFiles/CertificateofRegistration.pdf'
+import cor from '../../assets/pdfFiles/CertificateofRegistration.pdf';
 import csr from '../../assets/pdfFiles/ISKCON_CSR.pdf';
 import g from '../../assets/pdfFiles/80G.pdf';
+
 const HomeDetails = () => {
   return (
     <Box
-      w={["95%", "90%", "95%", "95%", "80%"]}
-      mx={"auto"}
+      w={"100%"}
       display={"flex"}
       mt={"2rem"}
       gap={"1.5rem"}
       flexDirection={["column", "column", "column", "row"]}
+      p={5}
+      bg={"gray.50"}
+      borderRadius={"md"}
+      boxShadow={"md"}
     >
       <VStack
         w={'100%'}
-        alignItems={"left"}
+        alignItems={"flex-start"}
         p={5}
-        border={"2px solid rgb(0,0,0,0.2)"}
-        borderRadius={"5px"}
+        border={"1px solid"}
+        borderColor={"gray.200"}
+        borderRadius={"md"}
+        bg={"white"}
       >
-        <Box textAlign={"left"} fontSize={"xl"} fontWeight={"bold"}>
+        <Text textAlign={"left"} fontSize={"2xl"} fontWeight={"bold"} mb={4}>
           ORGANIZATION DETAILS
-        </Box>
+        </Text>
         <Table w={"100%"}>
           <Tbody>
             <Tr>
@@ -48,16 +53,16 @@ const HomeDetails = () => {
             <Tr>
               <Td fontWeight="bold">Certificates:</Td>
               <Td>
-                <VStack alignItems={'flex-start'}>
-                <a href={cor} target="_blank" rel="noopener noreferrer"  style={{ color: "blue", textDecoration: "underline" }}>
-                  Certificate of Registration
-                </a>
-                <a href={csr} target="_blank" rel="noopener noreferrer"  style={{ color: "blue", textDecoration: "underline" }}>
-                  ISKCON CSR
-                </a>
-                <a href={g} target="_blank" rel="noopener noreferrer"  style={{ color: "blue", textDecoration: "underline" }}>
-                  80G Certificate
-                </a>
+                <VStack alignItems={'flex-start'} spacing={2}>
+                  <Link href={cor} target="_blank" rel="noopener noreferrer" color="blue.500" textDecoration="underline">
+                    Certificate of Registration
+                  </Link>
+                  <Link href={csr} target="_blank" rel="noopener noreferrer" color="blue.500" textDecoration="underline">
+                    ISKCON CSR
+                  </Link>
+                  <Link href={g} target="_blank" rel="noopener noreferrer" color="blue.500" textDecoration="underline">
+                    80G Certificate
+                  </Link>
                 </VStack>
               </Td>
             </Tr>

@@ -16,21 +16,19 @@ const images = [
 const HomeTeams = () => {
   return (
     <Box
-      w={["95%", "90%", "95%", "95%", "80%"]}
-      my={"4rem"}
       border={"2px solid rgb(0,0,0,0.3)"}
-      mx={"auto"}
       p={["0.4rem", "0.5rem", "1rem", "1.5rem"]}
       borderRadius={"5px"}
+      w={"100%"}
     >
       <Box fontSize={'1.5rem'} fontWeight={'bold'}>TEAM MEMBERS</Box>
 
-      <SimpleGrid columns={[3,4,5,6,8,9]} spacing={[2]} py={'1rem'}>
+      <SimpleGrid columns={[2, 3, 4, 5, 6]} spacing={[2]} py={'1rem'}>
         {images.map((image, index) => (
           <Box
             key={index}
-            w={['100px','110px']}
-            h={['100px','110px']}
+            w={['100px', '110px']}
+            h={['100px', '110px']}
             overflow="hidden"
             borderRadius="50%"
             border="2px solid lightgray" // Optional for a border

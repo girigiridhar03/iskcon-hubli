@@ -95,11 +95,7 @@ const HomeCards = () => {
                 <Box ml={4} fontSize="1.2rem" color="gray.600">Loading more campaigners...</Box>
               </Box>
             }
-            endMessage={
-              <Box textAlign="center" py={4}>
-                <Box fontSize="1.2rem" fontWeight="bold"> You have seen it all</Box>
-              </Box>
-            }
+           
         >
            <SimpleGrid
           columns={[1, 1, 2, 2, 3, 4]}
