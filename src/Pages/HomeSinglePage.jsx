@@ -30,6 +30,7 @@ import {
   Box,
   Button,
   Center,
+  Checkbox,
   FormLabel,
   HStack,
   Image,
@@ -147,6 +148,8 @@ const HomeSinglePage = () => {
     amount: amount,
     username: "",
     campaignsid: id,
+    prasadRequired: false,
+    taxExemption: false,
   });
 
   useEffect(() => {
@@ -197,18 +200,14 @@ const HomeSinglePage = () => {
       newErrors.mobileno = "Please enter a valid 10-digit mobile number";
     }
 
-    // Pincode validation
-    if (!formData.pincode) {
-      newErrors.pincode = "Pincode is required";
-    } else if (!pincodeRegex.test(formData.pincode)) {
-      newErrors.pincode = "Please enter a valid 6-digit pincode";
-    }
 
     // PAN number validation
-    if (!formData.panno) {
-      newErrors.panno = "PAN number is required";
-    } else if (!panRegex.test(formData.panno)) {
-      newErrors.panno = "Please enter a valid PAN number";
+    if (formData.taxExemption) {
+      if (!formData.panno) {
+        newErrors.panno = "PAN number is required";
+      } else if (!panRegex.test(formData.panno)) {
+        newErrors.panno = "Please enter a valid PAN number";
+      }
     }
 
     // Amount validation
@@ -223,9 +222,17 @@ const HomeSinglePage = () => {
       newErrors.username = "Username is required";
     }
 
-    // Address validation
-    if (!formData.address) {
-      newErrors.address = "Address is required";
+    if (formData.prasadRequired) {
+      // Address validation
+      if (!formData.address) {
+        newErrors.address = "Address is required";
+      }
+      // Pincode validation
+      if (!formData.pincode) {
+        newErrors.pincode = "Pincode is required";
+      } else if (!pincodeRegex.test(formData.pincode)) {
+        newErrors.pincode = "Please enter a valid 6-digit pincode";
+      }
     }
 
     setErrors(newErrors);
@@ -234,9 +241,9 @@ const HomeSinglePage = () => {
   };
 
   const handleOnChange = (e) => {
-    const { name, value } = e.target;
-
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value, type, checked } = e.target;
+    console.log({ name, value, type, checked });
+    setFormData({ ...formData, [name]: type === "checkbox" ? checked : value });
     if (name === "email" && value.includes("@")) {
       setFormToggle(true);
 
@@ -248,6 +255,7 @@ const HomeSinglePage = () => {
     e.preventDefault();
 
     if (validateForm()) {
+
       dispatch(postPaymentFormData(formData)).then((res) => {
         const id = res?.payload?.order?.id;
         if (id) {
@@ -282,7 +290,7 @@ const HomeSinglePage = () => {
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");
   };
-  
+
 
   if (getSingleUser.status === 404
   ) {
@@ -364,25 +372,7 @@ const HomeSinglePage = () => {
                 Close
               </Box>
             </HStack>
-            <Box
-              w={"90%"}
-              mx={"auto"}
-              py={"1rem"}
-              h={"100px"}
-              display={"flex"}
-              justifyContent={"center"}
-              alignItems={"center"}
-            >
-              <Input
-                type="email"
-                name="email"
-                value={formData.email}
-                border={"2px solid #CCCCCC"}
-                placeholder="Enter Email ID (Optional)"
-                onChange={handleOnChange}
-              />
-              {errors.email && <Box color="red.500">{errors.email}</Box>}
-            </Box>
+
 
             <Box
               w={"90%"}
@@ -398,6 +388,7 @@ const HomeSinglePage = () => {
                   border={"2px solid #CCCCCC"}
                   type="text"
                   placeholder="Full Name*"
+                  marginTop={"1rem"}
                 />
                 {errors.username && (
                   <Box color="red.500">{errors.username}</Box>
@@ -407,8 +398,8 @@ const HomeSinglePage = () => {
                   <VStack alignItems={"flex-start"} gap={"1px"} w={"100%"}>
                     <FormLabel>
                       <HStack>
-                        <Box>Mobile No</Box>
-                        <Box color={"red.500"}>*</Box>
+                        {/* <Box>Mobile No</Box>
+                        <Box color={"red.500"}>*</Box> */}
                       </HStack>
                     </FormLabel>
                     <Input
@@ -430,8 +421,8 @@ const HomeSinglePage = () => {
                   <VStack alignItems={"flex-start"} gap={"1px"} w={"100%"}>
                     <FormLabel>
                       <HStack>
-                        <Box>Country</Box>
-                        <Box color={"red.500"}>*</Box>
+                        {/* <Box>Country</Box>
+                                    <Box color={"red.500"}>*</Box>  */}
                       </HStack>
                     </FormLabel>
                     <Input
@@ -449,22 +440,36 @@ const HomeSinglePage = () => {
                   </VStack>
                 </HStack>
 
-                <Input
-                  onChange={handleOnChange}
-                  name="pincode"
-                  value={formData.pincode}
-                  border={"2px solid #CCCCCC"}
-                  type="text"
-                  placeholder="Pin/Zip Code*"
-                />
-                {errors.pincode && <Box color="red.500">{errors.pincode}</Box>}
-
                 <HStack my={"1rem"}>
+                  <HStack>
+                    <Checkbox
+                      onChange={handleOnChange}
+                      name="prasadRequired"
+                      isChecked={formData.prasadRequired}
+                      size={"lg"}
+                    >
+                      Prasad Required
+                    </Checkbox>
+                  </HStack>
+                  <HStack>
+                    <Checkbox
+                      onChange={handleOnChange}
+                      name="taxExemption"
+                      isChecked={formData.taxExemption}
+                      size={"lg"}
+                    >
+                      80G Tax Exemption
+                    </Checkbox>
+                  </HStack>
+                </HStack>
+
+
+                {formData.taxExemption && <HStack my={"1rem"}>
                   <VStack alignItems={"flex-start"} gap={"1px"} w={"100%"}>
                     <FormLabel>
                       <HStack>
-                        <Box>PAN No*</Box>
-                        <Box color={"red.500"}>*</Box>
+                        {/* <Box>PAN No*</Box>
+                                    <Box color={"red.500"}>*</Box> */}
                       </HStack>
                     </FormLabel>
                     <Input
@@ -478,17 +483,47 @@ const HomeSinglePage = () => {
                     />
                     {errors.panno && <Box color="red.500">{errors.panno}</Box>}
                   </VStack>
-                </HStack>
+                </HStack>}
 
-                <Input
-                  onChange={handleOnChange}
-                  name="address"
-                  value={formData.address}
-                  border={"2px solid #CCCCCC"}
-                  type="text"
-                  placeholder="Address, House NO, Street Address, Area Name, etc*"
-                />
-                {errors.address && <Box color="red.500">{errors.address}</Box>}
+                {formData.prasadRequired && <>
+                  <Input
+                    onChange={handleOnChange}
+                    name="pincode"
+                    value={formData.pincode}
+                    border={"2px solid #CCCCCC"}
+                    type="text"
+                    placeholder="Pin/Zip Code*"
+                    marginBottom={"1rem"}
+                  />
+                  {errors.pincode && <Box color="red.500">{errors.pincode}</Box>}
+
+                  <Input
+                    onChange={handleOnChange}
+                    name="address"
+                    value={formData.address}
+                    border={"2px solid #CCCCCC"}
+                    type="text"
+                    placeholder="Address, House NO, Street Address, Area Name, etc*"
+                  />
+                  {errors.address && <Box color="red.500">{errors.address}</Box>}
+                </>
+                }
+                <Box
+                  h={"100px"}
+                  display={"flex"}
+                  justifyContent={"center"}
+                  alignItems={"center"}
+                >
+                  <Input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    border={"2px solid #CCCCCC"}
+                    placeholder="Enter Email ID (Optional)"
+                    onChange={handleOnChange}
+                  />
+                  {errors.email && <Box color="red.500">{errors.email}</Box>}
+                </Box>
 
                 <Input
                   type="submit"
@@ -537,19 +572,19 @@ const HomeSinglePage = () => {
 
             <HStack>
               <Link to={'/'}>
-              <Box
-                w={"80px"}
-                h={"80px"}
-                overflow={"hidden"}
-                borderRadius={"50%"}
-              >
-                <Image
-                  h={"100%"}
-                  w={"100%"}
-                  objectFit={"cover"}
-                  src={image16}
-                />
-              </Box>
+                <Box
+                  w={"80px"}
+                  h={"80px"}
+                  overflow={"hidden"}
+                  borderRadius={"50%"}
+                >
+                  <Image
+                    h={"100%"}
+                    w={"100%"}
+                    objectFit={"cover"}
+                    src={image16}
+                  />
+                </Box>
               </Link>
               <VStack alignItems={"flex-start"} gap={"5px"}>
                 <Box fontWeight={"bold"}>ISKCON HUBLI-DHARWAD</Box>
@@ -964,7 +999,7 @@ const HomeSinglePage = () => {
               {campaign.radhaKrishnaHeading}
             </Box>
 
-        
+
             {/* image 9 */}
             <Box w={"90%"} h={"auto"} mx={"auto"}>
               <Image w={"100%"} h={"100%"} src={campaign.image9} />
