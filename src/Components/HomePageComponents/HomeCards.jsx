@@ -24,12 +24,6 @@ const HomeCards = () => {
   );
   const dispatch = useDispatch();
 
-  const [imageError, setImageError] = useState(false);
-
-  const handleImageError = () => {
-    setImageError(true);
-  };
-
   useEffect(() => {
     dispatch(fetchUser());
   }, [dispatch]);
@@ -86,10 +80,9 @@ const HomeCards = () => {
                   <Image
                     w={"100%"}
                     h={"100%"}
-                    src={imageError ? avatar : user?.imgurl}
+                    src={user?.imgurl}
                     alt={user?.campaignName }
-                    objectFit={imageError ? 'contain' : 'cover'}
-                    onError={handleImageError}
+                    objectFit={'cover'}
                   />
                 </Box>
                 <CardBody px={"7px"}>

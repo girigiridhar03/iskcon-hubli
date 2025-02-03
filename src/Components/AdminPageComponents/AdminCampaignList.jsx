@@ -112,9 +112,15 @@ const AdminCampaignList = () => {
                 </Tr>
                 <Tr>
                   {/* Left side - Heading */}
-                  <Th>Days</Th>
+                  <Th>Start Date</Th>
                   {/* Right side - Data */}
-                  <Td>{getSingleUser?.campaignDetails?.days}</Td>
+                  <Td>{getSingleUser?.campaignDetails?.startdate.split("T")[0]}</Td>
+                </Tr>
+                <Tr>
+                  {/* Left side - Heading */}
+                  <Th>End Date</Th>
+                  {/* Right side - Data */}
+                  <Td>{getSingleUser?.campaignDetails?.enddate.split("T")[0]}</Td>
                 </Tr>
                 <Tr>
                   {/* Left side - Heading */}
