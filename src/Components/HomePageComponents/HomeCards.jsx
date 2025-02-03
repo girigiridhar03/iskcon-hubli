@@ -73,11 +73,13 @@ const HomeCards = () => {
     <Box
       mx={"auto"}
       p={["0.3rem", "0.5rem", "1rem", "1.5rem"]}
-      borderRadius={"5px"}
+      borderRadius={"10px"}
       maxW="1200px"
+      bg="gray.50"
+      boxShadow="lg"
     >
-      <Box mx={"auto"} textAlign="center" mb={4}>
-        <HStack justifyContent="center" fontWeight={"900"} color={"green.900"} fontSize={"1.5rem"}>
+      <Box mx={"auto"} textAlign="center" mb={6}>
+        <HStack justifyContent="center" fontWeight={"900"} color={"teal.600"} fontSize={"1.8rem"}>
           <Box>CAMPAIGNERS JOINED:</Box>
           <Box>
             {campaigns?.length === 0 ? '0' : campaigns?.length <= 9 ? `0${campaigns?.length}` : campaigns?.length}
@@ -104,8 +106,8 @@ const HomeCards = () => {
             p={"10px"}
           >
             {campaigns?.map((user, i) => (
-              <Link bg={i % 2 === 0 ? 'gray.100' : 'white'} key={user.campaignId} to={`/single/${user.campaignId}`}>
-                <Card w={"100%"} overflow={"hidden"} key={user.campaignId} h={'100%'} >
+              <Link key={user.campaignId} to={`/single/${user.campaignId}`}>
+                <Card w={"100%"} overflow={"hidden"} h={'100%'} boxShadow="md" borderRadius="10px">
                   <Box
                     w={"100%"}
                     h={["250px", "250px", "250px", "300px", "250px"]}
@@ -116,16 +118,17 @@ const HomeCards = () => {
                       src={user?.imgurl}
                       alt={user?.campaignName}
                       objectFit={'cover'}
+                      borderTopRadius="10px"
                     />
                   </Box>
-                  <CardBody  bg={'#fce9e9'} px={"7px"}>
-                    <Box fontSize={"1rem"} fontWeight={"700"} mb={2}>
+                  <CardBody bg={'#fce9e9'} px={"7px"}>
+                    <Box fontSize={"1.1rem"} fontWeight={"700"} mb={2} color="gray.700">
                       {user.campaignName.toUpperCase()}'S CAMPAIGN TO BUILD A
                       MAGNIFICENT SRI RADHA KRISHNA TEMPLE AND CULTURAL COMPLEX IN
                       HUBLI-DHARWAD, KARNATAKA.
                     </Box>
-                    <Box fontSize={"0.9rem"} mb={2}>{user.desc}</Box>
-                    <HStack fontSize={"0.8rem"} py={"0.5rem"}>
+                    <Box fontSize={"0.9rem"} mb={2} color="gray.600">{user.desc}</Box>
+                    <HStack fontSize={"0.8rem"} py={"0.5rem"} color="gray.500">
                       <Box color={"red.500"}>ISKCON HUBLI-DHARWAD</Box>{" "}
                       <Box>|</Box>
                       <HStack>
@@ -135,16 +138,17 @@ const HomeCards = () => {
                         <Box>Hubli-Dharwad</Box>
                       </HStack>
                     </HStack>
-                    <Box fontSize={'0.9rem'} mt={2}>
+                    <Box fontSize={'0.9rem'} mt={2} color="gray.600">
                       I am a concerned citizen and this campaign of mine aims to support the creation of a magnificent ISKCON Sri Radha Krishna Temple and Cultural complex in Hubli-Dharwad area of Karnataka.
                     </Box>
                   </CardBody>
                   <CardFooter
-                    bgColor={"red.500"}
+                    bgColor={"teal.600"}
                     display={"flex"}
                     flexDirection={"column"}
                     py={"5px"}
                     px={"8px"}
+                    borderBottomRadius="10px"
                   >
                     <HStack
                       color={"white"}
