@@ -150,7 +150,7 @@ export async function createCampaigner(id, imageurl) {
     targetamount: 5000+id,
     enddate:"2025-01-29",
     phoneno:"7829454317",
-    imgfile: imageurl
+    imgurl: imageurl
   }
 
   const response = await fetch(`${api}/create-campaign`, {
