@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { postPaymentSuccess } from "../Redux/clientSlices/clientUsers";
 import { Box, Spinner, Text, useToast } from "@chakra-ui/react";
 
@@ -15,6 +15,7 @@ const PaymentPage = () => {
   const [orderConfirmId, setOrderConfirmId] = useState(null)
   const dispatch = useDispatch();
   const Toast = useToast();
+   const navigate = useNavigate();
 
   useEffect(() => {
     if (!id) return; // Ensure ID exists before proceeding
@@ -53,7 +54,9 @@ const PaymentPage = () => {
           console.log("Order ID:", response.razorpay_order_id);
           console.log("Signature:", response.razorpay_signature);
           console.log("Payment successful:", response);
-          window.history.back();
+           
+           
+            navigate(-1);
           Toast({
             title: "Payment Successful",
             description: "Your payment was successful. Thank you!",
