@@ -171,7 +171,7 @@ const HomeCards = () => {
                       w={"100%"}
                     >
                       <Box>{calculatePercentage(user?.targetamt, user?.totalRaisedAmount)}%</Box>
-                      <Box>{getDaysDifference(user?.startdate.split("T")[0], user?.enddate.split("T")[0])} Days LEFT</Box>
+                      <Box>{getDaysDifference(user?.enddate.split("T")[0])} Days LEFT</Box>
                     </HStack>
                   </CardFooter>
                 </Card>

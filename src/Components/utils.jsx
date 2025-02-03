@@ -26,8 +26,9 @@ export const formatTimeAgo = (date) => {
     }
   };
 
-export function getDaysDifference(startDate, endDate) {
-    const start = new Date(startDate);
+export function getDaysDifference( endDate) {
+    const start = new Date();
+   
     const end = new Date(endDate);
   
     const diffInMilliseconds = end - start;

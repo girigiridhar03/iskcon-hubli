@@ -678,7 +678,6 @@ const HomeSinglePage = () => {
                 <Box>DAYS LEFT</Box>
                 <Box fontSize={"1.8rem"}>
                   {getDaysDifference(
-                    getSingleUser?.campaignDetails?.startdate,
                     getSingleUser?.campaignDetails?.enddate
                   )}
                 </Box>
@@ -706,7 +705,7 @@ const HomeSinglePage = () => {
             </Box>
             <VStack w={"100%"} gap={"1rem"}>
               {getDaysDifference(
-                getSingleUser?.campaignDetails?.startdate,
+           
                 getSingleUser?.campaignDetails?.enddate
               ) === 0 ? (
                 <Box fontSize={"1.2rem"} color={"red.500"}>
@@ -733,7 +732,6 @@ const HomeSinglePage = () => {
                 onClick={handleClick}
                 isDisabled={
                   getDaysDifference(
-                    getSingleUser?.campaignDetails?.startdate,
                     getSingleUser?.campaignDetails?.enddate
                   ) === 0
                 }
