@@ -2,16 +2,19 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useParams } from "react-router-dom";
 import { postPaymentSuccess } from "../Redux/clientSlices/clientUsers";
+import { Box, Spinner, Text, useToast } from "@chakra-ui/react";
 
 
 const PaymentPage = () => {
+
   const prevId = useRef(null);
   const { id } = useParams(); // Get order ID from URL
   const location = useLocation(); // Access the state passed via navigation
   const paymentData = location.state || {};
   console.log("Order ID, paymentData", id, paymentData);
-  const [orderConfirmId,setOrderConfirmId] = useState(null)
+  const [orderConfirmId, setOrderConfirmId] = useState(null)
   const dispatch = useDispatch();
+  const Toast = useToast();
 
   useEffect(() => {
     if (!id) return; // Ensure ID exists before proceeding
@@ -49,6 +52,15 @@ const PaymentPage = () => {
           console.log("Payment ID:", response.razorpay_payment_id);
           console.log("Order ID:", response.razorpay_order_id);
           console.log("Signature:", response.razorpay_signature);
+          console.log("Payment successful:", response);
+          window.history.back();
+          Toast({
+            title: "Payment Successful",
+            description: "Your payment was successful. Thank you!",
+            status: "success",
+            duration: 5000,
+            isClosable: true,
+          });
         },
         prefill: {
           name: paymentData.name,
@@ -72,7 +84,6 @@ const PaymentPage = () => {
 
       const rzp1 = new window.Razorpay(options);
       rzp1.open();
-
       rzp1.on("payment.failed", function (response) {
         console.error("Payment failed:", response);
       });
@@ -81,9 +92,25 @@ const PaymentPage = () => {
     openRazorpay();
   }, [id]);
 
-  dispatch(postPaymentSuccess({paymentId:orderConfirmId,orderid:id}));
+  dispatch(postPaymentSuccess({ paymentId: orderConfirmId, orderid: id }));
 
-  return <div>Processing Payment...</div>;
+
+  return (
+    <Box
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="center"
+      height="100vh"
+      bg="gray.100"
+      p={4}
+    >
+      <Spinner size="xl" color="blue.500" />
+      <Text mt={4} fontSize="xl" fontWeight="bold">
+        Processing your payment, please wait...
+      </Text>
+    </Box>
+  );
 };
 
 export default PaymentPage;
