@@ -417,12 +417,12 @@ const HomeSinglePage = () => {
                   </VStack>
                 </HStack>
 
-                <HStack my={"1rem"}>
+                {/* <HStack my={"1rem"}>
                   <VStack alignItems={"flex-start"} gap={"1px"} w={"100%"}>
                     <FormLabel>
                       <HStack>
-                        {/* <Box>Country</Box>
-                                    <Box color={"red.500"}>*</Box>  */}
+                        <Box>Country</Box>
+                                    <Box color={"red.500"}>*</Box> 
                       </HStack>
                     </FormLabel>
                     <Input
@@ -438,7 +438,7 @@ const HomeSinglePage = () => {
                       <Box color="red.500">{errors.country}</Box>
                     )}
                   </VStack>
-                </HStack>
+                </HStack> */}
 
                 <HStack my={"1rem"}>
                   <HStack>
