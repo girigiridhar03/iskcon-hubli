@@ -26,17 +26,14 @@ const HomeCards = () => {
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
 
-
-
   useEffect(() => {
-    
     fetchMoreData();
   }, []);
 
   const fetchMoreData = async () => {
     try {
     
-      const response = await fetch(`https://razor.ygntechstartup.workers.dev/showcampaigns?limit=2&page=${page}`);
+      const response = await fetch(`https://razor.ygntechstartup.workers.dev/showcampaigns?limit=4&page=${page}`);
       const data = await response.json();
       setCampaigns((prevCampaigns) => {
         const newCampaigns = data.campaignDetails.filter(
@@ -87,13 +84,7 @@ const HomeCards = () => {
         </HStack>
       </Box>
       {campaigns?.length > 0 ? (
-        <SimpleGrid
-          columns={[1, 1, 2, 2, 3, 4]}
-          spacing={[10, 10, 5, 10, 5]}
-          w={"100%"}
-          mx={"auto"}
-          p={"10px"}
-        >
+       
           <InfiniteScroll
             dataLength={campaigns.length}
             next={fetchMoreData}
@@ -109,7 +100,14 @@ const HomeCards = () => {
                 <Box fontSize="1.2rem" fontWeight="bold"> You have seen it all</Box>
               </Box>
             }
-          >
+        >
+           <SimpleGrid
+          columns={[1, 1, 2, 2, 3, 4]}
+          spacing={[10, 10, 5, 10, 5]}
+          w={"100%"}
+          mx={"auto"}
+          p={"10px"}
+        >
             {campaigns?.map((user, i) => (
               <Link key={user.campaignId} to={`/single/${user.campaignId}`}>
                 <Card w={"100%"} overflow={"hidden"} key={user.campaignId} h={'100%'}>
@@ -179,8 +177,9 @@ const HomeCards = () => {
                 </Card>
               </Link>
             ))}
+            </SimpleGrid>
           </InfiniteScroll>
-        </SimpleGrid>
+       
       ) : (
         <Box
           textAlign={"center"}
