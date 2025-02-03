@@ -1,26 +1,45 @@
-import { Flex, Image, } from "@chakra-ui/react";
-import logo from "../../assets/images/banner.png";
-
+import { Flex, Image, Box, Text, useColorModeValue } from "@chakra-ui/react";
+import logo from "../../assets/images/newlogo.png";
 
 const HeadingBanner = () => {
+    const bgColor = '#54956e';
+    const textColor = useColorModeValue("white", "gray.200");
 
     return (
         <Flex
             maxW="1200px"
-            mx="auto"
             justifyContent='space-between'
             align="center"
-            bg="gray.100" h={["73px", "25%", "200px"]}
-            marginBottom='10px'
+            bg={bgColor}
+            h={["150px", "160px", "200px"]}
+            marginBottom='5px'
+            direction="row"
+            p='6px'
+            px={'20px'}
+            boxShadow="lg"
         >
             <Image
-                src={logo} 
+                src={logo}
                 alt="Left Banner"
+                boxSize={["100px", "120px", "140px"]}
+                width={["150px", "170px", "190px"]}
+                border="2px"
+                _hover={{ transform: "scale(1.1)", transition: "0.3s" }}
             />
-        </Flex>)
-
-
+            <Box
+                width={'4px'}
+                height={["100px", "120px", "140px"]}
+                bg="black"
+                marginRight="10px"
+                marginLeft="10px"
+            />
+            <Box textAlign="left" flex="1" >
+                <Text fontSize={["xs", "sm", "lg"]} fontWeight="bold" color={textColor} >
+                    CONCERNED DEVOTEES OF LORD SHRI KRISHNA COMING TOGETHER TO BUILD NORTH KARNATAKA'S BIGGEST MAGNIFICENT SRI RADHA KRISHNA TEMPLE AND CULTURAL COMPLEX
+                </Text>
+            </Box>
+        </Flex>
+    );
 };
 
 export default HeadingBanner;
-

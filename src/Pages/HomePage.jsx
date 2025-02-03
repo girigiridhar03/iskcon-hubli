@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom'
 import HeadingBanner from '../Components/HomePageComponents/HeadingBannerNew'
 const HomePage = () => {
   return (
-    <Box position={'relative'}  paddingTop={'10px'} maxWidth='900px' display='flex' flexDirection='column' alignItems='center' >
+    <Box position={'relative'}   maxWidth='900px' display='flex' flexDirection='column' alignItems='center' >
       <VStack bg='#ffffff' position={'fixed'} right={2} top={'40%'} fontSize={'2rem'} zIndex={20}>
         <Link to={'https://www.facebook.com/ISKCONBangaloreTemple'} target='blank'>
           <Box color={'#1877F2'} position={'relative'} _hover={{ right: '30%' }} transition='right 0.3s ease'>

@@ -71,7 +71,7 @@ const HomeCards = () => {
       boxShadow="lg"
     >
       <Box mx="auto" textAlign="center" mb={6}>
-        <HStack justifyContent="center" fontWeight="900" color="teal.600" fontSize="1.8rem">
+        <HStack justifyContent="center" fontWeight="900" color="teal.600" fontSize={["1.2rem", "1.4rem", "1.6rem", "1.8rem"]}>
           <Box>CAMPAIGNERS JOINED:</Box>
           <Box>
             {campaigns?.length === 0 ? '0' : campaigns?.length <= 9 ? `0${campaigns?.length}` : campaigns?.length}
@@ -86,7 +86,7 @@ const HomeCards = () => {
           loader={
             <Box display="flex" justifyContent="center" alignItems="center" py={4}>
               <DottedAnimation />
-              <Box ml={4} fontSize="1.2rem" color="gray.600">Loading more campaigners...</Box>
+              <Box ml={4} fontSize={["0.9rem", "1rem", "1.1rem", "1.2rem"]} color="gray.600">Loading more campaigners...</Box>
             </Box>
           }
         >
