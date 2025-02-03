@@ -46,7 +46,7 @@ const HomePage = () => {
       </a>
     </VStack>
     <HomeHeader />
-    <CampaignProgressDetails />
+    <CampaignProgressDetails currentAmount={1000} goalAmount={2000} />
     <HomeCards />
     <HomeTeams />
     <HomeDetails />
