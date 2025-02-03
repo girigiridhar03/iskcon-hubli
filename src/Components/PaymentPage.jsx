@@ -1,15 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useLocation, useParams } from "react-router-dom";
+import { postPaymentSuccess } from "../Redux/clientSlices/clientUsers";
+
 
 const PaymentPage = () => {
+  const prevId = useRef(null);
   const { id } = useParams(); // Get order ID from URL
   const location = useLocation(); // Access the state passed via navigation
   const paymentData = location.state || {};
   console.log("Order ID, paymentData", id, paymentData);
+  const [orderConfirmId,setOrderConfirmId] = useState(null)
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!id) return; // Ensure ID exists before proceeding
-
+    if (prevId.current !== null && prevId.current === id) {
+      return
+    }
+    prevId.current = id; // Update previous value after state change
     // Function to load Razorpay script dynamically
     const loadRazorpayScript = () => {
       return new Promise((resolve) => {
@@ -36,6 +45,7 @@ const PaymentPage = () => {
         description: "Mandir Nirmana Seva",
         order_id: id,
         handler: function (response) {
+          setOrderConfirmId(response.razorpay_payment_id)
           console.log("Payment ID:", response.razorpay_payment_id);
           console.log("Order ID:", response.razorpay_order_id);
           console.log("Signature:", response.razorpay_signature);
@@ -70,6 +80,8 @@ const PaymentPage = () => {
 
     openRazorpay();
   }, [id]);
+
+  dispatch(postPaymentSuccess({paymentId:orderConfirmId,orderid:id}));
 
   return <div>Processing Payment...</div>;
 };

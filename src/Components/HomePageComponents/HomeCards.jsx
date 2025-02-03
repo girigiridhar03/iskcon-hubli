@@ -71,7 +71,7 @@ const HomeCards = () => {
           p={"10px"}
         >
           {getUsers?.campaignDetails?.map((user, i) => (
-            <Link key={user.campaignId} to={`/${user.campaignId}`}>
+            <Link key={user.campaignId} to={`/single/${user.campaignId}`}>
               <Card w={"100%"} overflow={"hidden"} key={user.campaignId} h={'100%'}>
                 <Box
                   w={"100%"}
