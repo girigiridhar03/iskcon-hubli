@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { v4 as uuidv4 } from 'uuid';
 
 const api = "https://razor.ygntechstartup.workers.dev";
 const token = "iskonhublicampaign";
@@ -138,3 +139,62 @@ const adminReducer = createSlice({
 });
 
 export default adminReducer.reducer;
+
+
+
+
+export async function createCampaigner(id, imageurl) {
+  const formData = {
+    campaignname: `dummy-${uuidv4()}`,
+    targetamount: 5000+id,
+    enddate:"2025-01-29",
+    phoneno:"7829454317",
+    imgfile: imageurl
+  }
+
+  const response = await fetch(`${api}/create-campaign`, {
+        method: "POST",
+        body: JSON.stringify(formData),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // Add token to the Authorization header
+        },
+      });
+}
+
+export async function updateCampaigner(id, imageurl) {
+  const formData = {
+    campaignname: `dummy-${uuidv4()}`,
+    targetamount: 5000+id,
+    enddate:"2025-01-29",
+    phoneno:"7829454317",
+    imgurl: imageurl
+  }
+
+  const response = await fetch(`${api}/update-campaign/${id}`, {
+        method: "PUT",
+        body: JSON.stringify(formData),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // Add token to the Authorization header
+        },
+      });
+}
+
+
+
+// (function (params) {
+  
+//   for (let index = 10; index < 300; index++) {
+    
+//     // createCampaigner(index, `https://picsum.photos/200/300?random=${index}` )
+//   }
+// }())
+
+// (function (params) {
+  
+//   for (let index = 1; index < 500; index++) {
+    
+//     updateCampaigner(index, `https://picsum.photos/200/300?random=${index}` )
+//   }
+// }())

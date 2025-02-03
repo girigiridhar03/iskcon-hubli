@@ -49,6 +49,7 @@ import {
   getDaysDifference,
 } from "../Components/utils";
 import { FaSquareWhatsapp } from "react-icons/fa6";
+import PageNotFound from "../Components/HomePageComponents/PageNotFound";
 
 const campaign = {
   image1,
@@ -280,6 +281,12 @@ const HomeSinglePage = () => {
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");
   };
+  
+
+  if (getSingleUser.status === 404
+  ) {
+    return <PageNotFound />
+  }
 
   return (
     <Box
