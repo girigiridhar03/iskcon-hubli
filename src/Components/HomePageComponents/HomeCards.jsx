@@ -6,6 +6,7 @@ import {
   HStack,
   Image,
   SimpleGrid,
+  Spinner,
  
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
@@ -20,7 +21,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 
 
 const HomeCards = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(null);
   const [campaigns, setCampaigns] = useState([]);
   const [page, setPage] = useState(1);
@@ -57,9 +58,8 @@ const HomeCards = () => {
 
   if (isLoading) {
     return (
-      <Box display="flex" justifyContent="center" alignItems="center" height="80vh">
-        <DottedAnimation />
-        <Box ml={4} fontSize="1.2rem" color="gray.600">Loading campaigns...</Box>
+      <Box display="flex" justifyContent="center" alignItems="center" height="50vh">
+      <Spinner size="xl" />
       </Box>
     );
   }
