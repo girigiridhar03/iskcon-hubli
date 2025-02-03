@@ -34,7 +34,7 @@ const HomeCards = () => {
     dispatch(fetchUser());
   }, [dispatch]);
 
-  if(isLoading){
+  if (isLoading) {
     return (
       <Box display="flex" justifyContent="center" alignItems="center" height="80vh">
         <DottedAnimation />
@@ -42,7 +42,7 @@ const HomeCards = () => {
     );
   }
 
-  if(isError){
+  if (isError) {
     alert(isError)
   }
 
@@ -51,19 +51,16 @@ const HomeCards = () => {
 
   return (
     <Box
-      w={["95%", "90%", "95%", "95%", "80%"]}
-      mt={"4rem"}
-      border={["","","","2px solid rgb(0,0,0,0.3)"]}
       mx={"auto"}
       p={["0.3rem", "0.5rem", "1rem", "1.5rem"]}
       borderRadius={"5px"}
     >
       <Box mx={"auto"}>
-    
-        <HStack fontWeight={"600"} fontSize={"1.3rem"}>
+
+        <HStack marginBottom={'5px'} fontWeight={"900"} color={"green.900"} fontSize={"1.3rem"}>
           <Box>CAMPAIGNERS JOINED:</Box>
           <Box>
-          {getUsers?.campaignDetails?.length === 0 ? '0' : getUsers?.campaignDetails?.length <= 9 ? `0${getUsers?.campaignDetails?.length}` : getUsers?.campaignDetails?.length}
+            {getUsers?.campaignDetails?.length === 0 ? '0' : getUsers?.campaignDetails?.length <= 9 ? `0${getUsers?.campaignDetails?.length}` : getUsers?.campaignDetails?.length}
           </Box>
         </HStack>
       </Box>
@@ -73,8 +70,9 @@ const HomeCards = () => {
           spacing={[10, 10, 5, 10, 5]}
           w={"100%"}
           mx={"auto"}
-          mt={"2rem"}
+
           p={"10px"}
+          bg={'#df9595'}
         >
           {getUsers?.campaignDetails?.map((user, i) => (
             <Link key={user.campaignId} to={`/${user.campaignId}`}>
@@ -87,12 +85,12 @@ const HomeCards = () => {
                     w={"100%"}
                     h={"100%"}
                     src={imageError ? avatar : user?.imgurl}
-                    alt={user?.campaignName }
+                    alt={user?.campaignName}
                     objectFit={imageError ? 'contain' : 'cover'}
                     onError={handleImageError}
                   />
                 </Box>
-                <CardBody px={"7px"}>
+                <CardBody bg={'#fce9e9'} px={"7px"}>
                   <Box fontSize={"0.9rem"} fontWeight={"600"}>
                     {user.campaignName.toUpperCase()}'S CAMPAIGN TO BUILD A
                     MAGNIFICENT SRI RADHA KRISHNA TEMPLE AND CULTURAL COMPLEX IN
@@ -110,7 +108,7 @@ const HomeCards = () => {
                     </HStack>
                   </HStack>
                   <Box fontSize={'0.8rem'}>
-                  I am a concerned citizen and this campaign of mine aims to support the creation of a magnificent ISKCON Sri Radha Krishna Temple and Cultural complex in Hubli-Dharwad area of Karnataka.
+                    I am a concerned citizen and this campaign of mine aims to support the creation of a magnificent ISKCON Sri Radha Krishna Temple and Cultural complex in Hubli-Dharwad area of Karnataka.
                   </Box>
                 </CardBody>
                 <CardFooter
@@ -139,12 +137,12 @@ const HomeCards = () => {
                     justifyContent={"space-between"}
                     w={"100%"}
                   >
-                    <Box>{calculatePercentage(user?.targetamt,user?.totalRaisedAmount)}%</Box>
-                    <Box>{getDaysDifference(user?.startdate.split("T")[0],user?.enddate.split("T")[0])} Days LEFT</Box>
+                    <Box>{calculatePercentage(user?.targetamt, user?.totalRaisedAmount)}%</Box>
+                    <Box>{getDaysDifference(user?.startdate.split("T")[0], user?.enddate.split("T")[0])} Days LEFT</Box>
                   </HStack>
                 </CardFooter>
               </Card>
-            </Link> 
+            </Link>
           ))}
         </SimpleGrid>
       ) : (

@@ -38,34 +38,34 @@ const CampaignProgressDetails = ({ currentAmount, goalAmount }) => {
 
   return (
     <Box
-      w={["95%", "90%", "85%", "80%"]}
+      w={"95%"}
       mx="auto"
       borderRadius="10px"
       px={["1.5rem", "2rem"]}
-      py={["2rem", "2.5rem"]}
-      my="2rem"
+      py={["0.5rem", "0.5rem"]}
       bgColor={themeColor}
-      boxShadow="xl"
+      boxShadow='dark-lg'
+      marginBottom='10px'
     >
       {/* Responsive Layout: Stack on mobile, HStack on larger screens */}
       <Stack
         direction={["column", "column", "row"]}
-        spacing={["0.5rem", "1rem"]}
-        justify="space-between"
+        spacing={["0.2rem", "1rem"]}
+        
         align="center"
       >
         {/* Circular Progress */}
         <Box display="flex" alignItems="center" justifyContent="center">
           <CircularProgress
             value={progress}
-            size={["150px", "180px", "200px"]}
+            size={["100px", "130px", "150px"]}
             thickness="10px"
             color="green.400"
             trackColor="gray.700"
             capIsRound={true}
           >
             <CircularProgressLabel
-              fontSize={["1.5rem", "1.7rem", "1.9rem"]}
+              fontSize={["1rem", "1.2rem", "1.5rem"]}
               fontWeight="bold"
               color="white"
             >
@@ -75,13 +75,13 @@ const CampaignProgressDetails = ({ currentAmount, goalAmount }) => {
         </Box>
 
         {/* Campaign Details */}
-        <VStack align={["center", "center", "flex-start"]} spacing={4}>
+        <VStack align={["center", "center", "flex-start"]} >
           {/* Target Amount */}
-          <Flex align="center" gap={2} color="white">
-            <Box fontSize={["2rem", "2.5rem", "3rem"]} fontWeight="semibold">
+          <Flex align="center" gap={2} color="white" fontSize={["1.5rem", "2rem", "2rem"]}>
+            <Box  fontWeight="semibold">
               Target Amount :
             </Box>
-            <Box fontSize={["2rem", "2.5rem", "3rem"]} fontWeight="semibold">
+            <Box  fontWeight="semibold">
               {formatCurrency(goalAmount)}
             </Box>
           </Flex>
