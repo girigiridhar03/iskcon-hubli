@@ -126,7 +126,7 @@ const HomeCards = () => {
           >
             <SimpleGrid
               columns={[1, 1, 2, 2, 3, 4]}
-              spacing={[5, 5, 5, 10, 10]}
+              spacing={[2, 2, 2, 2, 2]}
               w="100%"
               mx="auto"
               p="10px"
