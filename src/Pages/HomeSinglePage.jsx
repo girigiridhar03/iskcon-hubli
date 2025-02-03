@@ -582,7 +582,8 @@ const HomeSinglePage = () => {
               w="100%"
               h="100%"
               objectFit="cover"
-              src={ getSingleUser?.campaignDetails?.imgurl}
+              src={imageError ? avatar : getSingleUser?.campaignDetails?.imgurl}
+              onError={handleImageError}
             />
           </Box>
           <Box
