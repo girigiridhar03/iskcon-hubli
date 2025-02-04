@@ -1,7 +1,7 @@
 import { Box, HStack } from '@chakra-ui/react';
 import React from 'react';
 
-const Tabs = ({ tab, setTab }) => {
+const CampaignTabs = ({ tab, setTab }) => {
     return (
         <HStack
             w={"100%"}
@@ -35,4 +35,4 @@ const Tabs = ({ tab, setTab }) => {
     );
 };
 
-export default Tabs;
+export default CampaignTabs;

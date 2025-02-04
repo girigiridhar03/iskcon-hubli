@@ -4,7 +4,6 @@ import { formatCurrency, getDaysDifference } from '../utils';
 import ProgressBar from './ProgressBar';
 
 const CapaignerProgressBox = ({
-    
     getSingleUser,
     setAmount,
     handleClick,
@@ -14,30 +13,33 @@ const CapaignerProgressBox = ({
         <Box
             w={["97%", "97%", "97%", "50%"]}
             mx={"auto"}
-            border="2px solid rgba(0, 0, 0, 0.4)"
-            p="0.5rem"
+            border="2px solid rgba(0, 0, 0, 0.1)"
+            p="1rem"
             display="flex"
             flexDirection="column"
             justifyContent="space-between"
+            boxShadow="lg"
+            borderRadius="md"
+            bg="white"
         >
             <Box
-                bgColor="#EF4F5F"
+                bgColor="teal.500"
                 color="white"
-                py="1rem"
-                px="1.5rem"
+                py="1.5rem"
+                px="2rem"
                 display="flex"
                 flexDirection="column"
                 justifyContent="space-between"
-                h="auto"
+                borderRadius="md"
             >
-                <VStack width="100%" alignItems="flex-start" gap="0.2rem">
-                    <Box fontWeight="semibold" fontSize="2rem">
+                <VStack width="100%" alignItems="flex-start" gap="0.5rem">
+                    <Box fontWeight="semibold" fontSize={["xl", "2xl", "3xl"]}>
                         RAISED
                     </Box>
-                    <Box fontSize="2.2rem" fontWeight="bold">
+                    <Box fontSize={["2xl", "3xl", "4xl"]} fontWeight="bold">
                         {formatCurrency(getSingleUser?.raisedFund)}
                     </Box>
-                    <Box fontSize="2rem" fontWeight="semibold">
+                    <Box fontSize={["xl", "2xl", "3xl"]} fontWeight="semibold">
                         GOAL{" "}
                         {formatCurrency(getSingleUser?.campaignDetails?.targetAmount)}
                     </Box>
@@ -46,12 +48,12 @@ const CapaignerProgressBox = ({
                 <HStack w={"100%"} justifyContent={"space-between"} my={"1rem"}>
                     <VStack
                         fontWeight={"semibold"}
-                        fontSize={"1.5rem"}
+                        fontSize={["md", "lg", "xl"]}
                         gap={"2px"}
                         alignItems={"flex-start"}
                     >
                         <Box>DAYS LEFT</Box>
-                        <Box fontSize={"1.8rem"}>
+                        <Box fontSize={["lg", "xl", "2xl"]}>
                             {getDaysDifference(
                                 getSingleUser?.campaignDetails?.enddate
                             )}
@@ -59,15 +61,15 @@ const CapaignerProgressBox = ({
                     </VStack>
                     <VStack
                         fontWeight={"semibold"}
-                        fontSize={"1.5rem"}
+                        fontSize={["md", "lg", "xl"]}
                         gap={"2px"}
                         alignItems={"flex-start"}
                     >
                         <Box>FUNDERS</Box>
-                        <Box fontSize={"1.8rem"}>{getSingleUser?.totalFunders}</Box>
+                        <Box fontSize={["lg", "xl", "2xl"]}>{getSingleUser?.totalFunders}</Box>
                     </VStack>
                 </HStack>
-                <Box>
+                <Box w="100%">
                     <ProgressBar
                         currentAmount={getSingleUser?.raisedFund}
                         goalAmount={getSingleUser?.campaignDetails?.targetAmount}
@@ -75,14 +77,14 @@ const CapaignerProgressBox = ({
                 </Box>
             </Box>
             <VStack p="1rem" w={"100%"} alignItems={"flex-start"} gap={"1.5rem"}>
-                <Box fontSize="1rem" fontWeight={"semibold"}>
+                <Box fontSize={["xs", "sm", "md"]} fontWeight={"semibold"} color="gray.600">
                     Accepts funds from Indian Passport / ID holders only.
                 </Box>
                 <VStack w={"100%"} gap={"1rem"}>
                     {getDaysDifference(
                         getSingleUser?.campaignDetails?.enddate
                     ) === 0 ? (
-                        <Box fontSize={"1.2rem"} color={"red.500"}>
+                        <Box fontSize={["md", "lg", "xl"]} color={"green.500"}>
                             Successful
                         </Box>
                     ) : (
@@ -92,17 +94,17 @@ const CapaignerProgressBox = ({
                                 placeholder="Enter Amount"
                                 onChange={(e) => setAmount(e.target.value)}
                                 h={"50px"}
+                                borderColor="teal.500"
+                                focusBorderColor="teal.600"
                             />
                         </Box>
                     )}
                     <Button
                         w={"100%"}
                         h={"50px"}
-                        bgColor="#EF4F5F"
-                        color={"white"}
+                        colorScheme="teal"
                         fontWeight={"bold"}
-                        fontSize={"1.1rem"}
-                        _hover={"none"}
+                        fontSize={["md", "lg", "xl"]}
                         onClick={handleClick}
                         isDisabled={
                             getDaysDifference(

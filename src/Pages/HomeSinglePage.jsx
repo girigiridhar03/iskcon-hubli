@@ -1,31 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-
 import {
   fetchSingleUser,
   postPaymentFormData,
 } from "../Redux/clientSlices/clientUsers";
-
 import image16 from "../assets/images/image16.jpg";
-
 import avatar from "../assets/images/Avatar-PNG-Image.webp";
-
 import {
   Box,
-
   HStack,
-  Image,
-  Tabs,
-
+  
 } from "@chakra-ui/react";
-
-import { BsPinFill } from "react-icons/bs";
-import { HiMiniTag } from "react-icons/hi2";
-import { FaCalendarDays } from "react-icons/fa6";
 import DottedAnimation from "../Components/DottedAnimation";
 import {
-
   themeColor,
 } from "../Components/utils";
 import { FaSquareWhatsapp } from "react-icons/fa6";
@@ -38,7 +26,7 @@ import DetailPageHeader from "../Components/HomePageComponents/DetailPageHeader"
 import PaymentModal from "../Components/HomePageComponents/PaymentModal";
 import PhotoWithDescription from "../Components/HomePageComponents/PhotoWithDescription";
 import AdditionalDetails from "../Components/HomePageComponents/AdditionalDetails";
-
+import CampaignTabs from "../Components/HomePageComponents/Tabs";
 
 
 const HomeSinglePage = () => {
@@ -280,10 +268,7 @@ const HomeSinglePage = () => {
         flexDirection={["column", "column", "row"]}
         px={["", "", "1rem", "2rem", ""]}
       >
-
-
         <PhotoWithDescription getSingleUser={getSingleUser} imageError={imageError} handleImageError={handleImageError} />
-
 
         <CapaignerProgressBox
           getSingleUser={getSingleUser}
@@ -293,12 +278,10 @@ const HomeSinglePage = () => {
         />
       </HStack>
 
-
-
       <AdditionalDetails getSingleUser={getSingleUser} />
 
 
-      <Tabs tab={tab} setTab={setTab} />
+      <CampaignTabs tab={tab} setTab={setTab} />
 
       {tab === 1 ? (
 

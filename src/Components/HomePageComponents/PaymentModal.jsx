@@ -23,6 +23,7 @@ const PaymentModal = ({
             display={"flex"}
             alignItems={"center"}
             justifyContent={"center"}
+            bottom={40}
         >
             <Box
                 w={["95%", "95%", "95%", "70%", "45%"]}
@@ -117,7 +118,7 @@ const PaymentModal = ({
                         </HStack>
 
 
-                        {formData.taxExemption && <HStack my={"1rem"}>
+                        {formData.taxExemption && <HStack my={"0.6rem"}>
                             <VStack alignItems={"flex-start"} gap={"1px"} w={"100%"}>
 
                                 <Input
@@ -141,7 +142,7 @@ const PaymentModal = ({
                                 border={"2px solid #CCCCCC"}
                                 type="text"
                                 placeholder="Pin/Zip Code*"
-                                marginBottom={"1rem"}
+                                marginBottom={"0.6rem"}
                             />
                             {errors.pincode && <Box color="red.500">{errors.pincode}</Box>}
 
@@ -157,7 +158,7 @@ const PaymentModal = ({
                         </>
                         }
                         <Box
-                            h={"100px"}
+                           marginTop={"0.6rem"}
                             display={"flex"}
                             justifyContent={"center"}
                             alignItems={"center"}
@@ -177,7 +178,7 @@ const PaymentModal = ({
                             type="submit"
                             value={"Pay Now"}
                             bgColor={"red.500"}
-                            my={"1.5rem"}
+                            my={"1rem"}
                             fontWeight={"bold"}
                             color={"white"}
                             w={"auto"}
