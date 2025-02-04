@@ -76,7 +76,7 @@ const HomePage = () => {
         setAllCampaigners={setAllCampaigners}
         allCampaignersLength={allCampaigners?.length || 0}
       />
-      <HomeTeams />
+      {/* <HomeTeams /> */}
       <HomeDetails />
     </Box>
   )
