@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
+import { BE_API_URL } from "../../constants/homePage";
 
-const api = "https://razor.ygntechstartup.workers.dev";
+const api = BE_API_URL;
 // const api = "http://172.236.187.67"
 const be_api = api; //"https://nodebe.ages.fun"
 

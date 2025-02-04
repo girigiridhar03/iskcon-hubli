@@ -6,6 +6,7 @@ import CampaignProgressDetails from '../Components/HomePageComponents/CampaignPr
 import { Box } from '@chakra-ui/react'
 import HeadingBanner from '../Components/HomePageComponents/HeadingBannerNew'
 import SocialMedia from '../Components/HomePageComponents/SocialMedia'
+import { BE_API_URL } from '../constants/homePage'
 
 const HomePage = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -33,7 +34,7 @@ const HomePage = () => {
 
   const fetchMoreData = async () => {
     try {
-      const response = await fetch(`https://razor.ygntechstartup.workers.dev/showcampaigns?limit=4&page=${page}`);
+      const response = await fetch(`${BE_API_URL}/showcampaigns?limit=4&page=${page}`);
       const data = await response.json();
       setCampaigns((prevCampaigns) => {
         const newCampaigns = data.campaignDetails.filter(

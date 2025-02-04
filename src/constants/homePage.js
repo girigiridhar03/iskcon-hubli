@@ -83,3 +83,5 @@ export const campaign = {
   image14: image18,
   taxBenfits: image19,
 };
+
+export const BE_API_URL = 'https://razor.ygntechstartup.workers.dev'

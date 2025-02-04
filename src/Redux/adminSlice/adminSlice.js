@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
+import { BE_API_URL } from "../../constants/homePage";
 
-const api = "https://razor.ygntechstartup.workers.dev";
+const api = BE_API_URL;
 const token = "iskonhublicampaign";
 const api_key = "aXNrb25jYW1wYWlnbmFkbWluOmlza29uY2FtcGFpZ25AMQ==";
 

@@ -1,7 +1,8 @@
+import { BE_API_URL } from "../constants/homePage";
 
 export const fetchAllCampaigners = async () => {
     try {
-      const response = await fetch(`https://razor.ygntechstartup.workers.dev/showcampaigns`);
+      const response = await fetch(`${BE_API_URL}/showcampaigns`);
       const data = await response.json();
       return data?.campaignDetails || []; ;
     } catch (error) {
