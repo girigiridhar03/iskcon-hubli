@@ -154,6 +154,7 @@ export async function createCampaigner(id, imageurl) {
     enddate: "2025-01-29",
     phoneno: "7829454317",
     imgurl: imageurl,
+    preachername: `dummy-${uuidv4()}`
   };
 
   const response = await fetch(`${api}/create-campaign`, {
@@ -173,6 +174,7 @@ export async function updateCampaigner(id, imageurl) {
     enddate: "2025-01-29",
     phoneno: "7829454317",
     imgurl: imageurl,
+    preachername: `dummy-${uuidv4()}`
   };
 
   const response = await fetch(`${api}/update-campaign/${id}`, {

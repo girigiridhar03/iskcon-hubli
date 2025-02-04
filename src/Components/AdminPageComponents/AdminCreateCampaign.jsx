@@ -9,7 +9,8 @@ const AdminCreateCampaign = () => {
     targetamount: "",
     enddate:"",
     phoneno:"",
-    imgurl: ""
+    imgurl: "",
+    preachername: ""
   });
 
   const dispatch = useDispatch();
@@ -27,7 +28,8 @@ const AdminCreateCampaign = () => {
       !formData.targetamount ||
       !formData.enddate ||
       !formData.imgurl || 
-      !formData.phoneno
+      !formData.phoneno ||
+      !formData.preachername.trim()
     ) {
       alert("Please fill in all fields.");
       return;
@@ -41,6 +43,7 @@ const AdminCreateCampaign = () => {
       enddate:"",
       phoneno:"",
       imgurl: "",
+      preachername: ""
     });
   };
 

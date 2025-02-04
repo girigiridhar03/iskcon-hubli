@@ -15,6 +15,7 @@ const AdminEdit = () => {
       enddate:"",
       phoneno:"",
       imgurl: "",
+      preachername: ""
   });
 
   const dispatch = useDispatch();
@@ -32,7 +33,8 @@ const AdminEdit = () => {
             campaignname:getSingleUser?.campaignDetails?.campaignName,
             targetamount:getSingleUser?.campaignDetails?.targetAmount,
             days:getSingleUser?.campaignDetails?.enddate,
-            imgurl:getSingleUser?.campaignDetails?.imgurl
+            imgurl:getSingleUser?.campaignDetails?.imgurl,
+            preachername:getSingleUser?.campaignDetails?.preachername
          })
     }
   },[getSingleUser])
@@ -63,7 +65,7 @@ const AdminEdit = () => {
             marginTop: "2rem",
             display: "flex",
             flexDirection: "column",
-            gap: "2.5rem",
+            gap: "0.5rem",
           }}
         >
           <VStack alignItems={"flex-start"}>
@@ -120,9 +122,19 @@ const AdminEdit = () => {
               onChange={handleChange}
             />
           </VStack>
+          <VStack alignItems={"flex-start"}>
+          <FormLabel>Preacher Name:</FormLabel>
+            <Input
+              type="text"
+              placeholder="Enter Preacher Name"
+              value={formData?.preachername}
+              name="preachername"
+              onChange={handleChange}
+            />
+          </VStack>
           <Input
             type="submit"
-            value={"Create Campaign"}
+            value={"Edit Campaign"}
             mx={"auto"}
             w={"auto"}
             bgColor={"green.400"}
