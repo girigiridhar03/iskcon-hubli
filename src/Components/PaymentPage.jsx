@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { postPaymentSuccess } from "../Redux/clientSlices/clientUsers";
-import { Box, Spinner, Text, useToast } from "@chakra-ui/react";
+import { Box, Button, Spinner, Text, useToast } from "@chakra-ui/react";
 
 
 const PaymentPage = () => {
@@ -15,7 +15,8 @@ const PaymentPage = () => {
   const [orderConfirmId, setOrderConfirmId] = useState(null)
   const dispatch = useDispatch();
   const Toast = useToast();
-   const navigate = useNavigate();
+  const navigate = useNavigate();
+  const [paymentSuccess, setPaymentSuccess] = useState(false);
 
   useEffect(() => {
     if (!id) return; // Ensure ID exists before proceeding
@@ -50,12 +51,8 @@ const PaymentPage = () => {
         order_id: id,
         handler: function (response) {
           setOrderConfirmId(response.razorpay_payment_id)
-          console.log("Payment ID:", response.razorpay_payment_id);
-          console.log("Order ID:", response.razorpay_order_id);
-          console.log("Signature:", response.razorpay_signature);
-          console.log("Payment successful:", response);
-           
-            navigate(`/single/${paymentData.campaignsid}`);
+          setPaymentSuccess(true);
+          // navigate(`/single/${paymentData.campaignsid}`);
           Toast({
             title: "Payment Successful",
             description: "Your payment was successful. Thank you!",
@@ -103,6 +100,56 @@ const PaymentPage = () => {
   }, [id]);
 
   dispatch(postPaymentSuccess({ paymentId: orderConfirmId, orderid: id }));
+
+  if (paymentSuccess) {
+    return (
+      <Box
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        height="100vh"
+        bg="gray.100"
+        p={4}
+      >
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          bg="white"
+          p={6}
+          borderRadius="md"
+          boxShadow="lg"
+          w={'350px'}
+          animation="borderAnimation 2s infinite"
+          position="relative"
+          _before={{
+            content: '""',
+            position: "absolute",
+            top: "-2px",
+            left: "-2px",
+            right: "-2px",
+            bottom: "-2px",
+            borderRadius: "md",
+            border: "2px solid",
+            borderColor: "teal.500",
+            animation: "borderAnimation 2s infinite",
+          }}
+          bgGradient="linear(to-r, teal.500, green.500)"
+        >
+          <Text fontSize="3xl" fontWeight="extrabold" textAlign="center" color="white">
+            {`Your payment was successful!`}
+          </Text>
+          <Text mt={4} fontSize="xl" fontWeight="bold" textAlign="center" color="white">
+            {`Thank you for your contribution to ${paymentData.preacher_name}'s campaign to build a magnificent Sri Radha Krishna Temple and Cultural Complex in Hubli-Dharwad, Karnataka.`}
+          </Text>
+          <Button mt={6} background="#144544" color='white' size="lg" fontWeight="bold" onClick={() => navigate(`/single/${paymentData.campaignsid}`)}>
+            Go Back
+          </Button>
+        </Box>
+      </Box>
+    );
+  }
+
 
 
   return (

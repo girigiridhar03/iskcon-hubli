@@ -167,10 +167,10 @@ const HomeSinglePage = () => {
     if (validateForm()) {
 
       dispatch(postPaymentFormData(formData)).then((res) => {
-        const id = res?.payload?.order?.id;
-        if (id) {
+        const orderId= res?.payload?.order?.id;
+        if (orderId) {
 
-          navigate(`/payment/${id}`, {
+          navigate(`/payment/${orderId}`, {
             state: {
               name: formData.username,
               phone: formData.mobileno,
@@ -181,6 +181,7 @@ const HomeSinglePage = () => {
               send_confirmation_message_to_preacher: `${getSingleUser?.campaignDetails?.preachername || ''} - ${getSingleUser?.campaignDetails?.phoneno || ''}`
               ,
               campaignsid: id,
+              preacher_name:getSingleUser?.campaignDetails?.preachername || ''
             },
           });
         }
