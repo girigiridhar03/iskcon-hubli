@@ -182,7 +182,7 @@ const HomeCards = ({
         ) : (
           <Box
             position="absolute"
-            top="35%"
+            top="559px"
             left="50%"
             transform="translate(-50%, -50%)"
             textAlign="center"
