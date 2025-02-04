@@ -15,7 +15,7 @@ const HomePage = () => {
   const [hasMore, setHasMore] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [campaignsData, setCampaignsData] = useState(null);
-
+  const [allCampaigners, setAllCampaigners] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -24,7 +24,6 @@ const HomePage = () => {
     }
     fetchData();
   }, []);
-
 
   function filteredSearch(campaigns, searchQuery) {
     return campaigns.filter((campaign) =>
@@ -59,21 +58,22 @@ const HomePage = () => {
     <Box position={'relative'} maxWidth='900px' display='flex' flexDirection='column' alignItems='center' >
       <SocialMedia />
       <HeadingBanner />
-      <CampaignProgressDetails 
-        currentAmount={Number(campaignsData?.totalraisedamt) || 0} 
-        goalAmount={Number(campaignsData?.totalgoalamt) || 0} 
+      <CampaignProgressDetails
+        currentAmount={Number(campaignsData?.totalraisedamt) || 0}
+        goalAmount={Number(campaignsData?.totalgoalamt) || 0}
       />
-
       <HomeCards
         isLoading={isLoading}
         isError={isError}
-        campaigns={filteredSearch(campaigns, searchQuery)}
+        campaigns={searchQuery ? filteredSearch(allCampaigners, searchQuery) : campaigns}
         fetchMoreData={fetchMoreData}
         hasMore={hasMore}
         setSearchQuery={setSearchQuery}
         searchQuery={searchQuery}
         filteredSearch={filteredSearch}
         totalCampaigners={Number(campaignsData?.totalcampaigncount) || 0}
+        setAllCampaigners={setAllCampaigners}
+        allCampaignersLength={allCampaigners?.length || 0}
       />
       <HomeTeams />
       <HomeDetails />

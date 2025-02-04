@@ -17,6 +17,7 @@ import { Link } from "react-router-dom";
 import DottedAnimation from "../DottedAnimation";
 import { calculatePercentage, formatCurrency, getDaysDifference, themeColor } from "../utils";
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { debounce, fetchAllCampaigners } from "../../utils/apiCall";
 
 const HomeCards = ({
   isLoading,
@@ -27,7 +28,9 @@ const HomeCards = ({
   setSearchQuery,
   searchQuery,
   filteredSearch,
-  totalCampaigners
+  totalCampaigners,
+  setAllCampaigners,
+  allCampaignersLength
 }) => {
 
   if (isLoading) {
@@ -41,6 +44,11 @@ const HomeCards = ({
   if (isError) {
     alert(isError);
   }
+
+  const handleSearchChange = debounce(async (e) => {
+    const query = e.target?.value || '';
+    setSearchQuery(query.trim());
+  }, 300);
 
   return (
     <Box
@@ -74,7 +82,12 @@ const HomeCards = ({
               border: "1px solid #ccc",
               marginTop: ["1rem", "1rem", "0", "0"]
             }}
-            onChange={(e) => { setSearchQuery(e.target.value) }}
+            onChange={handleSearchChange}
+            onFocus={async () => {
+              if(allCampaignersLength ) return;
+              const data = await fetchAllCampaigners();
+              setAllCampaigners(data);
+            }}
           />
         </Box>
         {campaigns?.length > 0 ? (
