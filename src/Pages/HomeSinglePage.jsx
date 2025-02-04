@@ -178,7 +178,7 @@ const HomeSinglePage = () => {
               seva: "Mandir Nirmana Seva",
               address: formData.address,
               pan_number: formData.panno,
-              send_confirmation_message_to_preacher: `${getSingleUser?.campaignDetails?.preachername || ''} - ${getSingleUser?.campaignDetails?.phoneno || ''}`
+              send_confirmation_message_to_preacher: `${getSingleUser?.campaignDetails?.preacherName || ''} - ${getSingleUser?.campaignDetails?.phoneno || ''}`
               ,
               campaignsid: id,
               preacher_name:getSingleUser?.campaignDetails?.preachername || ''
