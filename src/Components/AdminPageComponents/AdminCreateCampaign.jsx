@@ -58,7 +58,7 @@ const AdminCreateCampaign = () => {
           marginTop: "2rem",
           display: "flex",
           flexDirection: "column",
-          gap: "2.5rem",
+          gap: "0.5rem",
         }}
       >
         <VStack alignItems={"flex-start"}>
@@ -112,6 +112,16 @@ const AdminCreateCampaign = () => {
             placeholder="Enter Image Url"
             value={formData?.imgurl}
             name="imgurl"
+            onChange={handleChange}
+          />
+        </VStack>
+        <VStack alignItems={"flex-start"}>
+        <FormLabel>Preacher Name:</FormLabel>
+          <Input
+            type="text"
+            placeholder="Enter Preacher Name"
+            value={formData?.preachername}
+            name="preachername"
             onChange={handleChange}
           />
         </VStack>
