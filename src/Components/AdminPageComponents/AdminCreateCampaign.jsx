@@ -34,7 +34,7 @@ const AdminCreateCampaign = () => {
       alert("Please fill in all fields.");
       return;
     }
-    console.log(JSON.strigify(formData));
+    console.log(formData);
     dispatch(adminCreateCampaign(formData));
 
     return setFormData({
