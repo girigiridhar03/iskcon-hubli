@@ -23,7 +23,6 @@ const PaymentModal = ({
             display={"flex"}
             alignItems={"center"}
             justifyContent={"center"}
-            bottom={40}
         >
             <Box
                 w={["95%", "95%", "95%", "70%", "45%"]}
@@ -93,6 +92,22 @@ const PaymentModal = ({
                             </VStack>
                         </HStack>
 
+                                <Box
+                            marginTop={"0.6rem"}
+                            display={"flex"}
+                            justifyContent={"center"}
+                            alignItems={"center"}
+                        >
+                            <Input
+                                type="email"
+                                name="email"
+                                value={formData.email}
+                                border={"2px solid #CCCCCC"}
+                                placeholder="Enter Email ID (Optional)"
+                                onChange={handleOnChange}
+                            />
+                            {errors.email && <Box color="red.500">{errors.email}</Box>}
+                        </Box>
 
                         <HStack my={"1rem"}>
                             <HStack>
@@ -134,6 +149,8 @@ const PaymentModal = ({
                             </VStack>
                         </HStack>}
 
+                   
+
                         {formData.prasadRequired && <>
                             <Input
                                 onChange={handleOnChange}
@@ -157,22 +174,7 @@ const PaymentModal = ({
                             {errors.address && <Box color="red.500">{errors.address}</Box>}
                         </>
                         }
-                        <Box
-                           marginTop={"0.6rem"}
-                            display={"flex"}
-                            justifyContent={"center"}
-                            alignItems={"center"}
-                        >
-                            <Input
-                                type="email"
-                                name="email"
-                                value={formData.email}
-                                border={"2px solid #CCCCCC"}
-                                placeholder="Enter Email ID (Optional)"
-                                onChange={handleOnChange}
-                            />
-                            {errors.email && <Box color="red.500">{errors.email}</Box>}
-                        </Box>
+                     
 
                         <Input
                             type="submit"
