@@ -38,6 +38,7 @@ const CampaignProgressDetails = ({ currentAmount, goalAmount }) => {
 
       const interval = setInterval(() => {
         if (start >= targetPercentage) {
+          setProgress(targetPercentage);
           clearInterval(interval);
         } else {
           start += 1;

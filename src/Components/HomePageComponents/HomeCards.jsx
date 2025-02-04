@@ -10,7 +10,7 @@ import {
   Spinner,
   Text,
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { FaLocationDot } from "react-icons/fa6";
 import ProgressBar from "./ProgressBar";
 import { Link } from "react-router-dom";
@@ -18,51 +18,17 @@ import DottedAnimation from "../DottedAnimation";
 import { calculatePercentage, formatCurrency, getDaysDifference, themeColor } from "../utils";
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-const HomeCards = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(null);
-  const [campaigns, setCampaigns] = useState([]);
-  const [page, setPage] = useState(1);
-  const [hasMore, setHasMore] = useState(true);
-  const [searchQuery, setSearchQuery] = useState("");
-
-  useEffect(() => {
-    fetchMoreData();
-  }, []);
-
-  // useEffect(() => {
-
-  //     const filteredCampaigns = 
-  //     setCampaigns(filteredCampaigns);
-
-  // }, [searchQuery]);
-
-  function filteredSearch(campaigns, searchQuery) {
-    return campaigns.filter((campaign) =>
-      campaign.campaignName.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-  }
-
-  const fetchMoreData = async () => {
-    try {
-      const response = await fetch(`https://razor.ygntechstartup.workers.dev/showcampaigns?limit=4&page=${page}`);
-      const data = await response.json();
-      setCampaigns((prevCampaigns) => {
-        const newCampaigns = data.campaignDetails.filter(
-          (newCampaign) => !prevCampaigns.some((campaign) => campaign.campaignId === newCampaign.campaignId)
-        );
-        return [...prevCampaigns, ...newCampaigns];
-      });
-      setPage(page + 1);
-      if (data.campaignDetails.length === 0) {
-        setHasMore(false);
-      }
-    } catch (error) {
-      setIsError(error.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+const HomeCards = ({
+  isLoading,
+  isError,
+  campaigns,
+  fetchMoreData,
+  hasMore,
+  setSearchQuery,
+  searchQuery,
+  filteredSearch,
+  totalCampaigners
+}) => {
 
   if (isLoading) {
     return (
@@ -87,14 +53,13 @@ const HomeCards = () => {
       boxShadow="lg"
       mb={'10px'}
       minH={'30vh'}
-
     >
       <Box w="100%">
         <Box mx="auto" textAlign="center" mb={1} mt={3} display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
           <HStack justifyContent="center" fontWeight="900" color="teal.600" fontSize={["0.7rem", "1rem", "1.6rem", "1.8rem"]}>
             <Box>CAMPAIGNERS JOINED:</Box>
             <Box>
-              {campaigns?.length === 0 ? '0' : campaigns?.length <= 9 ? `0${campaigns?.length}` : campaigns?.length}
+              {totalCampaigners}
             </Box>
           </HStack>
           <Input
