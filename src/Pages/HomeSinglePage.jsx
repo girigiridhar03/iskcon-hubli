@@ -28,6 +28,7 @@ import PhotoWithDescription from "../Components/HomePageComponents/PhotoWithDesc
 import AdditionalDetails from "../Components/HomePageComponents/AdditionalDetails";
 import CampaignTabs from "../Components/HomePageComponents/Tabs";
 import { FaArrowUp, FaSquareWhatsapp } from "react-icons/fa6";
+import Fotter from "../Components/HomePageComponents/Fotter";
 
 const HomeSinglePage = () => {
   const { id } = useParams();
@@ -324,6 +325,7 @@ const HomeSinglePage = () => {
       ) : (
         <Funders getSingleUser={getSingleUser} />
       )}
+      <Fotter />
     </Box>
   );
 };

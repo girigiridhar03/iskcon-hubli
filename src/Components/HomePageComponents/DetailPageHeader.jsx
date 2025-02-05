@@ -27,7 +27,7 @@ const DetailPageHeader = ({ themeColor, getSingleUser, image16 }) => {
           MAGNIFICENT SRI RADHA KRISHNA TEMPLE AND CULTURAL COMPLEX IN
           HUBLI-DHARWAD, KARNATAKA.
         </Text>
-        <VStack alignItems={"flex-start"} gap={"1rem"} mt={"1rem"}>
+        <VStack alignItems={"flex-start"} gap={"1rem"} mt={"1rem"} >
           <HStack>
             <Box>
               <FaLocationDot />
@@ -35,8 +35,9 @@ const DetailPageHeader = ({ themeColor, getSingleUser, image16 }) => {
             <Text>Hubli-Dharwad, Karnataka, India</Text>
           </HStack>
 
-          <HStack>
-            <Link to={'/'}>
+
+          <Link to={'/'}>
+            <HStack>
               <Box
                 w={"80px"}
                 h={"80px"}
@@ -51,11 +52,13 @@ const DetailPageHeader = ({ themeColor, getSingleUser, image16 }) => {
                   src={image16}
                 />
               </Box>
-            </Link>
-            <VStack alignItems={"flex-start"} gap={"5px"}>
-              <Text fontWeight={"bold"}>ISKCON HUBLI-DHARWAD</Text>
-            </VStack>
-          </HStack>
+              <VStack alignItems={"flex-start"} gap={"5px"}>
+                <Text fontWeight={"bold"}>ISKCON HUBLI-DHARWAD</Text>
+              </VStack>
+            </HStack>
+          </Link>
+
+
         </VStack>
       </Box>
     </Box>

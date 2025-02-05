@@ -7,6 +7,7 @@ import { Box } from '@chakra-ui/react'
 import HeadingBanner from '../Components/HomePageComponents/HeadingBannerNew'
 import SocialMedia from '../Components/HomePageComponents/SocialMedia'
 import { BE_API_URL } from '../constants/homePage'
+import Fotter from '../Components/HomePageComponents/Fotter'
 
 const HomePage = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -78,6 +79,7 @@ const HomePage = () => {
       />
       {/* <HomeTeams /> */}
       <HomeDetails />
+      <Fotter />
     </Box>
   )
 }

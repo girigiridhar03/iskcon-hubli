@@ -40,7 +40,7 @@ const HomeDetails = () => {
             </Tr>
             <Tr>
               <Td fontWeight={"bold"}>Location:</Td>
-              <Td>Hubli-Dharwar, Karnataka, India</Td>
+              <Td>Hubli-Dharwad, Karnataka, India</Td>
             </Tr>
             <Tr>
               <Td fontWeight={"bold"}>About the org:</Td>
