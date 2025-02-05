@@ -10,13 +10,13 @@ import avatar from "../assets/images/Avatar-PNG-Image.webp";
 import {
   Box,
   HStack,
-  
+  IconButton,
 } from "@chakra-ui/react";
+
 import DottedAnimation from "../Components/DottedAnimation";
 import {
   themeColor,
 } from "../Components/utils";
-import { FaSquareWhatsapp } from "react-icons/fa6";
 import PageNotFound from "../Components/HomePageComponents/PageNotFound";
 import CampaignMoreDetails from "../Components/HomePageComponents/CampaingMoreDetails";
 import Funders from "../Components/HomePageComponents/Funders";
@@ -27,12 +27,13 @@ import PaymentModal from "../Components/HomePageComponents/PaymentModal";
 import PhotoWithDescription from "../Components/HomePageComponents/PhotoWithDescription";
 import AdditionalDetails from "../Components/HomePageComponents/AdditionalDetails";
 import CampaignTabs from "../Components/HomePageComponents/Tabs";
-
+import { FaArrowUp, FaSquareWhatsapp } from "react-icons/fa6";
 
 const HomeSinglePage = () => {
   const { id } = useParams();
 
   const [tab, setTab] = useState(1);
+  const [showScrollButton, setShowScrollButton] = useState(false);
 
   const { isLoading, isError, getSingleUser } = useSelector(
     (state) => state.clientUsers
@@ -69,6 +70,19 @@ const HomeSinglePage = () => {
       top: 0,
       behavior: "smooth",
     });
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowScrollButton(true);
+      } else {
+        setShowScrollButton(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const handleClick = () => {
@@ -109,7 +123,6 @@ const HomeSinglePage = () => {
     } else if (!mobileRegex.test(formData.mobileno)) {
       newErrors.mobileno = "Please enter a valid 10-digit mobile number";
     }
-
 
     // PAN number validation
     if (formData.taxExemption) {
@@ -167,7 +180,7 @@ const HomeSinglePage = () => {
     if (validateForm()) {
 
       dispatch(postPaymentFormData(formData)).then((res) => {
-        const orderId= res?.payload?.order?.id;
+        const orderId = res?.payload?.order?.id;
         if (orderId) {
 
           navigate(`/payment/${orderId}`, {
@@ -181,7 +194,7 @@ const HomeSinglePage = () => {
               send_confirmation_message_to_preacher: `${getSingleUser?.campaignDetails?.preachername || ''} - ${getSingleUser?.campaignDetails?.phoneno || ''}`
               ,
               campaignsid: id,
-              preacher_name:getSingleUser?.campaignDetails?.preachername || ''
+              preacher_name: getSingleUser?.campaignDetails?.preachername || ''
             },
           });
         }
@@ -203,9 +216,14 @@ const HomeSinglePage = () => {
     window.open(whatsappUrl, "_blank");
   };
 
+  const handleScrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
-  if (getSingleUser.status === 404
-  ) {
+  if (getSingleUser.status === 404) {
     return <PageNotFound />
   }
 
@@ -215,22 +233,32 @@ const HomeSinglePage = () => {
       position={"relative"}
       overflow={paymentModel ? "hidden" : "auto"}
     >
-      {/* Whats app icon */}
 
-      <Box
-        position={"fixed"}
+      <Box display='flex' alignItems='center' position={"fixed"}
         zIndex={"10"}
         fontSize={"3rem"}
         cursor={"pointer"}
         bottom={"4%"}
-        right={"2%"}
-        color={'green.400'}
-        bgColor={"white"}
-        borderRadius={"10px"}
-        onClick={handleShare}
-      >
-        <FaSquareWhatsapp />
+        right={"2%"}> 
+        {/* Scroll to Top button */}
+        {showScrollButton && (
+          <IconButton
+            icon={<FaArrowUp />}
+
+            colorScheme="teal"
+            onClick={handleScrollToTop}
+          />
+        )}
+        <Box
+          color={'green.400'}
+          bgColor={"white"}
+          borderRadius={"10px"}
+          onClick={handleShare}
+        >
+          <FaSquareWhatsapp />
+        </Box>
       </Box>
+
 
       {/* Loading */}
       {isLoading && (
@@ -282,11 +310,9 @@ const HomeSinglePage = () => {
 
       <AdditionalDetails getSingleUser={getSingleUser} />
 
-
       <CampaignTabs tab={tab} setTab={setTab} />
 
       {tab === 1 ? (
-
         <CampaignMoreDetails
           campaign={campaign}
           getSingleUser={getSingleUser}

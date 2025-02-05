@@ -23,6 +23,7 @@ const PhotoWithDescription = ({ imageError, avatar, getSingleUser, handleImageEr
                 p="1rem"
                 fontSize="1.3rem"
                 fontWeight="semibold"
+                textTransform='uppercase'
             >
                 I am a concerned citizen and this campaign of mine aims to support
                 the creation of a magnificent ISKCON Sri Radha Krishna Temple and

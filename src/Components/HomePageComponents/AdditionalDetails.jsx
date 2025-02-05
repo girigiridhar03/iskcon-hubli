@@ -19,24 +19,13 @@ const AdditionalDetails = ({ getSingleUser }) => {
             color={"rgb(0,0,0,0.7)"}
             gap={"0.9rem"}
         >
-            <HStack gap={["8px"]} cursor={"pointer"}>
-                <Box color={"#CA5D5D"} fontSize={["1.2rem"]}>
-                    <BsPinFill />
-                </Box>
-                <Box>Follow campaign</Box>
-            </HStack>
-            <HStack gap={["8px"]} cursor={"pointer"}>
-                <Box color={"#9EB875"} fontSize={["1.2rem"]}>
-                    <HiMiniTag />
-                </Box>
-                <Box>Idea, Arts & Culture</Box>
-            </HStack>
+            
             <HStack gap={["8px"]} cursor={"pointer"}>
                 <Box color={"#C75C5C"} fontSize={["1.2rem"]}>
                     <FaCalendarDays />
                 </Box>
                 <Box>
-                    Started from{" "}
+                    Start Date{" "}
                     {getSingleUser?.campaignDetails?.startdate?.split("T")[0]}
                 </Box>
             </HStack>
@@ -45,7 +34,7 @@ const AdditionalDetails = ({ getSingleUser }) => {
                     <FaCalendarDays />
                 </Box>
                 <Box>
-                    Ended on {getSingleUser?.campaignDetails?.enddate?.split("T")[0]}
+                    End Date {getSingleUser?.campaignDetails?.enddate?.split("T")[0]}
                 </Box>
             </HStack>
         </HStack>

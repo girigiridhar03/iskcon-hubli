@@ -123,7 +123,7 @@ const HomeCards = ({
                       />
                     </Box>
                     <CardBody bg="gray.100" px="7px">
-                      <Text fontSize="1.1rem" fontWeight="700" mb={2} color="gray.700">
+                      <Text fontSize="1.1rem" textTransform='uppercase' fontWeight="700" mb={2} color="gray.700">
                         {user.campaignName.toUpperCase()}'S CAMPAIGN TO BUILD A
                         MAGNIFICENT SRI RADHA KRISHNA TEMPLE AND CULTURAL COMPLEX IN
                         HUBLI-DHARWAD, KARNATAKA.
@@ -139,7 +139,7 @@ const HomeCards = ({
                           <Box>Hubli-Dharwad</Box>
                         </HStack>
                       </HStack>
-                      <Text fontSize="0.9rem" mt={2} color="gray.600">
+                      <Text textTransform='uppercase' fontSize="0.9rem" mt={2} color="gray.600">
                         I am a concerned citizen and this campaign of mine aims to support the creation of a magnificent ISKCON Sri Radha Krishna Temple and Cultural complex in Hubli-Dharwad area of Karnataka.
                       </Text>
                     </CardBody>

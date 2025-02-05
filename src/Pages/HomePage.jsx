@@ -57,7 +57,7 @@ const HomePage = () => {
 
   return (
     <Box position={'relative'} maxWidth='900px' display='flex' flexDirection='column' alignItems='center' >
-      <SocialMedia />
+      {/* <SocialMedia /> */}
       <HeadingBanner />
       <CampaignProgressDetails
         currentAmount={Number(campaignsData?.totalraisedamt) || 0}
