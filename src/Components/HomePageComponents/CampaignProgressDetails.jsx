@@ -112,7 +112,7 @@ const CampaignProgressDetails = ({ currentAmount, goalAmount }) => {
         </Box>
 
         <VStack align={["center", "center", "flex-start"]} mt={[4, 4, 0]}>
-          <Box fontSize={["1.5rem", "2rem", "2.5rem"]} fontWeight="bold" color={progressColor}>
+          <Box fontSize={["1.5rem", "2rem", "2.3rem"]} fontWeight="bold" color={progressColor}>
             Mandir Nirmana Seva
           </Box>
           <Box fontSize={["1rem", "1.2rem", "1.5rem"]}   fontWeight="bold" color={textColor} mt={2}>

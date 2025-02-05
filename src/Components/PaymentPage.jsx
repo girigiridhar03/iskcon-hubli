@@ -16,7 +16,7 @@ const PaymentPage = () => {
   const dispatch = useDispatch();
   const Toast = useToast();
   const navigate = useNavigate();
-  const [paymentSuccess, setPaymentSuccess] = useState(false);
+  const [paymentStatus, setPaymentStatus] = useState('');
 
   useEffect(() => {
     if (!id) return; // Ensure ID exists before proceeding
@@ -51,7 +51,7 @@ const PaymentPage = () => {
         order_id: id,
         handler: function (response) {
           setOrderConfirmId(response.razorpay_payment_id)
-          setPaymentSuccess(true);
+          setPaymentStatus('success');
           // navigate(`/single/${paymentData.campaignsid}`);
           Toast({
             title: "Payment Successful",
@@ -92,7 +92,8 @@ const PaymentPage = () => {
           duration: 5000,
           isClosable: true,
         });
-        navigate(`/single/${paymentData.campaignsid}`);
+        // navigate(`/single/${paymentData.campaignsid}`);
+        setPaymentStatus('failure');
       });
     };
 
@@ -101,7 +102,7 @@ const PaymentPage = () => {
 
   dispatch(postPaymentSuccess({ paymentId: orderConfirmId, orderid: id }));
 
-  if (paymentSuccess) {
+  if (paymentStatus==='success') {
     return (
       <Box
         display="flex"
@@ -143,6 +144,44 @@ const PaymentPage = () => {
             {`Thank you for your contribution to ${paymentData.preacher_name}'s campaign to build a magnificent Sri Radha Krishna Temple and Cultural Complex in Hubli-Dharwad, Karnataka.`}
           </Text>
           <Button mt={6} background="#144544" color='white' size="lg" fontWeight="bold" onClick={() => navigate(`/single/${paymentData.campaignsid}`)}>
+            Go Back
+          </Button>
+        </Box>
+      </Box>
+    );
+  }
+
+  if (paymentStatus === 'failure') {
+    return (
+      <Box
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        height="100vh"
+        bg="gray.100"
+        p={4}
+      >
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          bg="white"
+          p={6}
+          borderRadius="md"
+          boxShadow="lg"
+          w={'350px'}
+          position="relative"
+          border="2px solid"
+          borderColor="red.500"
+          bgGradient="linear(to-r, red.500, orange.500)"
+        >
+          <Text fontSize="3xl" fontWeight="extrabold" textAlign="center" color="white">
+            Payment Failed
+          </Text>
+          <Text mt={4} fontSize="xl" fontWeight="bold" textAlign="center" color="white">
+            Unfortunately, your payment could not be processed. Please try again.
+          </Text>
+          <Button mt={6} background="red.600" color='white' size="lg" fontWeight="bold" onClick={() => navigate(`/single/${paymentData.campaignsid}`)}>
             Go Back
           </Button>
         </Box>
