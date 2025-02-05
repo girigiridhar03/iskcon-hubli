@@ -234,13 +234,19 @@ const HomeSinglePage = () => {
       position={"relative"}
       overflow={paymentModel ? "hidden" : "auto"}
     >
+      <meta name="title" content='Mandir Nirmana Seva' />
+      <meta name="description" content={`${getSingleUser?.campaignDetails?.campaignName}'S CAMPAIGN TO BUILD A
+          MAGNIFICENT SRI RADHA KRISHNA TEMPLE AND CULTURAL COMPLEX IN
+          HUBLI-DHARWAD, KARNATAKA.`} />
+      <meta property="og:image" content={getSingleUser?.campaignDetails?.imgurl} /> 
+
 
       <Box display='flex' alignItems='center' position={"fixed"}
         zIndex={"10"}
         fontSize={"3rem"}
         cursor={"pointer"}
         bottom={"4%"}
-        right={"2%"}> 
+        right={"2%"}>
         {/* Scroll to Top button */}
         {showScrollButton && (
           <IconButton
