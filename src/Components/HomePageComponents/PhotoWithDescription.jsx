@@ -25,7 +25,7 @@ const PhotoWithDescription = ({ imageError, avatar, getSingleUser, handleImageEr
                 fontWeight="semibold"
                 textTransform='uppercase'
             >
-                I am a concerned citizen and this campaign of mine aims to support
+                I am a concerned devotee and this campaign of mine aims to support
                 the creation of a magnificent ISKCON Sri Radha Krishna Temple and
                 Cultural complex in Hubli-Dharwad area of Karnataka.
             </Box>

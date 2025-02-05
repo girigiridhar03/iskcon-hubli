@@ -68,6 +68,7 @@ const CampaignProgressDetails = ({ currentAmount, goalAmount }) => {
       border="2px solid"
       borderColor="transparent"
       animation={`${borderAnimation} 3s infinite`}
+      textTransform='uppercase'
     >
       <Flex direction={["column", "column", "row"]} align="center" justify="space-between">
         <Stack

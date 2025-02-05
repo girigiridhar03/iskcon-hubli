@@ -140,7 +140,7 @@ const HomeCards = ({
                         </HStack>
                       </HStack>
                       <Text textTransform='uppercase' fontSize="0.9rem" mt={2} color="gray.600">
-                        I am a concerned citizen and this campaign of mine aims to support the creation of a magnificent ISKCON Sri Radha Krishna Temple and Cultural complex in Hubli-Dharwad area of Karnataka.
+                        I am a concerned devotee and this campaign of mine aims to support the creation of a magnificent ISKCON Sri Radha Krishna Temple and Cultural complex in Hubli-Dharwad area of Karnataka.
                       </Text>
                     </CardBody>
                     <CardFooter

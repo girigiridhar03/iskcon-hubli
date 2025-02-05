@@ -277,7 +277,7 @@ const CampaignMoreDetails = ({ campaign, getSingleUser, themeColor,  handleImage
                 <VStack w={"90%"} mx={"auto"}>
                     <Box>
                         My name is {getSingleUser?.campaignDetails?.campaignName}. I am
-                        a concerned citizen. This campaign of mine aims to support the
+                        a concerned devotee. This campaign of mine aims to support the
                         construction of this magnificent Sri Radha Krishna Temple and
                         Cultural Complex in Hubli- Dharwad, Karnataka.
                     </Box>
