@@ -32,8 +32,9 @@ const AdminEdit = () => {
         setFormData({
             campaignname:getSingleUser?.campaignDetails?.campaignName,
             targetamount:getSingleUser?.campaignDetails?.targetAmount,
-            days:getSingleUser?.campaignDetails?.enddate,
-            imgurl:getSingleUser?.campaignDetails?.imgurl,
+            enddate:getSingleUser?.campaignDetails?.enddate,
+            imgurl: getSingleUser?.campaignDetails?.imgurl,
+            phoneno: getSingleUser?.campaignDetails?.phoneno,
             preachername:getSingleUser?.campaignDetails?.preachername
          })
     }
