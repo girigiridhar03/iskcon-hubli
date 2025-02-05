@@ -84,4 +84,4 @@ export const campaign = {
   taxBenfits: image19,
 };
 
-export const BE_API_URL = 'https://razor.ygntechstartup.workers.dev'
+export const BE_API_URL = 'https://razor.tech-iskconhubli.workers.dev'
