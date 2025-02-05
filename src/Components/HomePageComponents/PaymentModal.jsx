@@ -64,19 +64,15 @@ const PaymentModal = ({
                             type="text"
                             placeholder="Full Name*"
                             marginTop={"1rem"}
+                            marginBottom={'0.6rem'}
                         />
                         {errors.username && (
                             <Box color="red.500">{errors.username}</Box>
                         )}
 
-                        <HStack my={"1rem"}>
+                        <HStack marginBottom={'0.6rem'}>
                             <VStack alignItems={"flex-start"} gap={"1px"} w={"100%"}>
-                                <FormLabel>
-                                    <HStack>
-                                        {/* <Box>Mobile No</Box>
-                                                <Box color={"red.500"}>*</Box> */}
-                                    </HStack>
-                                </FormLabel>
+
                                 <Input
                                     onChange={handleOnChange}
                                     name="mobileno"
@@ -92,8 +88,8 @@ const PaymentModal = ({
                             </VStack>
                         </HStack>
 
-                                <Box
-                            marginTop={"0.6rem"}
+                        <Box
+                            marginBottom={'0.6rem'}
                             display={"flex"}
                             justifyContent={"center"}
                             alignItems={"center"}
@@ -149,7 +145,7 @@ const PaymentModal = ({
                             </VStack>
                         </HStack>}
 
-                   
+
 
                         {formData.prasadRequired && <>
                             <Input
@@ -174,7 +170,7 @@ const PaymentModal = ({
                             {errors.address && <Box color="red.500">{errors.address}</Box>}
                         </>
                         }
-                     
+
 
                         <Input
                             type="submit"
