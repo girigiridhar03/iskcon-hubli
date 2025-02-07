@@ -85,3 +85,11 @@ export const campaign = {
 };
 
 export const BE_API_URL = 'https://razor.tech-iskconhubli.workers.dev'
+
+export const donorTitles = [
+  "Dharma Adhikari",
+  "Maha Vaishnava",
+  "Bhakti Ratna",
+  "Dharma Sevak",
+  "Krishna Kripa Patra"
+];
