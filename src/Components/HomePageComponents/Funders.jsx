@@ -21,18 +21,20 @@ const Funders = ({ getSingleUser }) => {
             py={"2rem"}
             gap={"1rem"}
           >
+          
             <Box
+              borderRadius={"50%"}
+              bgColor={"white"}
               w={"50px"}
               h={"50px"}
-              overflow={"hidden"}
-              borderRadius={"50%"}
+              display={"flex"}
+              alignItems={"center"}
+              justifyContent={"center"}
+              fontSize={"1.5rem"}
+              fontWeight={"bold"}
+              bg='#c89a9a'
             >
-              <Image
-                w={"100%"}
-                h={"100%"}
-                objectFit={"cover"}
-                src="https://fadcdn.s3.amazonaws.com/defaults/default.png"
-              />
+              {(funder?.isanonymous ? 'Anonymous' : funder?.username)[0]}
             </Box>
             <VStack
               alignItems={["center"]}
