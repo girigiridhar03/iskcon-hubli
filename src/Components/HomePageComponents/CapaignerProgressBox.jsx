@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, HStack, VStack, Input } from '@chakra-ui/react';
+import { Box, Button, HStack, VStack, Input, Badge } from '@chakra-ui/react';
 import { formatCurrency, getDaysDifference } from '../utils';
 import ProgressBar from './ProgressBar';
 
@@ -9,6 +9,8 @@ const CapaignerProgressBox = ({
     handleClick,
     errorMessage
 }) => {
+    const isTargetReached = getSingleUser?.raisedFund >= getSingleUser?.campaignDetails?.targetAmount;
+
     return (
         <Box
             w={["97%", "97%", "97%", "50%"]}
@@ -33,18 +35,38 @@ const CapaignerProgressBox = ({
                 borderRadius="md"
             >
                 <VStack width="100%" alignItems="flex-start" gap="0.5rem">
-                    <Box fontWeight="semibold" fontSize={["xl", "2xl", "3xl"]}>
-                        RAISED
-                    </Box>
-                    <Box fontSize={["2xl", "3xl", "4xl"]} fontWeight="bold">
-                        {formatCurrency(getSingleUser?.raisedFund)}
-                    </Box>
+                    <HStack>
+                        <Box fontWeight="semibold" fontSize={["xl", "2xl", "3xl"]}>
+                            RAISED
+                        </Box>
+                        <Box fontSize={["2xl", "3xl", "4xl"]} fontWeight="bold">
+                            {formatCurrency(getSingleUser?.raisedFund)}
+                        </Box>
+                    </HStack>
+
                     <Box fontSize={["xl", "2xl", "3xl"]} fontWeight="semibold">
                         GOAL{" "}
                         {formatCurrency(getSingleUser?.campaignDetails?.targetAmount)}
                     </Box>
-                </VStack>
 
+                </VStack>
+                { isTargetReached && (
+                    <Badge
+                        fontSize={["md", "lg", "xl"]}
+                        borderRadius="full"
+                        px="4"
+                        py="2"
+                        my={1}
+                        background={"#d75f30"}
+                        color="white"
+                        boxShadow="md"
+                        fontWeight="extrabold"
+                        position="relative"
+                        width={"fit-content"}
+                    >
+                        Star Campaigner !!
+                    </Badge>
+                )}
                 <HStack w={"100%"} justifyContent={"space-between"} my={"1rem"}>
                     <VStack
                         fontWeight={"semibold"}
