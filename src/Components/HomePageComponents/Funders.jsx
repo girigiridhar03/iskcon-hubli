@@ -1,12 +1,20 @@
-import { Box, HStack, Image, VStack } from '@chakra-ui/react';
-import React from 'react';
+import { Box, HStack, Image, VStack, Button } from '@chakra-ui/react';
+import React, { useState } from 'react';
 import { formatCurrency } from '../utils';
 
 const Funders = ({ getSingleUser }) => {
+  const [showAll, setShowAll] = useState(false);
+
+  const handleShowAll = () => {
+    setShowAll(true);
+  };
+
+  const fundersToShow = showAll ? getSingleUser?.userList : getSingleUser?.userList?.slice(0, 20);
+
   return (
     <Box w={"95%"} maxW={"1200px"} mx={"auto"}>
-      {getSingleUser?.userList?.length > 0 ? (
-        getSingleUser?.userList?.map((funder) => (
+      {fundersToShow?.length > 0 ? (
+        fundersToShow.map((funder) => (
           <HStack
             key={funder.id}
             borderBottom={"2px dotted red"}
@@ -57,6 +65,11 @@ const Funders = ({ getSingleUser }) => {
           color={"red.500"}
         >
           No Funders Found
+        </Box>
+      )}
+      {!showAll && getSingleUser?.userList?.length > 20 && (
+        <Box textAlign={"center"} mt={"2rem"}>
+          <Button onClick={handleShowAll}>Show All</Button>
         </Box>
       )}
     </Box>
