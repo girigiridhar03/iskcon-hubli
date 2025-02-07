@@ -29,7 +29,6 @@ import AdditionalDetails from "../Components/HomePageComponents/AdditionalDetail
 import CampaignTabs from "../Components/HomePageComponents/Tabs";
 import { FaArrowUp, FaSquareWhatsapp } from "react-icons/fa6";
 import Fotter from "../Components/HomePageComponents/Fotter";
-import MetaDetails from "../Components/HomePageComponents/MetaDetails";
 
 const HomeSinglePage = () => {
   const { id } = useParams();
@@ -235,7 +234,6 @@ const HomeSinglePage = () => {
       position={"relative"}
       overflow={paymentModel ? "hidden" : "auto"}
     >
-       <MetaDetails isHomePage={false}/>
       <Box display='flex' alignItems='center' position={"fixed"}
         zIndex={"10"}
         fontSize={"3rem"}

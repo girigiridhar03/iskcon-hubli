@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import HomeDetails from '../Components/HomePageComponents/HomeDetails'
 import HomeCards from '../Components/HomePageComponents/HomeCards'
-import HomeTeams from '../Components/HomePageComponents/HomeTeams'
+
 import CampaignProgressDetails from '../Components/HomePageComponents/CampaignProgressDetails'
 import { Box } from '@chakra-ui/react'
 import HeadingBanner from '../Components/HomePageComponents/HeadingBannerNew'
-import SocialMedia from '../Components/HomePageComponents/SocialMedia'
+
 import { BE_API_URL } from '../constants/homePage'
 import Fotter from '../Components/HomePageComponents/Fotter'
-import MetaDetails from '../Components/HomePageComponents/MetaDetails'
 
 const HomePage = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -59,8 +58,6 @@ const HomePage = () => {
 
   return (
     <Box position={'relative'} maxWidth='900px' display='flex' flexDirection='column' alignItems='center' >
-      {/* <SocialMedia /> */}
-       <MetaDetails isHomePage={true} />
       <HeadingBanner />
       <CampaignProgressDetails
         currentAmount={Number(campaignsData?.totalraisedamt) || 0}
