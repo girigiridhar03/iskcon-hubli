@@ -1,8 +1,37 @@
-import { AspectRatio, Box, Center, HStack, Image, VStack } from '@chakra-ui/react';
-import React from 'react';
+import { AspectRatio, Box, Center, HStack, Image, useToast, VStack } from '@chakra-ui/react';
+import React, { useEffect } from 'react';
 import { formatCurrency, formatTimeAgo } from '../utils';
 
-const CampaignMoreDetails = ({ campaign, getSingleUser, themeColor,  handleImageError, avatar, imageError }) => {
+const CampaignMoreDetails = ({ campaign, getSingleUser, themeColor, handleImageError, avatar, imageError }) => {
+    const toast = useToast();
+    const toastShown = React.useRef(false);
+
+    useEffect(() => {
+        if (!toastShown.current && getSingleUser?.top10paymentDetails?.length > 0) {
+            const user = getSingleUser.top10paymentDetails[0];
+            toast({
+               
+                description: (
+                    <VStack alignItems={"flex-start"} gap={".3rem"}>
+                        <HStack>
+                            <Box fontWeight={"bold"} color={"white"}>
+                                {user?.isanonymous ? 'Anonymous' : user?.username} donated {formatCurrency(user?.amount)}{" "}
+                            </Box>
+                        </HStack>
+                        <Box fontWeight={"bold"} color={"white"}>
+                            about {formatTimeAgo(user?.date)}
+                        </Box>
+                    </VStack>
+                ),
+                status: 'success',
+                duration: 5000,
+                isClosable: true,
+                position: 'bottom-left',
+            });
+            toastShown.current = true
+        }
+    }, [getSingleUser, toast, toastShown]);
+
     return (
         <HStack
             w={"100%"}
