@@ -34,11 +34,11 @@ const ProgressBar = ({ currentAmount, goalAmount }) => {
       overflow="hidden"
       position="relative"
       boxShadow="md"  // Add shadow for better visual effect
-    >
-      <Box
-        w={`${bar}%`}
-        h="100%"
-        bgColor="teal.400"  // Change progress color to teal
+        >
+          <Box
+            w={`${bar}%`}
+            h="100%"
+            bgColor="#044445"  // Change progress color to a darker teal
         transition="width 0.5s ease-in-out"
         willChange="width"
         borderRadius="inherit"  // Ensure the progress bar has rounded corners
