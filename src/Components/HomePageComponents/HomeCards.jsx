@@ -84,7 +84,7 @@ const HomeCards = ({
             }}
             onChange={handleSearchChange}
             onFocus={async () => {
-              if(allCampaignersLength ) return;
+              if (allCampaignersLength) return;
               const data = await fetchAllCampaigners();
               setAllCampaigners(data);
             }}
@@ -95,7 +95,7 @@ const HomeCards = ({
             dataLength={campaigns.length}
             next={fetchMoreData}
             hasMore={hasMore}
-            loader={
+            loader={searchQuery ? '' :
               <Box display="flex" justifyContent="center" alignItems="center" py={4}>
                 <DottedAnimation />
                 <Box ml={4} fontSize="1.2rem" color="gray.600">Loading more campaigners...</Box>
