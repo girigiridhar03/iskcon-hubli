@@ -50,7 +50,7 @@ const AdminCreateCampaign = () => {
 
 
   return (
-    <Box w={"75%"} ml={"25%"} p={"1rem"} h={"100vh"}>
+    <Box p={"1rem"} h={"100vh"}>
       <Box fontSize={"1.5rem"} fontWeight={"bold"}>
         Create Campaign
       </Box>
@@ -111,6 +111,7 @@ const AdminCreateCampaign = () => {
         <VStack alignItems={"flex-start"}>
         <FormLabel>Campaign Image:</FormLabel>
           <Input
+            border={"2px solid rgb(0,0,0,0.5)"}
             type="text"
             placeholder="Enter Image Url"
             value={formData?.imgurl}
@@ -121,6 +122,7 @@ const AdminCreateCampaign = () => {
         <VStack alignItems={"flex-start"}>
         <FormLabel>Preacher Name:</FormLabel>
           <Input
+            border={"2px solid rgb(0,0,0,0.5)"}
             type="text"
             placeholder="Enter Preacher Name"
             value={formData?.preachername}
