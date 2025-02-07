@@ -455,7 +455,7 @@ const CampaignMoreDetails = ({ campaign, getSingleUser, themeColor,  handleImage
                         <VStack alignItems={"flex-start"} gap={".3rem"}>
                             <HStack>
                                 <Box fontWeight={"bold"} color={"white"}>
-                                    {user?.username} donated {formatCurrency(user?.amount)}{" "}
+                                    {user?.isanonymous ? 'Anonymous' : user?.username} donated {formatCurrency(user?.amount)}{" "}
                                 </Box>
                             </HStack>
                             <Box fontWeight={"bold"} color={"white"}>

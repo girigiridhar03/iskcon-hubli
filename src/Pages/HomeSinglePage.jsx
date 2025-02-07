@@ -60,6 +60,7 @@ const HomeSinglePage = () => {
     campaignsid: id,
     prasadRequired: false,
     taxExemption: false,
+    isanonymous: false,
   });
 
   useEffect(() => {
@@ -195,7 +196,8 @@ const HomeSinglePage = () => {
               send_confirmation_message_to_preacher: `${getSingleUser?.campaignDetails?.preacherName || ''} - ${getSingleUser?.campaignDetails?.phoneno || ''}`
               ,
               campaignsid: id,
-              preacher_name: getSingleUser?.campaignDetails?.preachername || ''
+              preacher_name: getSingleUser?.campaignDetails?.preachername || '',
+              isanonymous: formData.isanonymous,
             },
           });
         }

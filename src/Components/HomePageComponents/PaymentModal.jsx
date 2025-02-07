@@ -113,7 +113,7 @@ const PaymentModal = ({
                                     isChecked={formData.prasadRequired}
                                     size={"lg"}
                                 >
-                                    Prasad Required
+                                    Would you like to receive Mahaprasad?
                                 </Checkbox>
                             </HStack>
                             <HStack>
@@ -124,6 +124,16 @@ const PaymentModal = ({
                                     size={"lg"}
                                 >
                                     80G Tax Exemption
+                                </Checkbox>
+                            </HStack>
+                            <HStack>
+                                <Checkbox
+                                    onChange={handleOnChange}
+                                    name="isanonymous"
+                                    isChecked={formData.isanonymous}
+                                    size={"lg"}
+                                >
+                                    Donate Anonymously
                                 </Checkbox>
                             </HStack>
                         </HStack>

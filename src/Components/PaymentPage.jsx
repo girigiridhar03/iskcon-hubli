@@ -53,6 +53,7 @@ const PaymentPage = () => {
           setOrderConfirmId(response.razorpay_payment_id)
           setPaymentStatus('success');
           // navigate(`/single/${paymentData.campaignsid}`);
+          dispatch(postPaymentSuccess({ paymentId: response.razorpay_payment_id, orderid: id, isanonymous: paymentData.isanonymous }));
           Toast({
             title: "Payment Successful",
             description: "Your payment was successful. Thank you!",
@@ -74,7 +75,8 @@ const PaymentPage = () => {
           seva: "Mandir Nirmana Seva",
           address: paymentData.address,
           pan_number: paymentData.pan_number,
-          send_confirmation_message_to_preacher: paymentData.send_confirmation_message_to_preacher
+          send_confirmation_message_to_preacher: paymentData.send_confirmation_message_to_preacher,
+          isanonymous: paymentData.isanonymous,
         },
         theme: {
           color: "#3399cc",
@@ -100,9 +102,8 @@ const PaymentPage = () => {
     openRazorpay();
   }, [id]);
 
-  dispatch(postPaymentSuccess({ paymentId: orderConfirmId, orderid: id }));
 
-  if (paymentStatus==='success') {
+  if (paymentStatus === 'success') {
     return (
       <Box
         display="flex"
