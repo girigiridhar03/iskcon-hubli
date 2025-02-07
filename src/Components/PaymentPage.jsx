@@ -142,7 +142,7 @@ const PaymentPage = () => {
             {`Your payment was successful!`}
           </Text>
           <Text mt={4} fontSize="xl" fontWeight="bold" textAlign="center" color="white">
-            {`Thank you for your contribution to ${paymentData.preacher_name}'s campaign to build a magnificent Sri Radha Krishna Temple and Cultural Complex in Hubli-Dharwad, Karnataka.`}
+            {`Thank you for your contribution to ${paymentData?.preacher_name? `${paymentData?.preacher_name}'s`:''} campaign to build a magnificent Sri Radha Krishna Temple and Cultural Complex in Hubli-Dharwad, Karnataka.`}
           </Text>
           <Button mt={6} background="#144544" color='white' size="lg" fontWeight="bold" onClick={() => navigate(`/single/${paymentData.campaignsid}`)}>
             Go Back
