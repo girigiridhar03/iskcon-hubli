@@ -1,6 +1,7 @@
 import { AspectRatio, Box, Center, HStack, Image, useToast, VStack } from '@chakra-ui/react';
 import React, { useEffect } from 'react';
 import { formatCurrency, formatTimeAgo } from '../utils';
+import { IskconGradientLight } from '../utils';
 
 const CampaignMoreDetails = ({ campaign, getSingleUser, themeColor, handleImageError, avatar, imageError }) => {
     const toast = useToast();
@@ -243,7 +244,7 @@ const CampaignMoreDetails = ({ campaign, getSingleUser, themeColor, handleImageE
                 {getSingleUser?.top10paymentDetails?.map((user, i) => (
                     <HStack
                         key={i + user?.amount}
-                        bgColor={themeColor}
+                        bgGradient={IskconGradientLight}
                         borderRadius={"10px"}
                         w={"100%"}
                         py={"0.8rem"}
