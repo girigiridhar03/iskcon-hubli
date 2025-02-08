@@ -70,15 +70,16 @@ const HomeCards = ({
       <Box w="100%">
         <Box mx="auto" textAlign="center" mb={1} mt={3} display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
           <HStack justifyContent="center" fontWeight="900" color={IskconBgColor} fontSize={["0.7rem", "1rem", "1.6rem", "1.8rem"]}>
-            <Box>CAMPAIGNERS JOINED:</Box>
+            <Box marginLeft={"12px"}>CAMPAIGNERS JOINED:</Box>
             <Box>
               {totalCampaigners}
             </Box>
           </HStack>
           <Input
-            w={['150px', '150px', '180px', '200px']}
+            w={['150px', '150px', '200px', '250px']}
             h={['20px', '40px', '40px', '40px']}
             type="text"
+            marginRight={"12px"}
             placeholder="Search campaigners"
             fontSize={["0.7rem", "1rem", "1.2rem", "1.2em"]}
             style={{
