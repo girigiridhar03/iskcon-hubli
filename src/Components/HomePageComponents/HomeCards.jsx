@@ -199,7 +199,7 @@ const HomeCards = ({
                         w="100%"
                       >
                         <Box>{calculatePercentage(user?.targetamt, user?.totalRaisedAmount)}%</Box>
-                        <Box color="#b2f07f" fontWeight={900} fontSize={"20px"}>{calculatePercentage(user?.targetamt, user?.totalRaisedAmount) >= 100 ? "GOAL ACHIEVED!" : (calculatePercentage(user?.targetamt, user?.totalRaisedAmount) >= 80 ? "Almost there!" : "") }</Box>
+                        <Box color="#b2f07f" fontWeight={900} fontSize={"20px"}>{calculatePercentage(user?.targetamt, user?.totalRaisedAmount) >= 100 ? "Goal Achieved!" : (calculatePercentage(user?.targetamt, user?.totalRaisedAmount) >= 80 ? "Almost there!" : "") }</Box>
                         <Box>{getDaysDifference(user?.enddate.split("T")[0])} Days LEFT</Box>
                       </HStack>
                     </CardFooter>
