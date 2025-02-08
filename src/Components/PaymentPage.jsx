@@ -77,6 +77,7 @@ const PaymentPage = () => {
           pan_number: paymentData.pan_number,
           send_confirmation_message_to_preacher: paymentData.send_confirmation_message_to_preacher,
           isanonymous: paymentData.isanonymous,
+          campaignsid: paymentData.campaignsid
         },
         theme: {
           color: "#3399cc",
