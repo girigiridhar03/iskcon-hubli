@@ -48,7 +48,7 @@ export const campaign = {
   your_contrinution: "Every contribution, no matter the size, will help bring this vision to life. Donations are eligible for tax benefits under Section 80G of the Income Tax Act. We will recognise major donors on the Wall of Gratitude.",
   join_us: "Join us in creating a temple that will serve as a beacon of spirituality and culture for millions. Together, we can make this dream a reality.",
   wall_of_gratitude,
-  ongoing: "Currently, a makeshift temple, Sri Krishna Balaram, exists at the site and has already become a spiritual destination. With your support, the new temple will further enhance this space, drawing millions of pilgrims and devotees annually.",
+  ongoing: "Currently, a makeshift temple of Sri Sri Krishna Balaram, exists at the site and has already become a spiritual destination. With your support, the new temple will further enhance this space, drawing millions of pilgrims and devotees annually.",
   construction_img,
 
 

@@ -177,7 +177,7 @@ const CampaignMoreDetails = ({ campaign, getSingleUser, themeColor, handleImageE
                     </Box>
                     <ul>
                         <li>Donations can be made online through the link</li>
-                        <li>Donations via cheque can be made to ISKCON and sent to P.B Road, Rayapur, Dharwad-580009.</li>
+                        <li>Donations via cheque can be made to ISKCON HUBLI and sent to P.B Road, Rayapur, Dharwad-580009.</li>
                     </ul>
 
                     <Box
@@ -189,7 +189,7 @@ const CampaignMoreDetails = ({ campaign, getSingleUser, themeColor, handleImageE
                     </Box>
                     <ul>
                         <li><b>How will I know how my funds are spent?</b><br/> After the funds are collected, updates will be provided on the campaign's progress.</li>
-                        <li><b>When will I receive my receipt?</b><br/>For online donations through the link, you will receive the Receipt immediately. For the donations made through chequre, you will receive the receipt after the realization of the cheque.</li>
+                        <li><b>When will I receive my receipt?</b><br/>For online donations through the link, you will receive the Receipt immediately. For the donations made through cheque, you will receive the receipt after the realization of the cheque.</li>
                     </ul>
                     <Box fontWeight={"bold"}>{campaign.join_us}</Box>
                     
@@ -202,7 +202,7 @@ const CampaignMoreDetails = ({ campaign, getSingleUser, themeColor, handleImageE
                     </Box>
                     {/* wall of gratitude */}
                     <Box w={"90%"} h={"auto"} mx={"auto"}>
-                        <Image w={"100%"} h={"100%"} src={campaign.wall_of_gratitude} />
+                        <Image w={"100%"} h={"100%"} src={campaign.image12} />
                     </Box>
                     {/* <ul>
                         <li><b>INR 10,000:</b> Name in the inaugural souvenir (4x font).</li>
