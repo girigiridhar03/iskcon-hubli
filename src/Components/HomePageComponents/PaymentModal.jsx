@@ -15,7 +15,7 @@ const PaymentModal = ({
     return (
         <Box
             position={"fixed"}
-            w={["100%", "62%"]}
+            w={["100%", "77%"]}
             h={"100vh"}
             overflow={"hidden"}
             bgColor={"rgb(0,0,0,0.6)"}
