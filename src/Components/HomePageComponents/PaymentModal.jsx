@@ -1,6 +1,6 @@
 import { Box, Checkbox, FormLabel, HStack, Input, VStack } from '@chakra-ui/react';
 import React from 'react';
-
+import { IskconBgColor } from '../utils';
 
 const PaymentModal = ({
     themeColor,
@@ -33,7 +33,7 @@ const PaymentModal = ({
             >
                 <HStack
                     w={"100%"}
-                    bgColor={themeColor}
+                    bgColor={IskconBgColor}
                     borderTopLeftRadius={"10px"}
                     borderTopRightRadius={"10px"}
                     p={"1rem"}
@@ -42,7 +42,7 @@ const PaymentModal = ({
                     color={"white"}
                     fontSize={"1.1rem"}
                 >
-                    <Box>Amount: {amount}</Box>
+                    <Box >Amount: {amount}</Box>
                     <Box onClick={() => setPaymentModel(false)} cursor={"pointer"}>
                         Close
                     </Box>
@@ -185,7 +185,7 @@ const PaymentModal = ({
                         <Input
                             type="submit"
                             value={"Pay Now"}
-                            bgColor={"red.500"}
+                            bgColor={IskconBgColor}
                             my={"1rem"}
                             fontWeight={"bold"}
                             color={"white"}
