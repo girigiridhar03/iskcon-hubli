@@ -197,8 +197,9 @@ const HomeSinglePage = () => {
               send_confirmation_message_to_preacher: `${getSingleUser?.campaignDetails?.preacherName || ''} - ${getSingleUser?.campaignDetails?.phoneno || ''}`
               ,
               campaignsid: id,
-              preacher_name: getSingleUser?.campaignDetails?.preachername || '',
+              preacher_name: getSingleUser?.campaignDetails?.preacherName || '',
               isanonymous: formData.isanonymous,
+              campainerName: getSingleUser?.campaignDetails?.campaignName || '',
             },
           });
         }
