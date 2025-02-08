@@ -65,7 +65,7 @@ const HomeCards = ({
       boxShadow="lg"
       mb={'10px'}
       minH={'30vh'}
-      
+
     >
       <Box w="100%">
         <Box mx="auto" textAlign="center" mb={1} mt={3} display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
@@ -126,27 +126,28 @@ const HomeCards = ({
                         objectFit="cover"
                         borderTopRadius="10px"
                       />
-                      <BadgeForTopCampaigners name={donorTitles[i]} />
-                      {(i+1)<=5 && <Badge
-                        colorScheme='green'
-                        bg='transparent'
-                        fontSize='200px'
-                        position='absolute'
-                        
-                        top={'-82px'}
-                        left={0}
-                        p={0}
-                        display='flex'
-                        justifyContent='flex-start'
-                        alignItems='flex-start'
-                       
-                        opacity={0.3}
-                         transition={{ duration: 5, repeat: Infinity, repeatType: "reverse" }}
-            initial={{ scale: 1 }}
-            animate={{ scale: [1, 1.1, 1] }}
-                      >
-                        {i + 1}
-                      </Badge>}
+                      {!searchQuery && <>
+                        <BadgeForTopCampaigners name={donorTitles[i]} />
+
+                        {(i + 1) <= 5 && <Badge
+                          colorScheme='green'
+                          bg='transparent'
+                          fontSize='200px'
+                          position='absolute'
+                          top={'-82px'}
+                          left={0}
+                          p={0}
+                          display='flex'
+                          justifyContent='flex-start'
+                          alignItems='flex-start'
+                          opacity={0.3}
+                          transition={{ duration: 5, repeat: Infinity, repeatType: "reverse" }}
+                          initial={{ scale: 1 }}
+                          animate={{ scale: [1, 1.1, 1] }}
+                        >
+                          {i + 1}
+                        </Badge>}
+                      </>}
                     </Box>
                     <CardBody bg="gray.100" px="7px">
                       <Text fontSize="1.1rem" textTransform='uppercase' fontWeight="700" mb={2} color="gray.700">
