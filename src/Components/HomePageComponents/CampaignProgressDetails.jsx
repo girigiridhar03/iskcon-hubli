@@ -13,12 +13,14 @@ import { formatCurrency } from "../utils";
 import CountUp from "react-countup";
 import { keyframes } from "@emotion/react";
 
+import { IskconBgColor } from "../utils.jsx";
+
 const borderAnimation = keyframes`
   0% {
     border-color: transparent;
   }
   50% {
-    border-color: #00FF00;
+    border-color: #3566ab;
   }
   100% {
     border-color: transparent;
@@ -51,7 +53,8 @@ const CampaignProgressDetails = ({ currentAmount, goalAmount }) => {
   }, [currentAmount, goalAmount]);
 
   const bgColor = useColorModeValue("gray.800", "gray.700");
-  const progressColor = useColorModeValue("green.400", "green.300");
+  const progressColor = IskconBgColor; //useColorModeValue("green.400", "green.300");
+  const progressStrokeColor = useColorModeValue("#e3c44e");
   const trackColor = useColorModeValue("gray.300", "gray.600");
   const textColor = useColorModeValue("white", "gray.200");
 
@@ -62,7 +65,7 @@ const CampaignProgressDetails = ({ currentAmount, goalAmount }) => {
       borderRadius="10px"
       px={'10px'}
       py={'5px'}
-      bgColor={bgColor}
+      bgColor={"#b3c6ed"}
       boxShadow="dark-lg"
       marginBottom="10px"
       border="2px solid"
@@ -76,7 +79,7 @@ const CampaignProgressDetails = ({ currentAmount, goalAmount }) => {
           spacing={["0.2rem", "1rem"]}
           align="center"
         >
-          <VStack align={["center", "center", "flex-start"]}>
+          <VStack align={["center", "center", "flex-start"]} marginLeft={["0", "0", "3rem"]}>
             <Flex align="center" gap={2} color={textColor} fontSize={["1.5rem", "2rem", "2rem"]}>
               <Box fontWeight="semibold">Goal:</Box>
               <Box fontWeight="semibold">{formatCurrency(goalAmount)}</Box>
@@ -111,7 +114,7 @@ const CampaignProgressDetails = ({ currentAmount, goalAmount }) => {
           </CircularProgress>
         </Box>
 
-        <VStack align={["center", "center", "flex-start"]} mt={[4, 4, 0]}>
+        <VStack align={["center", "center", "flex-start"]} mt={[4, 4, "-1rem"]} marginRight={["0", "0", "3rem"]}>
           <Box fontSize={["1.5rem", "2rem", "2.3rem"]} fontWeight="bold" color={progressColor}>
             Mandir Nirmana Seva
           </Box>

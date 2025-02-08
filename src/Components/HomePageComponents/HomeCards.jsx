@@ -21,6 +21,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { debounce, fetchAllCampaigners } from "../../utils/apiCall";
 import BadgeForTopCampaigners from "./BadgeForTopCapaigners";
 import { donorTitles } from "../../constants/homePage";
+import { IskconBgColor } from "../utils.jsx";
 
 const HomeCards = ({
   isLoading,
@@ -68,7 +69,7 @@ const HomeCards = ({
     >
       <Box w="100%">
         <Box mx="auto" textAlign="center" mb={1} mt={3} display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
-          <HStack justifyContent="center" fontWeight="900" color="teal.600" fontSize={["0.7rem", "1rem", "1.6rem", "1.8rem"]}>
+          <HStack justifyContent="center" fontWeight="900" color={IskconBgColor} fontSize={["0.7rem", "1rem", "1.6rem", "1.8rem"]}>
             <Box>CAMPAIGNERS JOINED:</Box>
             <Box>
               {totalCampaigners}
@@ -115,7 +116,7 @@ const HomeCards = ({
             >
               {filteredSearch(campaigns, searchQuery)?.map((user, i) => (
                 <Link key={user.campaignId} to={`/single/${user.campaignId}`}>
-                  <Card border={'3px solid #2b9654'} w="100%" overflow="hidden" h="100%" boxShadow="md" borderRadius="10px">
+                  <Card border={'2px solid #0277de'} w="100%" overflow="hidden" h="100%" boxShadow="md" borderRadius="14px">
                     <Box w="100%" h={["250px", "250px", "250px", "300px", "250px"]} position='relative' >
                       <Image
                         w="100%"
@@ -164,12 +165,11 @@ const HomeCards = ({
                           <Box>Hubli-Dharwad</Box>
                         </HStack>
                       </HStack>
-                      <Text textTransform='uppercase' fontSize="0.9rem" mt={2} color="gray.600">
-                        I am a concerned devotee and this campaign of mine aims to support the creation of a magnificent ISKCON Sri Radha Krishna Temple and Cultural complex in Hubli-Dharwad area of Karnataka.
-                      </Text>
+                      
                     </CardBody>
                     <CardFooter
-                      bgColor="teal.600"
+                      // bgColor="teal.600"
+                      bgColor={IskconBgColor}
                       display="flex"
                       flexDirection="column"
                       py="5px"
@@ -196,6 +196,7 @@ const HomeCards = ({
                         w="100%"
                       >
                         <Box>{calculatePercentage(user?.targetamt, user?.totalRaisedAmount)}%</Box>
+                        <Box color="#b2f07f" fontWeight={900} fontSize={"20px"}>{calculatePercentage(user?.targetamt, user?.totalRaisedAmount) >= 100 ? "GOAL ACHIEVED!" : (calculatePercentage(user?.targetamt, user?.totalRaisedAmount) >= 80 ? "Almost there!" : "") }</Box>
                         <Box>{getDaysDifference(user?.enddate.split("T")[0])} Days LEFT</Box>
                       </HStack>
                     </CardFooter>

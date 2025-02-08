@@ -3,6 +3,8 @@ import { Box, Button, HStack, VStack, Input, Badge } from '@chakra-ui/react';
 import { formatCurrency, getDaysDifference } from '../utils';
 import ProgressBar from './ProgressBar';
 
+import { IskconBgColor, IskconFontColor } from '../utils';
+
 const CapaignerProgressBox = ({
     getSingleUser,
     setAmount,
@@ -25,8 +27,8 @@ const CapaignerProgressBox = ({
             bg="white"
         >
             <Box
-                bgColor="teal.500"
-                color="white"
+                bgColor={IskconBgColor}
+                color={IskconFontColor}
                 py="1.5rem"
                 px="2rem"
                 display="flex"
@@ -34,39 +36,46 @@ const CapaignerProgressBox = ({
                 justifyContent="space-between"
                 borderRadius="md"
             >
-                <VStack width="100%" alignItems="flex-start" gap="0.5rem">
+                { isTargetReached && (
+                    <div>
+                        <Badge
+                            fontSize={["2xs", "xs", "x"]}
+                            borderRadius="full"
+                            px="4"
+                            // py="2"
+                            // my={-1}
+                            background={"#ffffff"}
+                            color={"#eb6a26"}
+                            boxShadow="md"
+                            // fontWeight="extrabold"
+                            position="relative"
+                            width={"fit-content"}
+                        >
+                            Star Campaigner !!
+                        </Badge>
+                    </div>
+                )}
+                <VStack width="100%" alignItems="flex-start" gap="0.5rem" marginTop={"0.5rem"}>
                     <HStack>
                         <Box fontWeight="semibold" fontSize={["xl", "2xl", "3xl"]}>
                             RAISED
                         </Box>
-                        <Box fontSize={["2xl", "3xl", "4xl"]} fontWeight="bold">
+                        <Box fontSize={["3xl", "4xl", "5xl"]} fontWeight="900">
                             {formatCurrency(getSingleUser?.raisedFund)}
                         </Box>
                     </HStack>
 
-                    <Box fontSize={["xl", "2xl", "3xl"]} fontWeight="semibold">
-                        GOAL{" "}
-                        {formatCurrency(getSingleUser?.campaignDetails?.targetAmount)}
-                    </Box>
+                    <HStack>
+                        <Box fontWeight="semibold" fontSize={["xl", "2xl", "3xl"]}>
+                            GOAL<span>&nbsp;&nbsp;&nbsp;</span>
+                        </Box>
+                        <Box fontSize={["2xl", "3xl", "4xl"]}>
+                            {formatCurrency(getSingleUser?.campaignDetails?.targetAmount)}
+                        </Box>
+                    </HStack>
 
                 </VStack>
-                { isTargetReached && (
-                    <Badge
-                        fontSize={["md", "lg", "xl"]}
-                        borderRadius="full"
-                        px="4"
-                        py="2"
-                        my={1}
-                        background={"#d75f30"}
-                        color="white"
-                        boxShadow="md"
-                        fontWeight="extrabold"
-                        position="relative"
-                        width={"fit-content"}
-                    >
-                        Star Campaigner !!
-                    </Badge>
-                )}
+                
                 <HStack w={"100%"} justifyContent={"space-between"} my={"1rem"}>
                     <VStack
                         fontWeight={"semibold"}
@@ -75,7 +84,7 @@ const CapaignerProgressBox = ({
                         alignItems={"flex-start"}
                     >
                         <Box>DAYS LEFT</Box>
-                        <Box fontSize={["lg", "xl", "2xl"]}>
+                        <Box fontSize={[ "3xl", "4xl", "5xl" ]} fontWeight="900">
                             {getDaysDifference(
                                 getSingleUser?.campaignDetails?.enddate
                             )}
@@ -88,7 +97,7 @@ const CapaignerProgressBox = ({
                         alignItems={"flex-start"}
                     >
                         <Box>FUNDERS</Box>
-                        <Box fontSize={["lg", "xl", "2xl"]}>{getSingleUser?.totalFunders}</Box>
+                        <Box fontSize={[ "3xl", "4xl", "5xl" ]} fontWeight="900">{getSingleUser?.totalFunders}</Box>
                     </VStack>
                 </HStack>
                 <Box w="100%">
@@ -124,7 +133,9 @@ const CapaignerProgressBox = ({
                     <Button
                         w={"100%"}
                         h={"50px"}
-                        colorScheme="teal"
+                        // colorScheme='teal'
+                        background={IskconBgColor}
+                        color={IskconFontColor}
                         fontWeight={"bold"}
                         fontSize={["md", "lg", "xl"]}
                         onClick={handleClick}

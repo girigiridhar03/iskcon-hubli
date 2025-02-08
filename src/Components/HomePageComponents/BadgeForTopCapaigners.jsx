@@ -14,7 +14,8 @@ const BadgeForTopCampaigners = ({ name }) => {
             position="absolute"
             top={2}
             right={1} 
-            colorScheme='red'
+            // colorScheme='red'
+            color="red"
         >
             {name}
         </MotionBadge>

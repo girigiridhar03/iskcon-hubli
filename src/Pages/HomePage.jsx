@@ -9,6 +9,8 @@ import HeadingBanner from '../Components/HomePageComponents/HeadingBannerNew'
 import { BE_API_URL } from '../constants/homePage'
 import Fotter from '../Components/HomePageComponents/Fotter'
 
+import { IskconFontColor, IskconBgColor } from "../Components/utils.jsx";
+
 const HomePage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(null);
@@ -57,7 +59,7 @@ const HomePage = () => {
   };
 
   return (
-    <Box position={'relative'} maxWidth='900px' display='flex' flexDirection='column' alignItems='center' >
+    <Box position={'relative'} maxWidth='1200px' display='flex' flexDirection='column' alignItems='center' >
       <HeadingBanner />
       <CampaignProgressDetails
         currentAmount={Number(campaignsData?.totalraisedamt) || 0}

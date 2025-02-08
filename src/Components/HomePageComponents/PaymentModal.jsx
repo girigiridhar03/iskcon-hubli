@@ -15,7 +15,7 @@ const PaymentModal = ({
     return (
         <Box
             position={"fixed"}
-            w={"100%"}
+            w={["100%", "62%"]}
             h={"100vh"}
             overflow={"hidden"}
             bgColor={"rgb(0,0,0,0.6)"}
@@ -26,7 +26,7 @@ const PaymentModal = ({
         >
             <Box
                 w={["95%", "95%", "95%", "70%", "45%"]}
-                mt={"5rem"}
+                mt={"0rem"}
                 borderRadius={"10px"}
                 bgColor={"white"}
                 h={"auto"}
@@ -79,7 +79,7 @@ const PaymentModal = ({
                                     value={formData.mobileno}
                                     border={"2px solid #CCCCCC"}
                                     type="tel"
-                                    placeholder="Enter Mobile Number"
+                                    placeholder="Enter Mobile Number*"
                                     w={"100%"}
                                 />
                                 {errors.mobileno && (
@@ -105,7 +105,6 @@ const PaymentModal = ({
                             {errors.email && <Box color="red.500">{errors.email}</Box>}
                         </Box>
 
-                        <HStack my={"1rem"}>
                             <HStack>
                                 <Checkbox
                                     onChange={handleOnChange}
@@ -133,13 +132,12 @@ const PaymentModal = ({
                                     isChecked={formData.isanonymous}
                                     size={"lg"}
                                 >
-                                    Donate Anonymously
+                                    Make my donation anonymous
                                 </Checkbox>
                             </HStack>
-                        </HStack>
+                        
 
-
-                        {formData.taxExemption && <HStack my={"0.6rem"}>
+                        {formData.taxExemption && <HStack marginTop={"0.6rem"}>
                             <VStack alignItems={"flex-start"} gap={"1px"} w={"100%"}>
 
                                 <Input
@@ -148,7 +146,7 @@ const PaymentModal = ({
                                     name="panno"
                                     value={formData.panno}
                                     border={"2px solid #CCCCCC"}
-                                    placeholder="Enter Pan No."
+                                    placeholder="Enter PAN No."
                                     w={"100%"}
                                 />
                                 {errors.panno && <Box color="red.500">{errors.panno}</Box>}
@@ -160,24 +158,26 @@ const PaymentModal = ({
                         {formData.prasadRequired && <>
                             <Input
                                 onChange={handleOnChange}
-                                name="pincode"
-                                value={formData.pincode}
-                                border={"2px solid #CCCCCC"}
-                                type="text"
-                                placeholder="Pin/Zip Code*"
-                                marginBottom={"0.6rem"}
-                            />
-                            {errors.pincode && <Box color="red.500">{errors.pincode}</Box>}
-
-                            <Input
-                                onChange={handleOnChange}
                                 name="address"
                                 value={formData.address}
                                 border={"2px solid #CCCCCC"}
                                 type="text"
-                                placeholder="Address, House NO, Street Address, Area Name, etc*"
+                                placeholder="Address, House No., Street Address, Area Name, etc*"
+                                marginTop={"0.6rem"}
+                                marginBottom={"0.6rem"}
                             />
                             {errors.address && <Box color="red.500">{errors.address}</Box>}
+
+                            <Input
+                                onChange={handleOnChange}
+                                name="pincode"
+                                value={formData.pincode}
+                                border={"2px solid #CCCCCC"}
+                                type="text"
+                                placeholder="Pin Code*"
+                            />
+                            {errors.pincode && <Box color="red.500">{errors.pincode}</Box>}
+
                         </>
                         }
 

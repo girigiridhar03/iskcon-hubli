@@ -29,6 +29,7 @@ import AdditionalDetails from "../Components/HomePageComponents/AdditionalDetail
 import CampaignTabs from "../Components/HomePageComponents/Tabs";
 import { FaArrowUp, FaSquareWhatsapp } from "react-icons/fa6";
 import Fotter from "../Components/HomePageComponents/Fotter";
+import { IskconBgColor, IskconFontColor } from "../Components/utils";
 
 const HomeSinglePage = () => {
   const { id } = useParams();
@@ -211,7 +212,7 @@ const HomeSinglePage = () => {
     setImageError(true); // Set the state to indicate the image has failed to load
   };
 
-  const shareUrl = `https://campaigns.iskconhubli.org/${id}`;
+  const shareUrl = `https://campaigns.iskconhubli.org/single/${id}`;
 
   const handleShare = () => {
     const message = `Check this out: ${shareUrl}`;
@@ -246,19 +247,20 @@ const HomeSinglePage = () => {
         {showScrollButton && (
           <IconButton
             icon={<FaArrowUp />}
-
-            colorScheme="teal"
+            background={IskconBgColor}
+            color={IskconFontColor}
+            // colorScheme="teal"
             onClick={handleScrollToTop}
           />
         )}
-        <Box
+        {/* <Box
           color={'green.400'}
           bgColor={"white"}
           borderRadius={"10px"}
           onClick={handleShare}
         >
           <FaSquareWhatsapp />
-        </Box>
+        </Box> */}
       </Box>
 
 

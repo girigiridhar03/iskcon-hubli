@@ -1,6 +1,8 @@
 import { Box, Text } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 
+import { IskconProgressColor } from "../utils.jsx";
+
 const ProgressBar = ({ currentAmount, goalAmount }) => {
 
   const [bar, setBar] = useState(null);
@@ -38,7 +40,7 @@ const ProgressBar = ({ currentAmount, goalAmount }) => {
           <Box
             w={`${bar}%`}
             h="100%"
-            bgColor="#044445"  // Change progress color to a darker teal
+            bgColor={IskconProgressColor}//"#e3c44e"  // Change progress color to a darker teal
         transition="width 0.5s ease-in-out"
         willChange="width"
         borderRadius="inherit"  // Ensure the progress bar has rounded corners

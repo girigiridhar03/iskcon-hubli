@@ -21,13 +21,13 @@ const PhotoWithDescription = ({ imageError, avatar, getSingleUser, handleImageEr
                 bgColor="#EDEAEA"
                 mt="1rem"
                 p="1rem"
-                fontSize="1.3rem"
-                fontWeight="semibold"
-                textTransform='uppercase'
+                fontSize="1.1rem"
+                fontFamily="sans-serif"
+                color="#777777"
             >
-                I am a concerned devotee and this campaign of mine aims to support
-                the creation of a magnificent ISKCON Sri Radha Krishna Temple and
-                Cultural complex in Hubli-Dharwad area of Karnataka.
+                As a devoted well-wisher, I am leading this sacred campaign to support 
+                the creation of a magnificent ISKCON Sri Radha Krishna Temple and 
+                Cultural Complex in the Hubli-Dharwad region of Karnataka.
             </Box>
         </Box>
     );

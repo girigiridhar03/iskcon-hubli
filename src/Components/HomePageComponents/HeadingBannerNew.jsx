@@ -1,20 +1,24 @@
 import { Flex, Image, Box, Text, useColorModeValue } from "@chakra-ui/react";
 import logo from "../../assets/images/newlogo.png";
 
+import { IskconFontColor, IskconBgColor, banner } from "../utils.jsx";
+
 const HeadingBanner = () => {
-    const bgColor = '#54956e';
-    const textColor = useColorModeValue("white", "gray.200");
+    // const bgColor = '#54956e';
+    // const textColor = useColorModeValue("white", "gray.200");
+    const bgColor = IskconBgColor; //'#f4c430';
+    const textColor = IskconFontColor; //useColorModeValue("#444444", "gray.200")
 
     return (
+        <>
         <Flex
             maxW="1200px"
             justifyContent='space-between'
             align="center"
             bg={bgColor}
-            h={["150px", "160px", "200px"]}
-            marginBottom='5px'
+            h={["150px", "160px", "180px"]}
             direction="row"
-            p='6px'
+            p='0px'
             px={'20px'}
             boxShadow="lg"
         >
@@ -38,7 +42,15 @@ const HeadingBanner = () => {
                     CONCERNED DEVOTEES OF LORD SHRI KRISHNA COMING TOGETHER TO BUILD NORTH KARNATAKA'S BIGGEST MAGNIFICENT SRI RADHA KRISHNA TEMPLE AND CULTURAL COMPLEX
                 </Text>
             </Box>
+            
         </Flex>
+        <Box display={"block"} marginBottom='5px' maxW="1200px" w="100%" mt="-1px" mb="8px" textAlign={"end"}>
+            <Text fontSize={["xs", "sm", "lg"]} color={textColor} bg={bgColor}>
+                <i>If you build a temple of Krishna, you will be liberated. <span>&nbsp;&nbsp;</span><br/><b>- Srila Prabhupada </b><span>&nbsp;&nbsp;</span></i>
+            </Text>
+        </Box>
+       
+        </>
     );
 };
 

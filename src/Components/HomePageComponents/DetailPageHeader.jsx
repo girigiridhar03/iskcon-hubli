@@ -3,15 +3,18 @@ import React from 'react';
 import { FaLocationDot } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 
+import { IskconGradientLight, IskconFontColor, IskconGradientDark } from '../utils';
+
 const DetailPageHeader = ({ themeColor, getSingleUser, image16 }) => {
   const { colorMode } = useColorMode();
-  const bgGradient = colorMode === 'light' ? 'linear(to-r, teal.500, green.500)' : 'linear(to-r, teal.200, green.200)';
+  // const bgGradient = colorMode === 'light' ? 'linear(to-r, teal.500, green.500)' : 'linear(to-r, teal.200, green.200)';
+  const bgGradient = colorMode === 'light' ? IskconGradientLight : IskconGradientDark;
 
   return (
     <Box
       w={"100%"}
       bgGradient={bgGradient}
-      color={"white"}
+      color={IskconFontColor}
       py={"2rem"}
       px={["1.5rem", "2rem", "3rem"]}
     >

@@ -1,6 +1,12 @@
 
 
 export const themeColor = "#EF4F5F"
+export const IskconFontColor = "#FFFFFF"             // '#ffffff'
+export const IskconBgColor = "#0277de"               // '#54956e'
+export const IskconProgressColor = "#f0c38e"         // '#e3c44e'
+export const IskconGradientLight = 'linear(to-r, #0277de,rgb(144, 181, 232))'         // 'linear(to-r, teal.500, green.500)'
+export const IskconGradientDark = 'linear(to-r,  #0277de, rgb(144, 181, 232))'         // 'linear(to-r, teal.200, green.200)'
+
 
 export const formatCurrency = (amount, currencySymbol = '₹') => {
     if (amount == null || isNaN(Number(amount))) return `${currencySymbol}0`; // Handle undefined/null cases
