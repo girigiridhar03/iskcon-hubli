@@ -53,7 +53,9 @@ const PaymentPage = () => {
           setOrderConfirmId(response.razorpay_payment_id)
           setPaymentStatus('success');
           // navigate(`/single/${paymentData.campaignsid}`);
-          dispatch(postPaymentSuccess({ paymentId: response.razorpay_payment_id, orderid: id, isanonymous: paymentData.isanonymous, campaignid: paymentData.campaignsid  }));
+
+          // Commenting the postPaymentSuccess dispatch - as this is handling from Pabbly connect
+          // dispatch(postPaymentSuccess({ paymentId: response.razorpay_payment_id, orderid: id, isanonymous: paymentData.isanonymous, campaignid: paymentData.campaignsid  }));
           Toast({
             title: "Payment Successful",
             description: "Your payment was successful. Thank you!",
