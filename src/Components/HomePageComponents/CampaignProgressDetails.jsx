@@ -87,7 +87,7 @@ const CampaignProgressDetails = ({ currentAmount, goalAmount }) => {
 
             <HStack alignItems="baseline" color={progressColor}>
               <Box fontSize={["2rem", "2.2rem", "2.5rem"]} fontWeight="bold">
-                ₹<CountUp end={currentAmount} start={currentAmount / 2} />
+                ₹<CountUp end={currentAmount} start={currentAmount / 2} useIndianSeparators={true} />
               </Box>
               <Box fontSize={["1.2rem", "1.3rem", "1.5rem"]} fontWeight="bold">
                 Achieved
