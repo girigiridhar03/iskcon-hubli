@@ -105,37 +105,37 @@ const PaymentModal = ({
                             {errors.email && <Box color="red.500">{errors.email}</Box>}
                         </Box>
 
-                            <HStack>
-                                <Checkbox
-                                    onChange={handleOnChange}
-                                    name="prasadRequired"
-                                    isChecked={formData.prasadRequired}
-                                    size={"lg"}
-                                >
-                                    Would you like to receive Mahaprasad?
-                                </Checkbox>
-                            </HStack>
-                            <HStack>
-                                <Checkbox
-                                    onChange={handleOnChange}
-                                    name="taxExemption"
-                                    isChecked={formData.taxExemption}
-                                    size={"lg"}
-                                >
-                                    80G Tax Exemption
-                                </Checkbox>
-                            </HStack>
-                            <HStack>
-                                <Checkbox
-                                    onChange={handleOnChange}
-                                    name="isanonymous"
-                                    isChecked={formData.isanonymous}
-                                    size={"lg"}
-                                >
-                                    Make my donation anonymous
-                                </Checkbox>
-                            </HStack>
-                        
+                        {amount >= 500 && <HStack>
+                            <Checkbox
+                                onChange={handleOnChange}
+                                name="prasadRequired"
+                                isChecked={formData.prasadRequired}
+                                size={"lg"}
+                            >
+                                Would you like to receive Mahaprasad?(above 500 Rs only)
+                            </Checkbox>
+                        </HStack>}
+                        <HStack>
+                            <Checkbox
+                                onChange={handleOnChange}
+                                name="taxExemption"
+                                isChecked={formData.taxExemption}
+                                size={"lg"}
+                            >
+                                80G Tax Exemption
+                            </Checkbox>
+                        </HStack>
+                        <HStack>
+                            <Checkbox
+                                onChange={handleOnChange}
+                                name="isanonymous"
+                                isChecked={formData.isanonymous}
+                                size={"lg"}
+                            >
+                                Make my donation anonymous
+                            </Checkbox>
+                        </HStack>
+
 
                         {formData.taxExemption && <HStack marginTop={"0.6rem"}>
                             <VStack alignItems={"flex-start"} gap={"1px"} w={"100%"}>
