@@ -65,7 +65,7 @@ const CampaignProgressDetails = ({ currentAmount, goalAmount }) => {
       borderRadius="10px"
       px={'10px'}
       py={'5px'}
-      bgColor={"#333333"}
+      bgColor={"rgb(12 10 32)"}
       boxShadow="dark-lg"
       marginBottom="10px"
       border="6px solid #f4c430"

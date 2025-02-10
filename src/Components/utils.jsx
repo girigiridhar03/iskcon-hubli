@@ -2,7 +2,7 @@
 
 export const themeColor = "#EF4F5F"
 export const IskconFontColor = "#FFFFFF"             // '#ffffff'
-export const IskconBgColor = "#444444"               // '#54956e'
+export const IskconBgColor = "rgb(12 10 32)"               // '#54956e'
 export const IskconProgressColor = "#f4c430"         // '#e3c44e'
 export const IskconGradientLight = 'linear(to-r, #f4c430, #f4c430)'         // 'linear(to-r, teal.500, green.500)'
 export const IskconGradientDark = 'linear(to-r,  #0277de, rgb(144, 181, 232))'         // 'linear(to-r, teal.200, green.200)'
