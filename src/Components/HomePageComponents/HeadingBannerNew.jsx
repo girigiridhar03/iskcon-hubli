@@ -6,8 +6,8 @@ import { IskconFontColor, IskconBgColor, banner } from "../utils.jsx";
 const HeadingBanner = () => {
     // const bgColor = '#54956e';
     // const textColor = useColorModeValue("white", "gray.200");
-    const bgColor = IskconBgColor; //'#f4c430';
-    const textColor = IskconFontColor; //useColorModeValue("#444444", "gray.200")
+    const bgColor = '#f4c430'; //'#f4c430';
+    const textColor = '#444444'; //useColorModeValue("#444444", "gray.200")
 
     return (
         <>

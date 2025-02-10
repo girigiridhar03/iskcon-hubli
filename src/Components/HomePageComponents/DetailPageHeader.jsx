@@ -14,11 +14,11 @@ const DetailPageHeader = ({ themeColor, getSingleUser, image16 }) => {
     <Box
       w={"100%"}
       bgGradient={bgGradient}
-      color={IskconFontColor}
+      bg={'#f4c430'}
       py={"2rem"}
       px={["1.5rem", "2rem", "3rem"]}
     >
-      <Box w={"100%"} maxW={"1200px"} mx={"auto"}>
+      <Box w={"100%"} maxW={"1200px"} mx={"auto"} color={'#444444'}>
         <Text
           fontWeight={"bold"}
           fontSize={["1.2rem", "1.5rem", "2rem"]}

@@ -20,7 +20,7 @@ const borderAnimation = keyframes`
     border-color: transparent;
   }
   50% {
-    border-color: #3566ab;
+    border-color: #f4c430;
   }
   100% {
     border-color: transparent;
@@ -65,10 +65,10 @@ const CampaignProgressDetails = ({ currentAmount, goalAmount }) => {
       borderRadius="10px"
       px={'10px'}
       py={'5px'}
-      bgColor={"#b3c6ed"}
+      bgColor={"#333333"}
       boxShadow="dark-lg"
       marginBottom="10px"
-      border="2px solid"
+      border="6px solid #f4c430"
       borderColor="transparent"
       animation={`${borderAnimation} 3s infinite`}
       textTransform='uppercase'
@@ -85,7 +85,7 @@ const CampaignProgressDetails = ({ currentAmount, goalAmount }) => {
               <Box fontWeight="semibold">{formatCurrency(goalAmount)}</Box>
             </Flex>
 
-            <HStack alignItems="baseline" color={progressColor}>
+            <HStack alignItems="baseline" color={'#f4c430'}>
               <Box fontSize={["2rem", "2.2rem", "2.5rem"]} fontWeight="bold">
                 ₹<CountUp end={currentAmount} start={currentAmount / 2} useIndianSeparators={true} />
               </Box>
@@ -100,7 +100,7 @@ const CampaignProgressDetails = ({ currentAmount, goalAmount }) => {
             value={progress}
             size={["100px", "130px", "150px"]}
             thickness="10px"
-            color={progressColor}
+            color={'#f4c430'}
             trackColor={trackColor}
             capIsRound={true}
           >
@@ -115,7 +115,7 @@ const CampaignProgressDetails = ({ currentAmount, goalAmount }) => {
         </Box>
 
         <VStack align={["center", "center", "flex-start"]} mt={[4, 4, "-1rem"]} marginRight={["0", "0", "3rem"]}>
-          <Box fontSize={["1.5rem", "2rem", "2.3rem"]} fontWeight="bold" color={progressColor}>
+          <Box fontSize={["1.5rem", "2rem", "2.3rem"]} fontWeight="bold" color={'#f4c430'}>
             Mandir Nirmana Seva
           </Box>
           <Box fontSize={["1rem", "1.2rem", "1.5rem"]}   fontWeight="bold" color={textColor} mt={2}>

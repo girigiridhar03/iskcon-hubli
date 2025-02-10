@@ -117,7 +117,7 @@ const HomeCards = ({
             >
               {filteredSearch(campaigns, searchQuery)?.map((user, i) => (
                 <Link key={user.campaignId} to={`/single/${user.campaignId}`}>
-                  <Card border={'2px solid #0277de'} w="100%" overflow="hidden" h="100%" boxShadow="md" borderRadius="14px">
+                  <Card border={'2px solid #444444'} w="100%" overflow="hidden" h="100%" boxShadow="md" borderRadius="14px">
                     <Box w="100%" h={["250px", "250px", "250px", "300px", "250px"]} position='relative' >
                       <Image
                         w="100%"

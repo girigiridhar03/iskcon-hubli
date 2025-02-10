@@ -264,13 +264,13 @@ const CampaignMoreDetails = ({ campaign, getSingleUser, themeColor, handleImageE
                         >
                             {user?.username[0]?.toUpperCase()}
                         </Box>
-                        <VStack alignItems={"flex-start"} gap={".3rem"}>
+                        <VStack alignItems={"flex-start"} color={'#444444'} gap={".3rem"}>
                             <HStack>
-                                <Box fontWeight={"bold"} color={"white"}>
+                                <Box fontWeight={"bold"} >
                                     {user?.isanonymous ? 'Anonymous' : user?.username} donated {formatCurrency(user?.amount)}{" "}
                                 </Box>
                             </HStack>
-                            <Box fontWeight={"bold"} color={"white"}>
+                            <Box fontWeight={"bold"} >
                                 about {formatTimeAgo(user?.date)}
                             </Box>
                         </VStack>
