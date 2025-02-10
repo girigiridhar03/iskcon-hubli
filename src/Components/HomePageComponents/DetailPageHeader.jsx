@@ -55,8 +55,9 @@ const DetailPageHeader = ({ themeColor, getSingleUser, image16 }) => {
                   src={image16}
                 />
               </Box>
-              <VStack alignItems={"flex-start"} gap={"5px"}>
+              <VStack alignItems={"flex-start"} gap={"2px"}>
                 <Text fontWeight={"bold"}>ISKCON HUBLI-DHARWAD</Text>
+                <Text fontWeight={"bold"} color={"black"}>Go to Homepage</Text>
               </VStack>
             </HStack>
           </Link>
