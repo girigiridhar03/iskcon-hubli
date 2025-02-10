@@ -5,7 +5,7 @@ import { IskconGradientLight } from '../utils';
 
 const CampaignMoreDetails = ({ campaign, getSingleUser, themeColor, handleImageError, avatar, imageError }) => {
     const toast = useToast();
-    const toastShown = React.useRef(true);
+    const toastShown = React.useRef(false);
 
     useEffect(() => {
         if (!toastShown.current && getSingleUser?.top10paymentDetails?.length > 0) {
