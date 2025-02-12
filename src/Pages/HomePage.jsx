@@ -77,6 +77,7 @@ const HomePage = () => {
         totalCampaigners={Number(campaignsData?.totalcampaigncount) || 0}
         setAllCampaigners={setAllCampaigners}
         allCampaignersLength={allCampaigners?.length || 0}
+        setIsLoading={setIsLoading}
       />
       {/* <HomeTeams /> */}
       <HomeDetails />

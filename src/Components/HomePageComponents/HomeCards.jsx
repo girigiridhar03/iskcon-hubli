@@ -34,7 +34,8 @@ const HomeCards = ({
   filteredSearch,
   totalCampaigners,
   setAllCampaigners,
-  allCampaignersLength
+  allCampaignersLength,
+  setIsLoading
 }) => {
 
   if (isLoading) {
@@ -91,8 +92,16 @@ const HomeCards = ({
             onChange={handleSearchChange}
             onFocus={async () => {
               if (allCampaignersLength) return;
-              const data = await fetchAllCampaigners();
-              setAllCampaigners(data);
+              try {
+                setIsLoading(true);
+                const data = await fetchAllCampaigners();
+                setAllCampaigners(data);
+              } catch (error) {
+                console.error("Error fetching campaigners:", error);
+              } finally {
+                setIsLoading(false);
+              }
+
             }}
           />
         </Box>
@@ -168,7 +177,7 @@ const HomeCards = ({
                           <Box>Hubli-Dharwad</Box>
                         </HStack>
                       </HStack>
-                      
+
                     </CardBody>
                     <CardFooter
                       // bgColor="teal.600"
