@@ -37,7 +37,7 @@ const HomePage = () => {
 
   const fetchMoreData = async () => {
     try {
-      const response = await fetch(`${BE_API_URL}/showcampaigns?limit=4&page=${page}`);
+      const response = await fetch(`${BE_API_URL}/showcampaigns?limit=10&page=${page}`);
       const data = await response.json();
       setCampaigns((prevCampaigns) => {
         const newCampaigns = data.campaignDetails.filter(
