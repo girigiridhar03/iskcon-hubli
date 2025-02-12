@@ -1,6 +1,6 @@
 import React from 'react';
-import { Box, Button, HStack, VStack, Input, Badge } from '@chakra-ui/react';
-import { formatCurrency, getDaysDifference } from '../utils';
+import { Box, Button, HStack, VStack, Input, Badge, Flex } from '@chakra-ui/react';
+import { calculatePercentage, formatCurrency, getDaysDifference } from '../utils';
 import ProgressBar from './ProgressBar';
 
 import { IskconBgColor, IskconFontColor } from '../utils';
@@ -11,8 +11,10 @@ const CapaignerProgressBox = ({
     handleClick,
     errorMessage
 }) => {
-    const isTargetReached = getSingleUser?.raisedFund >= getSingleUser?.campaignDetails?.targetAmount;
-
+    const targetAmount = getSingleUser?.campaignDetails?.targetAmount || 1000000;
+    const raisedAmount = getSingleUser?.raisedFund || 0;
+    const isTargetReached = raisedAmount >= targetAmount;
+    const currentPercentage = calculatePercentage(targetAmount, raisedAmount);
     return (
         <Box
             w={["97%", "97%", "97%", "50%"]}
@@ -36,25 +38,26 @@ const CapaignerProgressBox = ({
                 justifyContent="space-between"
                 borderRadius="md"
             >
-                { isTargetReached && (
-                    <div>
-                        <Badge
-                            fontSize={["2xs", "xs", "x"]}
-                            borderRadius="full"
-                            px="4"
-                            // py="2"
-                            // my={-1}
-                            background={"#ffffff"}
-                            color={"#eb6a26"}
-                            boxShadow="md"
-                            // fontWeight="extrabold"
-                            position="relative"
-                            width={"fit-content"}
-                        >
-                            Star Campaigner !!
-                        </Badge>
-                    </div>
-                )}
+
+                <Flex justifyContent="space-between" alignItems="center">
+                    {isTargetReached && <Badge
+                        fontSize={["2xs", "xs", "x"]}
+                        borderRadius="full"
+                        px="4"
+                        // py="2"
+                        // my={-1}
+                        background={"#ffffff"}
+                        color={"#eb6a26"}
+                        boxShadow="md"
+                        // fontWeight="extrabold"
+                        position="relative"
+                        width={"fit-content"}
+                    >
+                        Star Campaigner !!
+                    </Badge>}
+                    <Box color="#b2f07f" fontWeight={900} fontSize={"20px"}>{currentPercentage >= 100 ? "Goal Achieved!" : currentPercentage >= 80 ? "One Step to Victory🔥" : ""}</Box>
+                </Flex>
+
                 <VStack width="100%" alignItems="flex-start" gap="0.5rem" marginTop={"0.5rem"}>
                     <HStack>
                         <Box fontWeight="semibold" fontSize={["xl", "2xl", "3xl"]}>
@@ -75,7 +78,7 @@ const CapaignerProgressBox = ({
                     </HStack>
 
                 </VStack>
-                
+
                 <HStack w={"100%"} justifyContent={"space-between"} my={"1rem"}>
                     <VStack
                         fontWeight={"semibold"}
@@ -84,7 +87,7 @@ const CapaignerProgressBox = ({
                         alignItems={"flex-start"}
                     >
                         <Box>DAYS LEFT</Box>
-                        <Box fontSize={[ "3xl", "4xl", "5xl" ]} fontWeight="900">
+                        <Box fontSize={["3xl", "4xl", "5xl"]} fontWeight="900">
                             {getDaysDifference(
                                 getSingleUser?.campaignDetails?.enddate
                             )}
@@ -97,7 +100,7 @@ const CapaignerProgressBox = ({
                         alignItems={"flex-start"}
                     >
                         <Box>FUNDERS</Box>
-                        <Box fontSize={[ "3xl", "4xl", "5xl" ]} fontWeight="900">{getSingleUser?.totalFunders}</Box>
+                        <Box fontSize={["3xl", "4xl", "5xl"]} fontWeight="900">{getSingleUser?.totalFunders}</Box>
                     </VStack>
                 </HStack>
                 <Box w="100%">
