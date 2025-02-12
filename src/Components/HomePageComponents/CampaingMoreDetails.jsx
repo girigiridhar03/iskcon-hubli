@@ -25,7 +25,7 @@ const CampaignMoreDetails = ({ campaign, getSingleUser, themeColor, handleImageE
                     </VStack>
                 ),
                 status: 'success',
-                duration: 5000,
+                duration: 10000,
                 isClosable: true,
                 position: 'bottom-left',
             });
