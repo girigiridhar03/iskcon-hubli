@@ -6,14 +6,28 @@ import { Box, Button, Spinner, Text, useToast } from "@chakra-ui/react";
 
 
 const PaymentPage = () => {
-
+  
   const prevId = useRef(null);
   const { id } = useParams(); // Get order ID from URL
   const location = useLocation(); // Access the state passed via navigation
-  const paymentData = location.state || {};
-  console.log("Order ID, paymentData", id, paymentData);
+  // const paymentData = location.state || {};
+  const query = new URLSearchParams(location.search);
+  const paymentData = {
+    name: query.get('name'),
+    phone: query.get('phone'),
+    email: query.get('email'),
+    seva: query.get('seva'),
+    address: query.get('address'),
+    pan_number: query.get('pan_number'),
+    send_confirmation_message_to_preacher: query.get('send_confirmation_message_to_preacher'),
+    campaignsid: query.get('campaignsid'),
+    preacher_name: query.get('preacher_name'),
+    isanonymous:query.get('isanonymous')==='true',
+    campainerName: query.get('campainerName')
+  };
+  console.log("Order ID, paymentData from url", id, paymentData);
   const [orderConfirmId, setOrderConfirmId] = useState(null)
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const Toast = useToast();
   const navigate = useNavigate();
   const [paymentStatus, setPaymentStatus] = useState('');

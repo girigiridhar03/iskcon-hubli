@@ -186,22 +186,7 @@ const HomeSinglePage = () => {
         const orderId = res?.payload?.order?.id;
         if (orderId) {
 
-          navigate(`/payment/${orderId}`, {
-            state: {
-              name: formData.username,
-              phone: formData.mobileno,
-              email: formData.email,
-              seva: "Mandir Nirmana Seva",
-              address: formData.address,
-              pan_number: formData.panno,
-              send_confirmation_message_to_preacher: `${getSingleUser?.campaignDetails?.preacherName || ''} - ${getSingleUser?.campaignDetails?.phoneno || ''}`
-              ,
-              campaignsid: id,
-              preacher_name: getSingleUser?.campaignDetails?.preacherName || '',
-              isanonymous: formData.isanonymous,
-              campainerName: getSingleUser?.campaignDetails?.campaignName || '',
-            },
-          });
+            navigate(`/payment/${orderId}?name=${formData.username}&phone=${formData.mobileno}&email=${formData.email}&seva=Mandir Nirmana Seva&address=${formData.address}&pan_number=${formData.panno}&send_confirmation_message_to_preacher=${getSingleUser?.campaignDetails?.preacherName || ''} - ${getSingleUser?.campaignDetails?.phoneno || ''}&campaignsid=${id}&preacher_name=${getSingleUser?.campaignDetails?.preacherName || ''}&isanonymous=${formData.isanonymous|| false}&campainerName=${getSingleUser?.campaignDetails?.campaignName || ''}`);
         }
       });
     }
