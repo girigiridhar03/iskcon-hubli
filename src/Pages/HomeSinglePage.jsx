@@ -30,6 +30,7 @@ import CampaignTabs from "../Components/HomePageComponents/Tabs";
 import { FaArrowUp, FaSquareWhatsapp } from "react-icons/fa6";
 import Fotter from "../Components/HomePageComponents/Fotter";
 import { IskconBgColor, IskconFontColor } from "../Components/utils";
+import ProjectVedio from "../Components/HomePageComponents/ProjectVedio";
 
 const HomeSinglePage = () => {
   const { id } = useParams();
@@ -314,6 +315,7 @@ const HomeSinglePage = () => {
       ) : (
         <Funders getSingleUser={getSingleUser} />
       )}
+      <ProjectVedio />
       <Fotter />
     </Box>
   );
