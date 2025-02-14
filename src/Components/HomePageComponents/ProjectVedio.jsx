@@ -7,7 +7,7 @@ const ProjectVedio = () => {
               <Center mt={6}>
                 <AspectRatio ratio={16 / 9} w="100%">
                   <iframe
-                    src="https://youtu.be/-AiBCuysKuE"
+                    src="https://www.youtube.com/embed/NNu_TkGy-BU"
                     title="Construction Updates | Sri Radha Krishna Temple | ISKCON Hubli-Dharwad"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerPolicy="strict-origin-when-cross-origin"
