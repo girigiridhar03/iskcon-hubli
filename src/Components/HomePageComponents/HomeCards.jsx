@@ -78,11 +78,11 @@ const HomeCards = ({
           </HStack>
           <Input
             w={['150px', '150px', '200px', '250px']}
-            h={['20px', '40px', '40px', '40px']}
+            h={['30px', '40px', '40px', '40px']}
             type="text"
             marginRight={"12px"}
             placeholder="Search campaigners"
-            fontSize={["0.7rem", "1rem", "1.2rem", "1.2em"]}
+            fontSize={["0.9rem", "1rem", "1.2rem", "1.2em"]}
             style={{
               padding: "0.5rem",
               borderRadius: "5px",
