@@ -3,23 +3,24 @@ import React from 'react';
 
 const ProjectVedio = () => {
     return (
+      <>
          <Box w={"90%"} h={"auto"} mx={"auto"} mb = {10}>
               <Center mt={6}>
                 <AspectRatio ratio={16 / 9} w="100%">
                   <iframe
-                    src="https://www.youtube.com/embed/NNu_TkGy-BU"
-                    title="Construction Updates | Sri Radha Krishna Temple | ISKCON Hubli-Dharwad"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    allowFullScreen
-                  ></iframe>
-                </AspectRatio>
+                  src="https://www.youtube.com/embed/-AiBCuysKuE?si=LCUSVDZR2zB5Tb2T" 
+                  title="Construction Updates | Sri Radha Krishna Temple | ISKCON Hubli-Dharwad" frameborder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                  referrerpolicy="strict-origin-when-cross-origin" 
+                  allowfullscreen></iframe>
+                  </AspectRatio>
               </Center>
                <Box fontWeight={"semibold"} fontStyle={"italic"}>
                 Watch this video to get a better understanding of the ongoing
                 project.
               </Box>
             </Box>
+          </>
     );
 };
 
