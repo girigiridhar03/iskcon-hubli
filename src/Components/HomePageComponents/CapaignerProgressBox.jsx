@@ -128,8 +128,8 @@ const CapaignerProgressBox = ({
                                 placeholder="Enter Amount"
                                 onChange={(e) => setAmount(e.target.value)}
                                 h={"50px"}
-                                borderColor="teal.500"
-                                focusBorderColor="teal.600"
+                                focusBorderColor="#f5c431"
+                                border="4px solid #f5c431"
                             />
                         </Box>
                     )}

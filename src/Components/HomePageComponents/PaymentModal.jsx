@@ -112,7 +112,18 @@ const PaymentModal = ({
                                 isChecked={formData.prasadRequired}
                                 size={"lg"}
                             >
-                                Would you like to receive Mahaprasad?(Provide correct address for prasad delivery)
+                                Would you like to receive Mahaprasad? (Provide correct address for prasad delivery)
+                            </Checkbox>
+                        </HStack>}
+                        {amount < 500 && <HStack>
+                            <Checkbox
+                                onChange={handleOnChange}
+                                name="prasadRequired"
+                                isChecked={formData.prasadRequired}
+                                size={"lg"}
+                                disabled="true"
+                            >
+                                Would you like to receive Mahaprasad? (Above ₹500 only)
                             </Checkbox>
                         </HStack>}
                         <HStack>
