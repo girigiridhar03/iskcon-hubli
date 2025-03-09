@@ -55,7 +55,7 @@ const CapaignerProgressBox = ({
                     >
                         Star Campaigner !!
                     </Badge>}
-                    <Box color="#b2f07f" fontWeight={900} fontSize={"20px"}>{currentPercentage >= 100 ? "Goal Achieved!" : currentPercentage >= 80 ? "One Step to Victory🔥" : ""}</Box>
+                    <Box color="#d481f0" fontWeight={900} fontSize={"20px"}>{currentPercentage >= 100 ? "Goal Achieved!" : currentPercentage >= 80 ? "One Step to Victory🔥" : ""}</Box>
                 </Flex>
 
                 <VStack width="100%" alignItems="flex-start" gap="0.5rem" marginTop={"0.5rem"}>
@@ -128,8 +128,8 @@ const CapaignerProgressBox = ({
                                 placeholder="Enter Amount"
                                 onChange={(e) => setAmount(e.target.value)}
                                 h={"50px"}
-                                focusBorderColor="#f5c431"
-                                border="4px solid #f5c431"
+                                focusBorderColor="#d481f0"
+                                border="4px solid #d481f0"
                             />
                         </Box>
                     )}

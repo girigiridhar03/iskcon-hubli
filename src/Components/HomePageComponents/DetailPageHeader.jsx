@@ -14,7 +14,7 @@ const DetailPageHeader = ({ themeColor, getSingleUser, image16 }) => {
     <Box
       w={"100%"}
       bgGradient={bgGradient}
-      bg={'#f4c430'}
+      bg={'#d582f0'}
       py={"2rem"}
       px={["1.5rem", "2rem", "3rem"]}
     >
@@ -57,7 +57,7 @@ const DetailPageHeader = ({ themeColor, getSingleUser, image16 }) => {
               </Box>
               <VStack alignItems={"flex-start"} gap={"2px"}>
                 <Text fontWeight={"bold"}>ISKCON HUBLI-DHARWAD</Text>
-                <Text fontWeight={"bold"} color={"#b9671e"} fontStyle={"italic"}>Go to Homepage</Text>
+                <Text fontWeight={"bold"} color={"#83009D"} fontStyle={"italic"}>Go to Homepage</Text>
               </VStack>
             </HStack>
           </Link>
