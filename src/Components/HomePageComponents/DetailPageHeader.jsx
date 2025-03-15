@@ -3,6 +3,8 @@ import React from 'react';
 import { FaLocationDot } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 
+import Banner from "../../assets/images/mandir_nirman_seva_banner.jpeg";
+
 import { IskconGradientLight, IskconFontColor, IskconGradientDark } from '../utils';
 
 const DetailPageHeader = ({ themeColor, getSingleUser, image16 }) => {
@@ -11,6 +13,7 @@ const DetailPageHeader = ({ themeColor, getSingleUser, image16 }) => {
   const bgGradient = colorMode === 'light' ? IskconGradientLight : IskconGradientDark;
 
   return (
+    <>
     <Box
       w={"100%"}
       bgGradient={bgGradient}
@@ -66,6 +69,11 @@ const DetailPageHeader = ({ themeColor, getSingleUser, image16 }) => {
         </VStack>
       </Box>
     </Box>
+    
+    <Image
+      src={Banner}
+    />
+    </>
   );
 };
 
