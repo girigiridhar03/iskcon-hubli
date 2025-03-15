@@ -3,11 +3,13 @@ import HomeDetails from '../Components/HomePageComponents/HomeDetails'
 import HomeCards from '../Components/HomePageComponents/HomeCards'
 
 import CampaignProgressDetails from '../Components/HomePageComponents/CampaignProgressDetails'
-import { Box } from '@chakra-ui/react'
+import { Box, Image } from '@chakra-ui/react'
 import HeadingBanner from '../Components/HomePageComponents/HeadingBannerNew'
 
 import { BE_API_URL } from '../constants/homePage'
 import Fotter from '../Components/HomePageComponents/Fotter'
+
+import Banner from "../assets/images/mandir_nirman_seva_banner.jpeg";
 
 import { IskconFontColor, IskconBgColor } from "../Components/utils.jsx";
 
@@ -64,6 +66,9 @@ const HomePage = () => {
       <CampaignProgressDetails
         currentAmount={Number(campaignsData?.totalraisedamt) || 0}
         goalAmount={Number(campaignsData?.totalgoalamt) || 0}
+      />
+      <Image
+        src={Banner}
       />
       <HomeCards
         isLoading={isLoading}
